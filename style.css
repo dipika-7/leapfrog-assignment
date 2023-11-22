@@ -1,0 +1,26 @@
+body {
+  margin: 0 auto;
+}
+
+.description {
+  width: 100%;
+  text-align: center;
+  /* margin: 0 auto; */
+}
+
+.assignment-table {
+  margin: 0 auto;
+  width: 70%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 20px;
+}
