@@ -1,0 +1,186 @@
+body {
+  background-color: #343d33;
+}
+
+/* .clearfix:after {
+  content: "";
+  clear: both;
+  display: table;
+} */
+
+.main {
+  margin: 56px 16px 16px 16px;
+}
+
+.title {
+  color: white;
+  font-family: "Libre Baskerville", serif;
+  font-size: 34px;
+  font-weight: 400;
+  text-transform: capitalize;
+  text-align: center;
+  /* width: 344px; */
+  margin: 20px 16px;
+}
+
+.description {
+  color: white;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  /* width: 344px; */
+  margin-left: 30px;
+}
+
+.button {
+  padding: 15px 30px;
+  border: 2px solid;
+  color: white;
+  align-items: center;
+  font-family: "Roboto Flex", sans-serif;
+  background-color: transparent;
+  margin-left: 35%;
+  margin-top: 20px;
+  width: 175px;
+}
+
+.content-sub1 {
+  /* display: flex; */
+  align-items: center;
+}
+
+.content-sub1-img {
+  width: 100%;
+}
+
+.content-sub1-desc {
+  display: none;
+  margin-left: 89px;
+}
+
+.content-sub2 {
+  /* border: 1px solid black; */
+  margin-top: 16px;
+}
+
+.content-sub2-img {
+  width: 100%;
+}
+
+.content-sub2-desc {
+  display: block;
+}
+
+.image-background {
+  height: 462px;
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  z-index: -999;
+}
+
+/* tablet view */
+@media only screen and (min-width: 575px) {
+  .main {
+    margin: 86px 70px;
+  }
+
+  .title {
+    font-size: 40px;
+    text-align: left;
+    width: 417px;
+    margin: 20px 16px 0px 0px;
+  }
+
+  .description {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    width: 401px;
+    margin: 16px 16px 32px 0px;
+  }
+
+  .button {
+    margin-left: 0px;
+    width: 175px;
+  }
+
+  .content-sub1 {
+    align-items: center;
+  }
+
+  .content-sub1-desc {
+    display: none;
+  }
+
+  .content-sub2 {
+    /* border: 1px solid black; */
+    margin-top: 40px;
+  }
+
+  .content-sub2-img {
+    width: 100%;
+  }
+
+  .content-sub2-desc {
+    display: block;
+    width: 300px;
+    /* float: left; */
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .main {
+    margin: 96px 179px;
+  }
+
+  .title {
+    font-size: 45px;
+    font-weight: 400;
+    text-transform: capitalize;
+    width: 417px;
+  }
+
+  .description {
+    font-size: 20px;
+    font-weight: 400;
+    width: 401px;
+  }
+
+  .button {
+    display: inline-flex;
+    padding: 20px 40px;
+    align-items: center;
+    border: 2px solid;
+    color: white;
+    font-family: "Roboto Flex", sans-serif;
+    background-color: transparent;
+  }
+
+  .content-sub1 {
+    display: flex;
+    align-items: center;
+  }
+
+  .content-sub1-img {
+    width: 534px;
+  }
+
+  .content-sub1-desc {
+    display: inline;
+    margin-left: 89px;
+  }
+
+  .content-sub2 {
+    margin-top: 80px;
+  }
+
+  .content-sub2-img {
+    width: 1040px;
+  }
+
+  .content-sub2-desc {
+    display: none;
+  }
+}
