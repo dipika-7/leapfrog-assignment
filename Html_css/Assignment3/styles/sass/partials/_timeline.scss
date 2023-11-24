@@ -1,0 +1,108 @@
+.timeline {
+  max-width: 100%;
+  color: $fade-white;
+  text-align: left;
+  padding: 40px 25px;
+  margin: 0 auto;
+  &__titleSection {
+    display: flex;
+    gap: 32px;
+  }
+  &__title {
+    color: $white;
+    text-align: center;
+    margin-left: 40%;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 52px; /* 260% */
+    letter-spacing: -0.4px;
+    @media screen and (min-width: $tablet) {
+      margin-left: 0;
+      font-size: 32px;
+      letter-spacing: -0.64px;
+      flex-basis: 220px;
+    }
+  }
+  &__info {
+    max-width: 296px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 28px; /* 200% */
+  }
+  &__infoSection {
+    display: none;
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  &__list {
+    display: flex;
+    &--item {
+      @media screen and (min-width: $tablet) {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+  &__firstGroup {
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 24px 0;
+    @media screen and (min-width: $tablet) {
+      flex-direction: column;
+    }
+    &--info {
+      padding-right: 20px;
+      max-width: 223px;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    &--title {
+      padding: 12px 20px;
+      color: var(--Text, #1d1c31);
+      font-size: 16px;
+      font-weight: 600;
+      max-width: 204px;
+      border-radius: 8px;
+      background: var(--ffffff, #fff);
+    }
+  }
+  &__secondGroup {
+    display: none;
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__seemoreSection {
+    text-align: center;
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
+  }
+  &__seemore {
+    color: $white;
+  }
+}
+
+.arrow-right {
+  margin-left: 16px;
+}
+
+.top-group {
+  margin-bottom: 150px;
+}
+
+.bottom-group {
+  margin-top: 150px;
+}

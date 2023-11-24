@@ -192,6 +192,7 @@ body {
 a {
   color: #1d1c31;
   text-decoration: none;
+  cursor: pointer;
 }
 
 button {
@@ -787,6 +788,125 @@ ul {
   .downloads__btn {
     max-width: 120px;
   }
+}
+
+.timeline {
+  max-width: 100%;
+  color: #b6b3eb;
+  text-align: left;
+  padding: 40px 25px;
+  margin: 0 auto;
+}
+.timeline__titleSection {
+  display: flex;
+  gap: 32px;
+}
+.timeline__title {
+  color: #ffffff;
+  text-align: center;
+  margin-left: 40%;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 52px; /* 260% */
+  letter-spacing: -0.4px;
+}
+@media screen and (min-width: 768px) {
+  .timeline__title {
+    margin-left: 0;
+    font-size: 32px;
+    letter-spacing: -0.64px;
+    flex-basis: 220px;
+  }
+}
+.timeline__info {
+  max-width: 296px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 28px; /* 200% */
+}
+.timeline__infoSection {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .timeline__infoSection {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+.timeline__list {
+  display: flex;
+}
+@media screen and (min-width: 768px) {
+  .timeline__list--item {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+@media screen and (min-width: 768px) {
+  .timeline__firstGroup {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.timeline__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 24px 0;
+}
+@media screen and (min-width: 768px) {
+  .timeline__item {
+    flex-direction: column;
+  }
+}
+.timeline__item--info {
+  padding-right: 20px;
+  max-width: 223px;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+.timeline__item--title {
+  padding: 12px 20px;
+  color: var(--Text, #1d1c31);
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 204px;
+  border-radius: 8px;
+  background: var(--ffffff, #fff);
+}
+.timeline__secondGroup {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .timeline__secondGroup {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.timeline__seemoreSection {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .timeline__seemoreSection {
+    display: none;
+  }
+}
+.timeline__seemore {
+  color: #ffffff;
+}
+
+.arrow-right {
+  margin-left: 16px;
+}
+
+.top-group {
+  margin-bottom: 150px;
+}
+
+.bottom-group {
+  margin-top: 150px;
 }
 
 .footer {
