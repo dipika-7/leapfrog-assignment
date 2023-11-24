@@ -1,0 +1,80 @@
+.clientSay {
+  display: none;
+  @media screen and (min-width: $tablet) {
+    margin: 0 auto;
+    display: block;
+    padding-top: 10%;
+    position: relative;
+    left: 0;
+  }
+  @media screen and (min-width: $desktop) {
+    padding: 0;
+  }
+  &__card {
+    position: relative;
+  }
+  &__cardhead {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.clientSay,
+.benefits {
+  &__cardlist {
+    display: block;
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__card {
+    &--icon {
+      width: 70px;
+    }
+    &--info {
+      color: $fade-black;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.75rem;
+      margin-bottom: 1.2rem;
+    }
+    &--readmore {
+      @media screen and (min-width: $desktop) {
+        float: right;
+      }
+    }
+  }
+  &__info {
+    margin-bottom: -1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #1d1c311a;
+  }
+  &__image {
+    width: 50%;
+  }
+  &__footer {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    // align-items: left;
+    // justify-content: space-around;
+    margin-top: 1.25rem;
+    @media screen and (min-width: $desktop) {
+      align-items: center;
+      justify-content: space-around;
+    }
+    &--info {
+      width: 50%;
+    }
+    &--title {
+      color: $black;
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+    &--date {
+      font-size: 0.75rem;
+    }
+  }
+}

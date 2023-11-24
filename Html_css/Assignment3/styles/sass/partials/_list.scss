@@ -1,0 +1,27 @@
+.list {
+  background-color: blueviolet;
+  max-width: 100%;
+  //   margin: 0 auto;
+
+  &__items {
+    display: none;
+    margin: 0 auto;
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  &__item {
+    @media screen and (min-width: $tablet) {
+      margin-left: 2%;
+    }
+    @media screen and (min-width: $desktop) {
+      margin-left: 8%;
+    }
+  }
+  &__img {
+    @media screen and (min-width: $tablet) {
+      max-width: 85px;
+    }
+  }
+}

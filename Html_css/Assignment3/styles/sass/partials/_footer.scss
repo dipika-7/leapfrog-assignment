@@ -1,0 +1,54 @@
+.footer {
+  background-color: #efeeff;
+  padding: 24px;
+  &__top {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: end;
+  }
+  &__first {
+    text-align: left;
+    margin-bottom: 24px;
+    &--info {
+      margin-left: 25px;
+      color: var(--1-d-1-c-31, #1d1c31);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px; /* 171.429% */
+      max-width: 330px;
+    }
+  }
+  &__second {
+    flex-basis: 50%;
+  }
+  &__email {
+    margin: 16px 25px;
+    width: 330px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #1d1c3133;
+  }
+  &__title {
+    text-align: left;
+    margin-left: 40px;
+    color: var(--Text, #1d1c31);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  &__list {
+    text-align: left;
+    color: $fade-black;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+}
+
+.btn-subscribe {
+  background: var(--4-e-46-e-8, #4e46e8);
+  color: white;
+  margin-left: 24px;
+}

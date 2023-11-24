@@ -1,0 +1,74 @@
+.container {
+  margin: 0 auto;
+  // padding: 0 24px;
+  padding: 0 auto;
+  @media screen and (min-width: $tablet) {
+    padding: 0 36px;
+  }
+  @media screen and (min-width: 1200px) {
+    // padding: 0 100px;
+    max-width: 1200px;
+  }
+}
+
+.wrapper {
+  // background: linear-gradient(45deg, #1b13a6 49.59%, #443cdf 88.57%), #fff;
+  background: var(
+    --ffffff-2-paints,
+    linear-gradient(65deg, #362fcc 31.84%, #5d55ff 68.16%),
+    #fff
+  );
+}
+
+.text-white {
+  color: $white;
+}
+
+.text-fade-white {
+  color: $fade-white;
+}
+
+.main-title {
+  color: var(--Text, #1d1c31);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.9;
+  margin: 24px;
+  @media screen and (min-width: $tablet) {
+    text-align: left;
+    margin: 0 auto;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 3.25;
+  }
+  @media screen and (min-width: $desktop) {
+    font-size: 40px;
+    font-weight: 700;
+  }
+}
+
+.card-title {
+  color: var(--Text, #1d1c31);
+  // font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.card {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 24px 16px;
+  max-width: 304px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 24px 64px -12px rgba(26, 24, 65, 0.06);
+  border: 1px solid rgba(29, 28, 49, 0.1);
+
+  @media screen and (min-width: $tablet) {
+    margin-left: 20px;
+  }
+  @media screen and (min-width: $desktop) {
+    max-width: 448px;
+    margin-left: 32px;
+  }
+}
