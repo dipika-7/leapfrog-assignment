@@ -569,6 +569,23 @@ ul {
     padding: 0;
   }
 }
+.clientSay__section {
+  display: flex;
+}
+.clientSay__title {
+  align-items: left;
+}
+@media screen and (min-width: 768px) {
+  .clientSay__title {
+    margin-top: 14%;
+    margin-left: 3%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .clientSay__title {
+    margin-top: 5%;
+  }
+}
 .clientSay__card {
   position: relative;
 }
@@ -644,6 +661,29 @@ ul {
 .clientSay__footer--date,
 .benefits__footer--date {
   font-size: 0.75rem;
+}
+
+.icon-group {
+  display: none;
+}
+@media screen and (min-width: 1200px) {
+  .icon-group {
+    display: inline;
+    margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .icon {
+    padding: 14px;
+    border-radius: 49px;
+    background: rgba(29, 28, 49, 0.05);
+  }
+}
+
+.icon:hover {
+  color: #5d55ff;
+  background: rgba(93, 85, 255, 0.1);
 }
 
 .downloads {
@@ -752,32 +792,96 @@ ul {
 .footer {
   background-color: #efeeff;
   padding: 24px;
+  margin: 0 auto;
 }
 .footer__top {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .footer__top {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(29, 28, 49, 0.1);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .footer__top {
+    padding: 0 20%;
+  }
 }
 .footer__first {
   text-align: left;
   margin-bottom: 24px;
+  padding: 20px;
+}
+@media screen and (min-width: 768px) {
+  .footer__first {
+    max-width: 60%;
+    border-radius: 8px;
+    background: var(--Text, #1d1c31);
+    box-shadow: 0px 0px 30px 2px rgba(93, 85, 255, 0.1) inset;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .footer__first {
+    max-width: 70%;
+  }
+}
+.footer__first--title {
+  margin-left: 0;
+}
+@media screen and (min-width: 768px) {
+  .footer__first--title {
+    color: #ffffff;
+    font-size: 1.25rem;
+  }
 }
 .footer__first--info {
-  margin-left: 25px;
   color: var(--1-d-1-c-31, #1d1c31);
-  font-size: 14px;
+  font-size: 0.85rem;
   font-weight: 400;
   line-height: 24px; /* 171.429% */
   max-width: 330px;
 }
-.footer__second {
-  flex-basis: 50%;
+@media screen and (min-width: 768px) {
+  .footer__first--info {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .footer__first--info {
+    font-size: 1rem;
+  }
+}
+.footer__next {
+  display: flex;
+  flex-wrap: wrap;
+  justify-self: space-around;
+}
+@media screen and (min-width: 768px) {
+  .footer__next {
+    align-items: center;
+  }
 }
 .footer__email {
-  margin: 16px 25px;
-  width: 330px;
+  margin: 16px 0px;
+  width: 280px;
   height: 30px;
   border: none;
   border-bottom: 1px solid rgba(29, 28, 49, 0.2);
+  background-color: transparent;
+}
+@media screen and (min-width: 768px) {
+  .footer__email {
+    border-bottom: 1px solid #ffffff;
+    width: 250px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .footer__email {
+    width: 200px;
+  }
 }
 .footer__title {
   text-align: left;
@@ -791,15 +895,71 @@ ul {
 .footer__list {
   text-align: left;
   color: rgba(29, 28, 49, 0.6);
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   margin-bottom: 16px;
+}
+@media screen and (min-width: 1200px) {
+  .footer__list {
+    font-size: 1rem;
+  }
+}
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+@media screen and (min-width: 768px) {
+  .footer__bottom {
+    justify-content: space-around;
+  }
+}
+.footer__socialLinks {
+  padding-right: 50%;
+  margin-left: 35px;
+}
+@media screen and (min-width: 768px) {
+  .footer__socialLinks {
+    margin: 0;
+    padding-right: 0;
+    order: 3;
+  }
+}
+.footer__privacy {
+  font-size: 14px;
+  margin-left: 45px;
+}
+@media screen and (min-width: 768px) {
+  .footer__privacy {
+    order: 2;
+  }
+}
+.footer__rights {
+  font-size: 14px;
+}
+@media screen and (min-width: 768px) {
+  .footer__rights {
+    order: 1;
+  }
 }
 
 .btn-subscribe {
   background: var(--4-e-46-e-8, #4e46e8);
   color: white;
-  margin-left: 24px;
+}
+@media screen and (min-width: 768px) {
+  .btn-subscribe {
+    width: 143px;
+    color: #1d1c31;
+    background: #fff;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  ::placeholder {
+    color: #ffffff;
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

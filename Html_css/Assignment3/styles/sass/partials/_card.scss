@@ -10,6 +10,20 @@
   @media screen and (min-width: $desktop) {
     padding: 0;
   }
+  &__section {
+    display: flex;
+  }
+  &__title {
+    align-items: left;
+    @media screen and (min-width: $tablet) {
+      margin-top: 14%;
+      margin-left: 3%;
+    }
+    @media screen and (min-width: $desktop) {
+      margin-top: 5%;
+      //   margin-left: 3%;
+    }
+  }
   &__card {
     position: relative;
   }
@@ -77,4 +91,24 @@
       font-size: 0.75rem;
     }
   }
+}
+
+.icon-group {
+  display: none;
+  @media screen and (min-width: $desktop) {
+    display: inline;
+    margin-top: 10%;
+  }
+}
+
+.icon {
+  @media screen and (min-width: $desktop) {
+    padding: 14px;
+    border-radius: 49px;
+    background: rgba(29, 28, 49, 0.05);
+  }
+}
+.icon:hover {
+  color: #5d55ff;
+  background: rgba(93, 85, 255, 0.1);
 }

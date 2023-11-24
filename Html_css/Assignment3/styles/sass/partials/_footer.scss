@@ -1,32 +1,77 @@
 .footer {
   background-color: #efeeff;
   padding: 24px;
+  margin: 0 auto;
+
   &__top {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
     // justify-content: end;
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(29, 28, 49, 0.1);
+    }
+    @media screen and (min-width: $desktop) {
+      padding: 0 20%;
+    }
   }
   &__first {
     text-align: left;
     margin-bottom: 24px;
+    padding: 20px;
+    @media screen and (min-width: $tablet) {
+      max-width: 60%;
+      border-radius: 8px;
+      background: var(--Text, #1d1c31);
+      box-shadow: 0px 0px 30px 2px rgba(93, 85, 255, 0.1) inset;
+    }
+    @media screen and (min-width: $desktop) {
+      max-width: 70%;
+    }
+    &--title {
+      margin-left: 0;
+      @media screen and (min-width: $tablet) {
+        color: $white;
+        font-size: 1.25rem;
+      }
+    }
     &--info {
-      margin-left: 25px;
       color: var(--1-d-1-c-31, #1d1c31);
-      font-size: 14px;
+      font-size: 0.85rem;
       font-weight: 400;
       line-height: 24px; /* 171.429% */
       max-width: 330px;
+      @media screen and (min-width: $tablet) {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      @media screen and (min-width: $desktop) {
+        font-size: 1rem;
+      }
     }
   }
-  &__second {
-    flex-basis: 50%;
+  &__next {
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: space-around;
+    @media screen and (min-width: $tablet) {
+      align-items: center;
+    }
   }
   &__email {
-    margin: 16px 25px;
-    width: 330px;
+    margin: 16px 0px;
+    width: 280px;
     height: 30px;
     border: none;
     border-bottom: 1px solid #1d1c3133;
+    background-color: transparent;
+    @media screen and (min-width: $tablet) {
+      border-bottom: 1px solid #ffffff;
+      width: 250px;
+    }
+    @media screen and (min-width: $tablet) {
+      width: 200px;
+    }
   }
   &__title {
     text-align: left;
@@ -41,14 +86,65 @@
   &__list {
     text-align: left;
     color: $fade-black;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
     margin-bottom: 16px;
+    @media screen and (min-width: $desktop) {
+      font-size: 1rem;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    // flex-direction: row-reverse;
+    justify-content: space-between;
+    @media screen and (min-width: $tablet) {
+      justify-content: space-around;
+    }
+  }
+
+  &__socialLinks {
+    // max-width: 140px;
+    // flex-basis: 768px;
+    padding-right: 50%;
+    margin-left: 35px;
+    @media screen and (min-width: $tablet) {
+      margin: 0;
+      padding-right: 0;
+      order: 3;
+    }
+  }
+  &__privacy {
+    font-size: 14px;
+    margin-left: 45px;
+    @media screen and (min-width: $tablet) {
+      order: 2;
+      //   margin-left: 110px;
+    }
+  }
+  &__rights {
+    font-size: 14px;
+    @media screen and (min-width: $tablet) {
+      order: 1;
+      //   margin-left: -65px;
+    }
   }
 }
 
 .btn-subscribe {
   background: var(--4-e-46-e-8, #4e46e8);
   color: white;
-  margin-left: 24px;
+  @media screen and (min-width: $tablet) {
+    width: 143px;
+    color: $black;
+    background: #fff;
+  }
+}
+
+::placeholder {
+  @media screen and (min-width: $tablet) {
+    color: $white;
+    opacity: 1;
+  }
 }
