@@ -40,6 +40,9 @@
     &--item {
       font-size: 0.875rem;
     }
+    &--item:hover {
+      color: $fade-white;
+    }
   }
 }
 

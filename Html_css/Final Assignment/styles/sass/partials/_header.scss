@@ -1,0 +1,49 @@
+.wrapper-first {
+  background-image: url("../assets/image/background1.png");
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  @media screen and (min-width: $tablet) {
+    justify-content: space-between;
+    margin: 0 3.125rem;
+  }
+  @media screen and (min-width: $desktop) {
+    // margin: 0 auto;
+  }
+  &__nav {
+    display: none;
+    @media screen and (min-width: $desktop) {
+      display: flex;
+      gap: 0 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    &--item:hover {
+      color: $white;
+    }
+    &--item:hover .circle {
+      display: block;
+    }
+  }
+  &__hamburger {
+    @media screen and (min-width: $desktop) {
+      display: none;
+    }
+  }
+}
+
+.btn-nav {
+  display: none;
+  @media screen and (min-width: $desktop) {
+    display: inline;
+  }
+}
+
+.circle {
+  display: none;
+  margin-left: 50%;
+}

@@ -1,0 +1,87 @@
+.wrapper-second {
+  background-image: url("../assets/image/background2.png");
+  color: $white;
+  padding: 70px;
+}
+
+.covidCheck {
+  border-radius: 20px;
+  background: rgba(196, 196, 196, 0.1);
+  //   padding: 20px;
+  &__titleSection {
+    border-radius: 20px 20px 0px 0px;
+    padding: 20px;
+    background: rgba(196, 196, 196, 0.05);
+    text-align: center;
+  }
+  &__title {
+    @media screen and (min-width: $tablet) {
+      font-size: 1.25rem;
+    }
+    @media screen and (min-width: $desktop) {
+      font-size: 1.5rem;
+    }
+  }
+  &__inputSection {
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 45px;
+    @media screen and (min-width: $tablet) {
+      //   text-align: center;
+      padding-left: 20%;
+    }
+    @media screen and (min-width: $desktop) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px 100px;
+    }
+  }
+  &__input {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 30px;
+    border-radius: 10px;
+    border: 3px solid rgba(196, 196, 196, 0.15);
+    background: transparent;
+    color: $fade-white;
+    @media screen and (min-width: $tablet) {
+      width: 80%;
+    }
+    @media screen and (min-width: $desktop) {
+      width: 40%;
+      margin-bottom: 0px;
+      height: 50px;
+    }
+  }
+  &__input:hover {
+    border: 3px solid #17c2ec;
+  }
+  &__text {
+    color: $primary-color;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 10px;
+    background: rgba(196, 196, 196, 0.05);
+    padding: 15px 80px;
+    @media screen and (min-width: $tablet) {
+      font-size: 0.875rem;
+    }
+    @media screen and (min-width: $desktop) {
+      font-size: 1.5rem;
+      padding: 25px 100px;
+    }
+  }
+}
+
+::placeholder {
+  padding: 0px 10px;
+  color: $fade-white;
+  opacity: 1;
+}
+
+.link {
+  color: $primary-color;
+  text-decoration: underline;
+}
