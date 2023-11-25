@@ -312,6 +312,10 @@ ul {
   color: #ffffff;
 }
 
+.btn:hover {
+  opacity: 0.5;
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -348,6 +352,9 @@ ul {
 }
 .header__nav--item {
   font-size: 0.875rem;
+}
+.header__nav--item:hover {
+  color: #b6b3eb;
 }
 
 .btn-nav {
@@ -687,6 +694,10 @@ ul {
   background: rgba(93, 85, 255, 0.1);
 }
 
+.read-more:hover {
+  color: #5d55ff;
+}
+
 .downloads {
   display: flex;
   flex-direction: row-reverse;
@@ -800,11 +811,12 @@ ul {
 .timeline__titleSection {
   display: flex;
   gap: 32px;
+  justify-content: center;
 }
 .timeline__title {
   color: #ffffff;
   text-align: center;
-  margin-left: 40%;
+  margin-left: 50px;
   font-size: 20px;
   font-weight: 700;
   line-height: 52px; /* 260% */
@@ -836,6 +848,7 @@ ul {
 }
 .timeline__list {
   display: flex;
+  justify-content: center;
 }
 @media screen and (min-width: 768px) {
   .timeline__list--item {
@@ -866,6 +879,11 @@ ul {
   max-width: 223px;
   border-radius: 8px;
   border: 2px solid rgba(255, 255, 255, 0.1);
+}
+@media screen and (min-width: 1200px) {
+  .timeline__item--info {
+    width: 300px;
+  }
 }
 .timeline__item--title {
   padding: 12px 20px;

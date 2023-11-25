@@ -1,0 +1,55 @@
+.wrapper-third {
+  background-image: url("../assets/image/background1.png");
+}
+
+.aboutVaccinated {
+  padding: 25px;
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &__info {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  &__card {
+    border-radius: 20px;
+    border: 2.994px solid rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    max-width: 50%;
+    margin-left: 35px;
+    &--title {
+      color: $white;
+    }
+    &--info {
+      display: none;
+      color: $white;
+    }
+  }
+  &__card:hover {
+    border-radius: 20px 80px 20px 20px;
+    background: rgba(196, 196, 196, 0.2);
+    .aboutVaccinated__card--title {
+      color: $primary-color;
+    }
+    .aboutVaccinated__card--info {
+      display: block;
+      color: $white;
+    }
+  }
+}
+
+.card-icon {
+  color: $white;
+  font-size: 40px;
+}
+
+.read-more-icon {
+  margin-left: 10px;
+  color: $fade-white;
+  font-size: 25px;
+}
+
+.aboutVaccinated__card:hover .read-more {
+  color: $primary-color;
+}
