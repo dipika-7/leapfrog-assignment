@@ -333,6 +333,10 @@ ul {
   opacity: 0.5;
 }
 
+.btn-help {
+  border-radius: 20px;
+}
+
 .wrapper-first {
   background-image: url("../assets/image/background1.png");
 }
@@ -568,7 +572,7 @@ ul {
 .wrapper-second {
   background-image: url("../assets/image/background2.png");
   color: #ffffff;
-  padding: 70px;
+  padding: 7%;
 }
 
 .covidCheck {
@@ -636,7 +640,7 @@ ul {
 .covidCheck__text {
   color: #17c2ec;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 10px;
   font-weight: 700;
   border-radius: 10px;
   background: rgba(196, 196, 196, 0.05);
@@ -676,7 +680,7 @@ ul {
 }
 
 .aboutVaccinated {
-  padding: 25px;
+  padding-bottom: 20px;
 }
 .aboutVaccinated__titleSection {
   padding: 30px 70px;
@@ -719,6 +723,7 @@ ul {
 }
 .aboutVaccinated__card--title {
   color: #ffffff;
+  font-size: 14px;
 }
 .aboutVaccinated__card .aboutVaccinated__card--title {
   color: #17c2ec;
@@ -738,6 +743,9 @@ ul {
 .aboutVaccinated__card:hover .aboutVaccinated__card--info {
   display: block;
   color: #ffffff;
+}
+.aboutVaccinated__card:hover .card-icon {
+  color: #17c2ec;
 }
 
 .card-icon {
@@ -773,7 +781,7 @@ ul {
   margin-bottom: 35px;
 }
 .registration__img {
-  max-width: 100%;
+  max-width: 90%;
 }
 .registration__title {
   color: #000;
@@ -787,7 +795,7 @@ ul {
   }
 }
 .registration__right {
-  margin: 0 35px;
+  margin-right: 20px;
 }
 @media screen and (min-width: 768px) {
   .registration__right {

@@ -1,13 +1,12 @@
 .wrapper-second {
   background-image: url("../assets/image/background2.png");
   color: $white;
-  padding: 70px;
+  padding: 7%;
 }
 
 .covidCheck {
   border-radius: 20px;
   background: rgba(196, 196, 196, 0.1);
-  //   padding: 20px;
   &__titleSection {
     border-radius: 20px 20px 0px 0px;
     padding: 20px;
@@ -60,7 +59,7 @@
   &__text {
     color: $primary-color;
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 10px;
     font-weight: 700;
     border-radius: 10px;
     background: rgba(196, 196, 196, 0.05);

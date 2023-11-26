@@ -15,7 +15,7 @@
     }
   }
   &__img {
-    max-width: 100%;
+    max-width: 90%;
   }
   &__title {
     color: $extra-black;
@@ -27,7 +27,8 @@
     }
   }
   &__right {
-    margin: 0 35px;
+    // margin: 0 20px;
+    margin-right: 20px;
     @media screen and (min-width: $tablet) {
       margin: 0;
     }
