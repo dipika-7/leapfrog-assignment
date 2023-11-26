@@ -730,6 +730,7 @@ ul {
 .aboutVaccinated__card:hover {
   border-radius: 20px 80px 20px 20px;
   background: rgba(196, 196, 196, 0.2);
+  max-width: 100%;
 }
 .aboutVaccinated__card:hover .aboutVaccinated__card--title {
   color: #17c2ec;
@@ -770,6 +771,9 @@ ul {
 }
 .registration__left {
   margin-bottom: 35px;
+}
+.registration__img {
+  max-width: 100%;
 }
 .registration__title {
   color: #000;
