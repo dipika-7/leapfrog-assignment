@@ -11,7 +11,7 @@
 .aboutVaccinated {
   padding-bottom: 20px;
   &__titleSection {
-    padding: 30px 70px;
+    padding: 30px 30px;
     @media screen and (min-width: $desktop) {
       display: flex;
       align-items: center;
@@ -21,6 +21,9 @@
   &__title {
     font-size: 24px;
     font-weight: 700;
+    @media screen and (min-width: $tablet) {
+      font-size: 36px;
+    }
     @media screen and (min-width: $desktop) {
       max-width: 50%;
       font-size: 2.98rem;
@@ -29,6 +32,9 @@
   &__info {
     font-size: 14px;
     font-weight: 400;
+    @media screen and (min-width: $tablet) {
+      font-size: 20px;
+    }
     @media screen and (min-width: $desktop) {
       max-width: 40%;
       font-size: 1.25rem;
@@ -41,18 +47,20 @@
     max-width: 50%;
     margin-left: 35px;
     @media screen and (min-width: $tablet) {
+      max-width: 80%;
+    }
+    @media screen and (min-width: $desktop) {
+      margin: 0px;
+      margin-left: 20px;
+      width: 25%;
     }
     &--title {
       color: $white;
       font-size: 14px;
+      @media screen and (min-width: $tablet) {
+        font-size: 24px;
+      }
     }
-
-    border-radius: 20px 80px 20px 20px;
-    background: rgba(196, 196, 196, 0.2);
-    .aboutVaccinated__card--title {
-      color: $primary-color;
-    }
-
     &--info {
       display: none;
       color: $white;
@@ -61,17 +69,35 @@
   &__card:hover {
     border-radius: 20px 80px 20px 20px;
     background: rgba(196, 196, 196, 0.2);
-    max-width: 100%;
+    max-width: 65%;
+    padding: 40px 20px;
+    @media screen and (min-width: $tablet) {
+      max-width: 50%;
+      padding: 30px 10px;
+    }
+    @media screen and (min-width: $tablet) {
+      max-width: 50%;
+      padding: 40px 20px;
+    }
     .aboutVaccinated__card--title {
       color: $primary-color;
     }
     .aboutVaccinated__card--info {
       display: block;
       color: $white;
+      @media screen and (min-width: $tablet) {
+        font-size: 18px;
+      }
     }
     .card-icon {
       color: $primary-color;
     }
+  }
+}
+
+.read-more {
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
   }
 }
 
@@ -88,4 +114,21 @@
 
 .aboutVaccinated__card:hover .read-more {
   color: $primary-color;
+}
+
+.card__list {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.first-card {
+  @media screen and (min-width: $tablet) {
+    margin-right: 400px;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-right: 5px;
+  }
 }

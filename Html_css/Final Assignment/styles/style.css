@@ -195,6 +195,10 @@ a {
   cursor: pointer;
 }
 
+a:hover {
+  opacity: 0.6;
+}
+
 button {
   appearance: none;
 }
@@ -366,9 +370,7 @@ ul {
 }
 .header__nav--item:hover {
   color: #ffffff;
-}
-.header__nav--item:hover .circle {
-  display: block;
+  opacity: 1;
 }
 @media screen and (min-width: 1200px) {
   .header__hamburger {
@@ -387,13 +389,18 @@ ul {
   }
 }
 
-.circle {
+li .circle {
   display: none;
   margin-left: 50%;
 }
 
+li:hover img {
+  display: block;
+}
+
 .banner {
   margin: 0 auto;
+  margin-top: 50px;
 }
 @media screen and (min-width: 1200px) {
   .banner {
@@ -683,7 +690,7 @@ ul {
   padding-bottom: 20px;
 }
 .aboutVaccinated__titleSection {
-  padding: 30px 70px;
+  padding: 30px 30px;
 }
 @media screen and (min-width: 1200px) {
   .aboutVaccinated__titleSection {
@@ -696,6 +703,11 @@ ul {
   font-size: 24px;
   font-weight: 700;
 }
+@media screen and (min-width: 768px) {
+  .aboutVaccinated__title {
+    font-size: 36px;
+  }
+}
 @media screen and (min-width: 1200px) {
   .aboutVaccinated__title {
     max-width: 50%;
@@ -705,6 +717,11 @@ ul {
 .aboutVaccinated__info {
   font-size: 14px;
   font-weight: 400;
+}
+@media screen and (min-width: 768px) {
+  .aboutVaccinated__info {
+    font-size: 20px;
+  }
 }
 @media screen and (min-width: 1200px) {
   .aboutVaccinated__info {
@@ -718,15 +735,27 @@ ul {
   background-color: transparent;
   max-width: 50%;
   margin-left: 35px;
-  border-radius: 20px 80px 20px 20px;
-  background: rgba(196, 196, 196, 0.2);
+}
+@media screen and (min-width: 768px) {
+  .aboutVaccinated__card {
+    max-width: 80%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .aboutVaccinated__card {
+    margin: 0px;
+    margin-left: 20px;
+    width: 25%;
+  }
 }
 .aboutVaccinated__card--title {
   color: #ffffff;
   font-size: 14px;
 }
-.aboutVaccinated__card .aboutVaccinated__card--title {
-  color: #17c2ec;
+@media screen and (min-width: 768px) {
+  .aboutVaccinated__card--title {
+    font-size: 24px;
+  }
 }
 .aboutVaccinated__card--info {
   display: none;
@@ -735,7 +764,20 @@ ul {
 .aboutVaccinated__card:hover {
   border-radius: 20px 80px 20px 20px;
   background: rgba(196, 196, 196, 0.2);
-  max-width: 100%;
+  max-width: 65%;
+  padding: 40px 20px;
+}
+@media screen and (min-width: 768px) {
+  .aboutVaccinated__card:hover {
+    max-width: 50%;
+    padding: 30px 10px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .aboutVaccinated__card:hover {
+    max-width: 50%;
+    padding: 40px 20px;
+  }
 }
 .aboutVaccinated__card:hover .aboutVaccinated__card--title {
   color: #17c2ec;
@@ -744,8 +786,19 @@ ul {
   display: block;
   color: #ffffff;
 }
+@media screen and (min-width: 768px) {
+  .aboutVaccinated__card:hover .aboutVaccinated__card--info {
+    font-size: 18px;
+  }
+}
 .aboutVaccinated__card:hover .card-icon {
   color: #17c2ec;
+}
+
+@media screen and (min-width: 768px) {
+  .read-more {
+    font-size: 18px;
+  }
 }
 
 .card-icon {
@@ -761,6 +814,25 @@ ul {
 
 .aboutVaccinated__card:hover .read-more {
   color: #17c2ec;
+}
+
+@media screen and (min-width: 768px) {
+  .card__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .first-card {
+    margin-right: 400px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .first-card {
+    margin-right: 5px;
+  }
 }
 
 .registration {
@@ -800,6 +872,11 @@ ul {
 @media screen and (min-width: 768px) {
   .registration__right {
     margin: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .registration__right {
+    max-width: 50%;
   }
 }
 .registration__fullname, .registration__number {
@@ -905,6 +982,499 @@ ul {
 @media screen and (min-width: 768px) {
   .checkStatus__link {
     font-size: 1.25rem;
+  }
+}
+
+.symptoms-wrapper {
+  padding: 25px 0px 0px 0px;
+  background-image: url("../assets/image/symptoms.png");
+  background-position: bottom;
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-color: #0b153c;
+}
+@media screen and (min-width: 1200px) {
+  .symptoms-wrapper {
+    background-size: 400px;
+  }
+}
+
+.symptoms {
+  text-align: center;
+  padding-top: 25px;
+  position: relative;
+  color: #ffffff;
+}
+.symptoms__img {
+  position: absolute;
+  max-width: 325px;
+  left: 105px;
+  top: 119px;
+}
+.symptoms__titleSection {
+  padding: 0 40px;
+}
+.symptoms__title {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .symptoms__title {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__title {
+    font-size: 24px;
+  }
+}
+.symptoms__main-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 800;
+}
+@media screen and (min-width: 768px) {
+  .symptoms__main-title {
+    font-size: 36px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__main-title {
+    font-size: 48px;
+  }
+}
+.symptoms__info {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0 40px;
+}
+@media screen and (min-width: 768px) {
+  .symptoms__info {
+    font-size: 18px;
+    padding: 0 20px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__info {
+    font-size: 24px;
+    padding: 0 40px;
+  }
+}
+.symptoms__list {
+  display: flex;
+  justify-content: space-around;
+}
+.symptoms__item {
+  display: flex;
+  padding: 5px;
+}
+.symptoms__list--item {
+  color: #17c2ec;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 4.863px;
+  background: rgba(196, 196, 196, 0.2);
+  padding: 10px 10px 10px 20px;
+  margin-left: 20px;
+  margin-bottom: 25px;
+}
+@media screen and (min-width: 768px) {
+  .symptoms__list--item {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__list--item {
+    font-size: 20px;
+  }
+}
+.symptoms__one, .symptoms__four {
+  margin-top: 30px;
+}
+.symptoms__one {
+  margin-left: 20%;
+}
+@media screen and (min-width: 768px) {
+  .symptoms__one {
+    width: 100%;
+    margin-left: 55%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__one {
+    margin-left: 85%;
+  }
+}
+.symptoms__four {
+  margin-left: 10%;
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__four {
+    margin-left: -15%;
+  }
+}
+.symptoms__two {
+  margin-left: -25%;
+}
+@media screen and (min-width: 768px) {
+  .symptoms__two {
+    margin-left: 25%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__two {
+    margin-left: 40%;
+    width: 100%;
+  }
+}
+.symptoms__three {
+  margin-left: -65%;
+}
+@media screen and (min-width: 768px) {
+  .symptoms__three {
+    margin-left: -25%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__three {
+    margin-left: -15%;
+    width: 100%;
+  }
+}
+.symptoms__five {
+  margin-left: 25%;
+}
+@media screen and (min-width: 1200px) {
+  .symptoms__five {
+    margin-left: 15%;
+  }
+}
+.symptoms__six {
+  margin-left: 160px;
+}
+
+.virus_img {
+  width: 40px;
+  position: absolute;
+}
+
+.feedback {
+  text-align: center;
+  padding: 10px;
+}
+.feedback__title {
+  color: #17c2ec;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .feedback__title {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .feedback__title {
+    font-size: 24px;
+  }
+}
+.feedback__main-title {
+  color: #000;
+  font-size: 24px;
+  font-weight: 800;
+}
+@media screen and (min-width: 768px) {
+  .feedback__main-title {
+    font-size: 36px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .feedback__main-title {
+    font-size: 48px;
+  }
+}
+.feedback__info {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  font-weight: 500;
+  width: 80%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .feedback__info {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .feedback__info {
+    font-size: 24px;
+  }
+}
+.feedback__cardlist {
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 1200px) {
+  .feedback__cardlist {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.feedback__card {
+  border-radius: 13.55px;
+  background: rgba(196, 196, 196, 0.5);
+  padding-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .feedback__card {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .feedback__card {
+    max-width: 80%;
+  }
+}
+.feedback__card--info {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13.725px;
+  font-weight: 500;
+}
+@media screen and (min-width: 768px) {
+  .feedback__card--info {
+    font-size: 18px;
+  }
+}
+.feedback__card:hover {
+  border-radius: 15.28px;
+  background: #17c2ec;
+}
+.feedback__card:hover .feedback__patientDetail--title,
+.feedback__card:hover .feedback__patientDetail--address,
+.feedback__card:hover .feedback__card--info,
+.feedback__card:hover .text-primary {
+  color: #ffffff;
+}
+.feedback__patientDetail {
+  display: flex;
+  align-items: center;
+  gap: 0 16px;
+  text-align: left;
+  margin-bottom: 35px;
+}
+.feedback__patientDetail--title {
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .feedback__patientDetail--title {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .feedback__patientDetail--title {
+    font-size: 24px;
+  }
+}
+.feedback__patientDetail--address {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 11px;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .feedback__patientDetail--address {
+    font-size: 14px;
+  }
+}
+
+.text-primary {
+  color: #17c2ec;
+}
+
+.cardImg {
+  background-image: url("../assets/image/card-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-clip: border-box;
+  background-size: 50% 90%;
+  padding-top: 30px;
+}
+@media screen and (min-width: 768px) {
+  .cardImg {
+    margin: 0 auto;
+    max-width: 50%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .cardImg {
+    padding: 50px 0;
+    background-size: 50% 100%;
+  }
+}
+
+.quote-wrapper {
+  position: absolute;
+  top: -30%;
+  border-radius: 20px;
+  background: rgba(196, 196, 196, 0.15);
+  padding: 30px 15px;
+  margin: 0 auto;
+  width: 80%;
+  left: 8%;
+}
+@media screen and (min-width: 768px) {
+  .quote-wrapper {
+    left: 5%;
+    top: -33%;
+    width: 85%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .quote-wrapper {
+    left: 13%;
+    width: 70%;
+  }
+}
+
+.quote {
+  border-radius: 10px;
+  background: #17c2ec;
+  padding: 15px 25px 28px 23px;
+  text-align: center;
+}
+.quote__title {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .quote__title {
+    font-size: 36px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .quote__title {
+    font-size: 48px;
+  }
+}
+.quote__info {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+@media screen and (min-width: 768px) {
+  .quote__info {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .quote__info {
+    font-size: 24px;
+  }
+}
+.quote__emailSection {
+  display: flex;
+  align-items: center;
+}
+.quote__email {
+  border-radius: 20px 0px 0px 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  border: none;
+  width: 80%;
+  height: 40px;
+}
+@media screen and (min-width: 768px) {
+  .quote__email {
+    height: 75px;
+  }
+}
+.quote__icon {
+  color: #ffffff;
+  width: 15%;
+  padding: 13px;
+  border-radius: 0px 20px 20px 0px;
+  background: #0b153c;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+@media screen and (min-width: 768px) {
+  .quote__icon {
+    padding: 31px;
+  }
+}
+
+.quote__emailSection ::placeholder {
+  color: rgba(0, 0, 0, 0.25);
+  padding-left: 20px;
+  font-size: 10px;
+  font-weight: 500;
+}
+@media screen and (min-width: 1200px) {
+  .quote__emailSection ::placeholder {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .quote__emailSection ::placeholder {
+    font-size: 20px;
+  }
+}
+
+.footer {
+  padding: 0px 40px 30px 35px;
+  margin-top: 120px;
+  position: relative;
+  padding-top: 140px;
+}
+@media screen and (min-width: 768px) {
+  .footer {
+    padding-top: 200px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .footer {
+    padding-top: 220px;
+  }
+}
+.footer__nav {
+  display: block;
+  padding: 20px 0px;
+  margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .footer__nav {
+    display: flex;
+    justify-content: left;
+    gap: 25px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .footer__bottom {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.socialLinks__img {
+  width: 18px;
+  text-align: left;
+}
+@media screen and (min-width: 768px) {
+  .socialLinks__img {
+    width: 31px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .socialLinks__img {
+    width: 50px;
   }
 }
 

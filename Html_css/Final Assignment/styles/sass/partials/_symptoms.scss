@@ -1,0 +1,147 @@
+.symptoms-wrapper {
+  padding: 25px 0px 0px 0px;
+  background-image: url("../assets/image/symptoms.png");
+  background-position: bottom;
+  background-size: 300px;
+  background-repeat: no-repeat;
+  background-color: #0b153c;
+  @media screen and (min-width: $desktop) {
+    background-size: 400px;
+  }
+}
+
+.symptoms {
+  text-align: center;
+  padding-top: 25px;
+  //   padding: 25px 0px 40px 0;
+  position: relative;
+  color: $white;
+  &__img {
+    position: absolute;
+    max-width: 325px;
+    // left: 20%;
+    // top: 33%;
+    left: 105px;
+    top: 119px;
+  }
+  &__titleSection {
+    padding: 0 40px;
+  }
+  &__title {
+    color: $white;
+    font-size: 12px;
+    font-weight: 700;
+    @media screen and (min-width: $tablet) {
+      font-size: 20px;
+    }
+    @media screen and (min-width: $desktop) {
+      font-size: 24px;
+    }
+  }
+  &__main-title {
+    color: $white;
+    font-size: 24px;
+    font-weight: 800;
+    @media screen and (min-width: $tablet) {
+      font-size: 36px;
+    }
+    @media screen and (min-width: $desktop) {
+      font-size: 48px;
+    }
+  }
+  &__info {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0 40px;
+    @media screen and (min-width: $tablet) {
+      font-size: 18px;
+      padding: 0 20px;
+    }
+    @media screen and (min-width: $desktop) {
+      font-size: 24px;
+      padding: 0 40px;
+    }
+  }
+  &__list {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__item {
+    display: flex;
+    padding: 5px;
+  }
+  &__list {
+    &--item {
+      color: $primary-color;
+      font-size: 10px;
+      font-weight: 600;
+      border-radius: 4.863px;
+      background: rgba(196, 196, 196, 0.2);
+      padding: 10px 10px 10px 20px;
+      margin-left: 20px;
+      margin-bottom: 25px;
+      @media screen and (min-width: $tablet) {
+        font-size: 18px;
+      }
+      @media screen and (min-width: $desktop) {
+        font-size: 20px;
+      }
+    }
+  }
+  &__one,
+  &__four {
+    margin-top: 30px;
+  }
+  &__one {
+    margin-left: 20%;
+    @media screen and (min-width: $tablet) {
+      width: 100%;
+      margin-left: 55%;
+    }
+    @media screen and (min-width: $desktop) {
+      margin-left: 85%;
+    }
+  }
+  &__four {
+    margin-left: 10%;
+    @media screen and (min-width: $desktop) {
+      margin-left: -15%;
+    }
+  }
+  &__two {
+    margin-left: -25%;
+    @media screen and (min-width: $tablet) {
+      margin-left: 25%;
+    }
+    @media screen and (min-width: $desktop) {
+      margin-left: 40%;
+      width: 100%;
+    }
+  }
+  &__three {
+    margin-left: -65%;
+    @media screen and (min-width: $tablet) {
+      margin-left: -25%;
+    }
+    @media screen and (min-width: $desktop) {
+      margin-left: -15%;
+      width: 100%;
+    }
+  }
+  &__five {
+    margin-left: 25%;
+    @media screen and (min-width: $desktop) {
+      margin-left: 15%;
+    }
+  }
+  &__six {
+    margin-left: 160px;
+  }
+}
+
+.virus_img {
+  width: 40px;
+  position: absolute;
+  //   left: 6%;
+}

@@ -1,0 +1,42 @@
+.footer {
+  padding: 0px 40px 30px 35px;
+  margin-top: 120px;
+  position: relative;
+  padding-top: 140px;
+  @media screen and (min-width: $tablet) {
+    padding-top: 200px;
+  }
+  @media screen and (min-width: $desktop) {
+    padding-top: 220px;
+  }
+  &__nav {
+    display: block;
+    padding: 20px 0px;
+    margin: 0;
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      justify-content: left;
+      gap: 25px;
+    }
+  }
+  &__bottom {
+    @media screen and (min-width: $desktop) {
+      margin-top: 20px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.socialLinks__img {
+  width: 18px;
+  text-align: left;
+  @media screen and (min-width: $tablet) {
+    width: 31px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 50px;
+  }
+}

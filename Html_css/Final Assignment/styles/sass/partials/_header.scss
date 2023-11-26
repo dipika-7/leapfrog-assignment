@@ -24,9 +24,7 @@
     }
     &--item:hover {
       color: $white;
-    }
-    &--item:hover .circle {
-      display: block;
+      opacity: 1;
     }
   }
   &__hamburger {
@@ -45,7 +43,11 @@
   }
 }
 
-.circle {
+li .circle {
   display: none;
   margin-left: 50%;
+}
+
+li:hover img {
+  display: block;
 }

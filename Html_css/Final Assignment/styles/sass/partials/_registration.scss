@@ -33,6 +33,7 @@
       margin: 0;
     }
     @media screen and (min-width: $desktop) {
+      max-width: 50%;
     }
   }
   &__fullname,

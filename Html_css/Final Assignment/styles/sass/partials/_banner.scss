@@ -1,5 +1,6 @@
 .banner {
   margin: 0 auto;
+  margin-top: 50px;
   @media screen and (min-width: $desktop) {
     display: flex;
     justify-content: space-around;
