@@ -40,6 +40,8 @@
   display: none;
   @media screen and (min-width: $desktop) {
     display: inline;
+    border-radius: 20px;
+    border: none;
   }
 }
 

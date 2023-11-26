@@ -1,0 +1,136 @@
+.registration {
+  text-align: center;
+  @media screen and (min-width: $tablet) {
+    text-align: left;
+  }
+  &__content {
+    @media screen and (min-width: $desktop) {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+  }
+  &__left {
+    margin-bottom: 35px;
+    @media screen and (min-width: $desktop) {
+    }
+  }
+  &__title {
+    color: $extra-black;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 35px 0;
+    @media screen and (min-width: $desktop) {
+      font-size: 3rem;
+    }
+  }
+  &__right {
+    margin: 0 35px;
+    @media screen and (min-width: $tablet) {
+      margin: 0;
+    }
+    @media screen and (min-width: $desktop) {
+    }
+  }
+  &__fullname,
+  &__number {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 35px;
+    margin-bottom: 20px;
+    &--part {
+      @media screen and (min-width: $tablet) {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  &__fullname {
+    &--title {
+      color: $extra-black;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      @media screen and (min-width: $desktop) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  &__input {
+    // width: 100%;
+    border-radius: 10px;
+    background: rgba(11, 21, 60, 0.15);
+    height: 50px;
+    flex-shrink: 0;
+    border: none;
+    padding: 0 20px;
+  }
+  &__notes {
+    margin-bottom: 20px;
+  }
+}
+
+.phone-number {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background: rgba(11, 21, 60, 0.15);
+  padding: 5px 10px;
+  @media screen and (min-width: $tablet) {
+    width: 80%;
+  }
+}
+
+.number {
+  border: none;
+  border-radius: 0px;
+  border-left: 3px solid rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+  background: none;
+
+  @media screen and (min-width: $tablet) {
+    // max-height: 20px;
+  }
+}
+
+.name {
+  padding: 5px 20px;
+}
+
+.btn-verify {
+  max-width: min-content;
+  margin-left: -5px;
+  margin-top: 20px;
+  font-size: 14px;
+  margin-bottom: 40px;
+  @media screen and (min-width: $tablet) {
+    margin-left: 20px;
+    font-size: 1.25rem;
+    margin-top: 35px;
+    height: 60px;
+  }
+}
+
+.checkStatus {
+  padding-bottom: 40px;
+  @media screen and (min-width: $tablet) {
+    text-align: center;
+  }
+  &__text {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.875rem;
+    font-weight: 600;
+    @media screen and (min-width: $tablet) {
+      font-size: 1.25rem;
+    }
+  }
+  &__link {
+    margin-left: 20px;
+    color: $primary-color;
+    font-size: 14px;
+    font-weight: 700;
+    @media screen and (min-width: $tablet) {
+      font-size: 1.25rem;
+    }
+  }
+}

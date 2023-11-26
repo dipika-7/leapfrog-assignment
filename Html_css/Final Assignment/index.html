@@ -40,7 +40,7 @@
                     </li>
                 </ul>
             </nav>
-            <button class="btn text-fade-white btn-nav">Sign Up</button>
+            <button class="btn text-fade-white btn-nav btn-transparent">Check Status</button>
         </header>
         <!-- header end -->
 
@@ -58,7 +58,7 @@
                 </div>
                 <div class="banner__button">
                     <button type="button" class="btn small btn-banner">Get Vaccine</button>
-                    <button type="button" class="btn small btn__transparent">Help Centre</button>
+                    <button type="button" class="btn small btn-transparent">Help Centre</button>
                 </div>
             </div>
             <div class="banner__right">
@@ -116,7 +116,7 @@
             <div class="covidCheck__inputSection">
                 <input type="text" name="name" placeholder="Okeowo" class="covidCheck__input">
                 <input type="number" name="number" placeholder="NIK Number" class="covidCheck__input">
-                <button class="btn small btn__transparent">Check</button>
+                <button class="btn small btn-transparent">Check</button>
             </div>
             <div class="covidCheck__bottom">
                 <p class="covidCheck__text">
@@ -187,6 +187,62 @@
         </div>
     </div>
     <!-- about vaccinated end -->
+
+    <!-- vaccination register start -->
+    <div class="container registration">
+        <p class="registration__title">Get your vaccine registration today</p>
+        <div class="registration__content banner">
+            <div class="registration__left">
+                <img src="assets/image/registration.png" alt="registration image">
+            </div>
+            <div class="registration__right">
+                <form class="form">
+                    <div class="registration__fullname">
+                        <label for="name" class="registration__fullname--title">Patient's Full Name</label>
+                        <input type="text" id="name" placeholder="Full name" class="registration__input name">
+                    </div>
+
+                    <div class="registration__number">
+                        <label for="number" class="registration__fullname--title">Mobile Number</label>
+                        <p class="registration__notes">
+                            Notifications for appointment and reminders will be sent to this
+                            provided number
+                        </p>
+                        <div class="registration__number--part">
+                            <div class="phone-number">
+                                <img src="assets/image/flag.svg" alt="flag">
+                                <img src="assets/image/downArrow.svg" alt="down-button" class="down-button">
+                                <input type="text" id="number" placeholder="Phone number"
+                                    class="registration__input number">
+                            </div>
+                            <button class="btn btn-banner btn-submit text-white btn-verify">Verify</button>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn large btn-banner btn-submit text-white">Submit</button>
+                <div class="checkStatus">
+                    <span class="checkStatus__text">Already registered?</span><a href="#"
+                        class="checkStatus__link">Check
+                        your
+                        status</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- vaccination register end -->
+
+    <!-- symptoms start -->
+    <!-- symptoms end -->
+
+    <!-- feedback start -->
+    <!-- <div class="feedback">
+        <div class="feedback__titleSection">
+            <p class="feedback__title">What our Patients Think</p>
+            <p class="feedback__info">Adipiscing nec etiam tortor elit quisque. Arcu aliquet convallis aenean eu velit.
+                Mi vestibulum, ullamcorper venenatis imperdiet augue arcu donec neque.</p>
+        </div>
+    </div> -->
+    <!-- feedback end -->
 </body>
 
 </html>

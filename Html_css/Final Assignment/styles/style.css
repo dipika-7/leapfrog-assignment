@@ -260,6 +260,7 @@ ul {
 
 .card-title {
   color: var(--Text, #1d1c31);
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 12px;
 }
@@ -311,8 +312,15 @@ ul {
     max-width: 221px;
   }
 }
-.btn__transparent {
-  color: #ffffff;
+.btn.large {
+  width: 90%;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+.btn-transparent {
+  color: #17c2ec;
   font-size: 14px;
   font-weight: 700;
   border: 2px solid #17c2ec;
@@ -370,6 +378,8 @@ ul {
 @media screen and (min-width: 1200px) {
   .btn-nav {
     display: inline;
+    border-radius: 20px;
+    border: none;
   }
 }
 
@@ -460,7 +470,6 @@ ul {
 
 .btn-banner {
   background-color: #17c2ec;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .schedule {
@@ -492,6 +501,11 @@ ul {
     justify-content: space-between;
     padding: 37px 20px;
     padding-bottom: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .schedule__list {
+    padding-bottom: 20px;
   }
 }
 .schedule__list--title, .schedule__list--info {
@@ -640,7 +654,7 @@ ul {
   }
 }
 
-::placeholder {
+.covidCheck__inputSection ::placeholder {
   padding: 0px 10px;
   color: rgba(255, 255, 255, 0.5);
   opacity: 1;
@@ -655,16 +669,44 @@ ul {
   background-image: url("../assets/image/background1.png");
 }
 
+@media screen and (min-width: 768px) {
+  .card__list {
+    display: flex;
+  }
+}
+
 .aboutVaccinated {
   padding: 25px;
+}
+.aboutVaccinated__titleSection {
+  padding: 30px 70px;
+}
+@media screen and (min-width: 1200px) {
+  .aboutVaccinated__titleSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 .aboutVaccinated__title {
   font-size: 24px;
   font-weight: 700;
 }
+@media screen and (min-width: 1200px) {
+  .aboutVaccinated__title {
+    max-width: 50%;
+    font-size: 2.98rem;
+  }
+}
 .aboutVaccinated__info {
   font-size: 14px;
   font-weight: 400;
+}
+@media screen and (min-width: 1200px) {
+  .aboutVaccinated__info {
+    max-width: 40%;
+    font-size: 1.25rem;
+  }
 }
 .aboutVaccinated__card {
   border-radius: 20px;
@@ -672,9 +714,14 @@ ul {
   background-color: transparent;
   max-width: 50%;
   margin-left: 35px;
+  border-radius: 20px 80px 20px 20px;
+  background: rgba(196, 196, 196, 0.2);
 }
 .aboutVaccinated__card--title {
   color: #ffffff;
+}
+.aboutVaccinated__card .aboutVaccinated__card--title {
+  color: #17c2ec;
 }
 .aboutVaccinated__card--info {
   display: none;
@@ -705,6 +752,148 @@ ul {
 
 .aboutVaccinated__card:hover .read-more {
   color: #17c2ec;
+}
+
+.registration {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .registration {
+    text-align: left;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .registration__content {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+.registration__left {
+  margin-bottom: 35px;
+}
+.registration__title {
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 35px 0;
+}
+@media screen and (min-width: 1200px) {
+  .registration__title {
+    font-size: 3rem;
+  }
+}
+.registration__right {
+  margin: 0 35px;
+}
+@media screen and (min-width: 768px) {
+  .registration__right {
+    margin: 0;
+  }
+}
+.registration__fullname, .registration__number {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 35px;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .registration__fullname--part, .registration__number--part {
+    display: flex;
+    align-items: center;
+  }
+}
+.registration__fullname--title {
+  color: #000;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 1200px) {
+  .registration__fullname--title {
+    font-size: 1.5rem;
+  }
+}
+.registration__input {
+  border-radius: 10px;
+  background: rgba(11, 21, 60, 0.15);
+  height: 50px;
+  flex-shrink: 0;
+  border: none;
+  padding: 0 20px;
+}
+.registration__notes {
+  margin-bottom: 20px;
+}
+
+.phone-number {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background: rgba(11, 21, 60, 0.15);
+  padding: 5px 10px;
+}
+@media screen and (min-width: 768px) {
+  .phone-number {
+    width: 80%;
+  }
+}
+
+.number {
+  border: none;
+  border-radius: 0px;
+  border-left: 3px solid rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+  background: none;
+}
+.name {
+  padding: 5px 20px;
+}
+
+.btn-verify {
+  max-width: min-content;
+  margin-left: -5px;
+  margin-top: 20px;
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+@media screen and (min-width: 768px) {
+  .btn-verify {
+    margin-left: 20px;
+    font-size: 1.25rem;
+    margin-top: 35px;
+    height: 60px;
+  }
+}
+
+.checkStatus {
+  padding-bottom: 40px;
+}
+@media screen and (min-width: 768px) {
+  .checkStatus {
+    text-align: center;
+  }
+}
+.checkStatus__text {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+@media screen and (min-width: 768px) {
+  .checkStatus__text {
+    font-size: 1.25rem;
+  }
+}
+.checkStatus__link {
+  margin-left: 20px;
+  color: #17c2ec;
+  font-size: 14px;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  .checkStatus__link {
+    font-size: 1.25rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

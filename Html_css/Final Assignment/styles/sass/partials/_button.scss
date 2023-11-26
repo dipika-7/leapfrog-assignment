@@ -20,8 +20,16 @@
       max-width: 221px;
     }
   }
-  &__transparent {
-    color: $white;
+  &.large {
+    width: 90%;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 20px 0;
+    margin-bottom: 20px;
+  }
+  &-transparent {
+    // color: $white;
+    color: #17c2ec;
     font-size: 14px;
     font-weight: 700;
     border: 2px solid #17c2ec;

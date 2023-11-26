@@ -23,6 +23,9 @@
       padding: 37px 20px;
       padding-bottom: 0;
     }
+    @media screen and (min-width: $tablet) {
+      padding-bottom: 20px;
+    }
     &--title,
     &--info {
       font-size: 0.875rem;
