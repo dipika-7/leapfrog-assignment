@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <img src="logo.svg" alt="logo">
+            <ul class="nav__list">
+                <div class="nav__content">
+                    <li class="nav__item"><a href="#" id="allTask">Home</a></li>
+                </div>
+                <div class="nav__content" id="completedTask">
+                    <li class="nav__item"><a href="#">Completed</a></li>
+                </div>
+                <div class="nav__content" id="remainingTask">
+                    <li class="nav__item"><a href="#">Remaining</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <div id=" main">
+        <input type="text" id="searchSection" placeholder="Search task" class="input searchInput">
+        <div class="secton__forAdd">
+            <input type="text" id="inputSection" class="input" placeholder="Add a task">
+            <ul id="list" class="listOfTaskItem"></ul>
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+
+</html>

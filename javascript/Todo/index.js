@@ -17,11 +17,11 @@ const searchSection = document.getElementById("searchSection");
 searchSection.addEventListener("input", (e) => {
     const searchTask = []
     const task = taskList.map((item) => {
-        if (item.task == e.target.value) {
+        if (item.task.toLowerCase().includes(e.target.value.toLowerCase())) {
             searchTask.push(item)
+            createElements(searchTask)
         }
     })
-    createElements(searchTask)
 })
 
 const createElements = (list) => {
@@ -37,35 +37,46 @@ const createElements = (list) => {
         var taskItem = document.createElement("li");
         taskItem.style.padding = "20px 0";
         divForLi.appendChild(taskItem);
+
         taskItem.innerHTML = list[i].task;
 
+        const divForButton = document.createElement("div");
+        divForLi.appendChild(divForButton);
+
+        // divForLi.className = "listOfTask"
+
         let checkbox = document.createElement("input");
-        // checkbox.style.
         checkbox.type = "checkbox";
         checkbox.addEventListener('click', (e) => {
-            updateTodoStatus(taskItem, checkbox.checked, i)
+            updateTodoStatus(checkbox.checked, i)
         })
         if (list[i].status == "completed") {
             checkbox.checked = true;
         } else {
             checkbox.checked = false;
         }
-        divForLi.appendChild(checkbox);
+        divForButton.appendChild(checkbox);
+
+        var removeItem = document.createElement("button");
+        removeItem.innerHTML = "Delete"
+        removeItem.setAttribute("class", "btn")
+        removeItem.addEventListener("click", (e) => {
+            removeTask(list, i)
+        })
+        divForButton.appendChild(removeItem);
     }
 }
 
-function updateTodoStatus(todoItem, completed, index) {
+function updateTodoStatus(completed, index) {
     taskList[index].status = completed ? 'completed' : 'remaining';
-    console.log(taskList)
-    // if (completed) {
-    //     todoItem.classList.add('completed');
-    // } else {
-    //     todoItem.classList.remove('completed');
-    // }
+}
+
+const removeTask = (list, index) => {
+    list.splice(index, 1);
+    createElements(list);
 }
 
 const listOfTaskByStatus = (status) => {
-    console.log("taskList", taskList)
     let filteredTask = [];
     if (status == "completed") {
         const completed = taskList.map((item) => {
@@ -80,7 +91,6 @@ const listOfTaskByStatus = (status) => {
             }
         })
     }
-    console.log("filteredTask", filteredTask)
     createElements(filteredTask);
 }
 
@@ -89,13 +99,6 @@ completedTask.addEventListener('click', (e) => listOfTaskByStatus("completed"))
 
 const remainingTask = document.getElementById("remainingTask");
 remainingTask.addEventListener('click', (e) => listOfTaskByStatus("remaining"))
-
-
-const completedTask1 = document.getElementById("completedTask1");
-completedTask1.addEventListener('click', (e) => listOfTaskByStatus("completed"))
-
-const remainingTask2 = document.getElementById("remainingTask2");
-remainingTask2.addEventListener('click', (e) => listOfTaskByStatus("remaining"));
 
 const allTask = document.getElementById("allTask");
 allTask.addEventListener('click', (e) => createElements(taskList));
