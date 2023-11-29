@@ -1,0 +1,111 @@
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.nav {
+  color: #666;
+  background: white;
+  margin: 0 auto;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.nav__list {
+  display: none;
+}
+
+.nav__icon {
+  font-size: 20px;
+  background-color: #39f;
+  color: white;
+  border-radius: 50%;
+  margin: 0;
+  padding: 5px;
+}
+
+.listOfTaskItem {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.listOfTask {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.listOfTask {
+  justify-content: space-between;
+}
+
+.input {
+  width: 90%;
+  height: 20px;
+  border-radius: 10px;
+  /* background: rgba(11, 21, 60, 0.15); */
+  height: 50px;
+  border: none;
+  padding: 0 10px;
+  border-bottom: 1px solid #1d1c3133;
+}
+
+.searchInput {
+  margin-bottom: 30px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid rgba(29, 28, 49, 0.6);
+  padding-top: 20px;
+}
+
+.footer__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: auto;
+}
+
+@media screen and (min-width: 762px) {
+  .nav {
+    width: 85%;
+    margin-bottom: 20px;
+  }
+  .input {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .nav {
+    margin-bottom: 20px;
+  }
+  .nav__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .footer {
+    display: none;
+  }
+}
