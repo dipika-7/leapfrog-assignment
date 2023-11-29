@@ -30,11 +30,9 @@ const createElements = (list) => {
         const divForLi = document.createElement("div");
         divForLi.className = "listOfTask"
         divForLi.style.borderBottom = "1px solid black";
-        // divForLi.style.padding = "10px";
-
         ulSection.appendChild(divForLi);
 
-        var taskItem = document.createElement("li");
+        let taskItem = document.createElement("li");
         taskItem.style.padding = "20px 0";
         divForLi.appendChild(taskItem);
 
@@ -47,7 +45,7 @@ const createElements = (list) => {
 
         let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.addEventListener('click', (e) => {
+        checkbox.addEventListener('change', (e) => {
             updateTodoStatus(checkbox.checked, i)
         })
         if (list[i].status == "completed") {
@@ -57,7 +55,7 @@ const createElements = (list) => {
         }
         divForButton.appendChild(checkbox);
 
-        var removeItem = document.createElement("button");
+        let removeItem = document.createElement("button");
         removeItem.innerHTML = "Delete"
         removeItem.setAttribute("class", "btn")
         removeItem.addEventListener("click", (e) => {
