@@ -1,0 +1,19 @@
+body {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0;
+}
+
+#mainContainer {
+  border: 1px solid black;
+  width: 1400px;
+  height: 750px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.ball {
+  position: absolute;
+  /* background-color: red; */
+  border-radius: 50%;
+}

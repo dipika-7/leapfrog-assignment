@@ -61,7 +61,6 @@ const generateNewWrapper = () => {
     for (let i = 1; i <= numberOfImage; i++) {
         const circle = document.createElement("div");
         circle.setAttribute("id", `circle${i}`)
-        // if (i == activeImage) circle.style.backgroundColor = "white";
         circle.style.backgroundColor = (i == activeImage) ? circle.style.backgroundColor = "white" : "lightgray"
 
         circle.setAttribute("class", 'circle')
