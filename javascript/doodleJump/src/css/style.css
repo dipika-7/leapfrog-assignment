@@ -1,0 +1,16 @@
+body {
+  background-image: url("../assets/image/background.jpg");
+}
+
+#canvas {
+  background-image: url("../assets/image/bck.png");
+  display: block;
+  margin: 40px auto;
+  border: 1px solid #000;
+}
+
+@media screen and (max-width: 520px) {
+  #canvas {
+    width: 100%;
+  }
+}
