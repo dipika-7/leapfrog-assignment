@@ -29,4 +29,8 @@ class Platform {
         this.img = characterRightImg;
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
+
+    cleanUp = () => {
+        this.imageSrc = null;
+    };
 }

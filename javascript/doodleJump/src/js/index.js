@@ -28,16 +28,10 @@ function animate() {
 
     character.draw(ctx);
     character.jump();
-    movement(character);
+    movement();
     getCharacterFromNextSide()
-    checkCharacterInPlatform(character, platforms)
+    checkCharacterInPlatform()
 
-    if (gameOver) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillText(`Your Score is: ${score}`, canvas.width / 3, canvas.height * 3 / 8)
-        ctx.fillText("Game Over: Press 'Space' to Restart", canvas.width / 4, canvas.height * 4 / 8)
-    }
-    checkGameOver(character, canvas)
 
     while (platforms.length > 0 && platforms[0].y >= canvas.height) {
         platforms.shift();
@@ -49,6 +43,12 @@ function animate() {
     ctx.font = "16px sans-serif";
     ctx.fillText(`Score: ${score}`, 5, 20);
 
+    if (gameOver) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillText(`Your Score is: ${score}`, canvas.width / 3, canvas.height * 3 / 8)
+        ctx.fillText("Game Over: Press 'Space' to Restart", canvas.width / 4, canvas.height * 4 / 8)
+    }
+    checkGameOver(character, canvas)
     requestAnimationFrame(animate);
 }
 
@@ -78,20 +78,11 @@ const checkCharacterInPlatform = () => {
 };
 
 //check if game is over or not
-const checkGameOver = () => {
+const checkGameOver = (character, canvas) => {
     if (character.y + character.height > canvas.height) {
         gameOver = true;
-        for (var i = 0; i < platforms.length; i++) {
-            platforms[i].y -= 10;
-            if (platforms[i].y < 0) {
-                platforms[i].cleanUp();
-                platforms.splice(i, 1);
-                i--;
-            }
-        }
-        const jump = new Audio("./src/assets/mp3/diver-bomber.mp3");
-        jump.play();
-        gameOverSoundPlayed = true
+        // const jump = new Audio("./src/assets/mp3/diver-bomber.mp3");
+        // jump.play();
     }
 }
 
