@@ -33,3 +33,23 @@ window.onkeyup = (e) => {
             break;
     }
 };
+
+
+function handleOrientation(event) {
+    const tiltX = event.gamma;
+    let tiltSpeed = tiltX / 20 >= 1 ? 1 : tiltX / 20;
+    if (tiltX > 3) {
+        character.velocity.x = SPEED * tiltSpeed;
+        keys.ArrowRight = true;
+        keys.ArrowLeft = false;
+    } else if (tiltX < -3) {
+        character.velocity.x = -SPEED * tiltSpeed;
+        keys.ArrowRight = false;
+        keys.ArrowLeft = true;
+    } else {
+        keys.ArrowRight = false;
+        keys.ArrowLeft = false;
+    }
+}
+
+window.addEventListener("deviceorientation", handleOrientation);

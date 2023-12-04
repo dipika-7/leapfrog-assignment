@@ -17,7 +17,7 @@ class Character {
         this.isGrounded = false;
 
         this.velocity = {
-            x: 5,
+            x: SPEED,
             y: 80
         }
 
