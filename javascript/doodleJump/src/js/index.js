@@ -48,7 +48,9 @@ function animate() {
         ctx.fillText(`Your Score is: ${score}`, canvas.width / 3, canvas.height * 3 / 8)
         ctx.fillText("Game Over: Press 'Space' to Restart", canvas.width / 4, canvas.height * 4 / 8)
     }
-    checkGameOver(character, canvas)
+    if (!gameOver) {
+        checkGameOver(character, canvas)
+    }
     requestAnimationFrame(animate);
 }
 
@@ -79,10 +81,11 @@ const checkCharacterInPlatform = () => {
 
 //check if game is over or not
 const checkGameOver = (character, canvas) => {
+    const gameOverSound = false
     if (character.y + character.height > canvas.height) {
         gameOver = true;
-        // const jump = new Audio("./src/assets/mp3/diver-bomber.mp3");
-        // jump.play();
+        const jump = new Audio("./src/assets/mp3/diver-bomber.mp3");
+        jump.play();
     }
 }
 
