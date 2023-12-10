@@ -1,0 +1,32 @@
+// let SPEED = 2;
+
+const GRAVITY = 0.2;
+
+const PLATFORM_FIRST_XPOSITION = -40;
+const PLATFORM_FIRST_WIDTH = 800;
+const PLATFORM_YPOSITION = 590;
+
+const PLATFORM_MIN_WIDTH = 300
+const PLATFORM_MAX_WIDTH = 800
+
+const PLATFORM_HEIGHT = 300
+
+const PLATFORM_MINX = 350
+const PLATFORM_MAXY = 400
+
+const CANVAS_WIDTH = window.innerWidth;
+const CANVAS_HEIGHT = window.innerHeight;
+
+const PLATFORM_DISTANCE = 260;
+
+const MAX_JUMP_VELOCITY = 5;
+const MAX_JUMP_HEIGHT = 200;
+
+const CHARACTER_POSITIONY = 470
+const CHARACTER_WIDTH = 100
+const CHARACTER_HEIGHT = 120
+
+const VELOCITY = {
+    x: 4,
+    y: 80
+}
