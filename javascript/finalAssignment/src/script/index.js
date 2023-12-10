@@ -156,7 +156,6 @@ const animate = () => {
 
         }
     });
-    removePlatform();
 
     zombies.forEach((zombie, index) => {
         zombie.draw(ctx);
@@ -172,6 +171,8 @@ const animate = () => {
         human.x -= VELOCITY.x;
         // checkZombieCollideWithHuman(human)
     });
+
+    removePlatform();
 
     requestAnimationFrame(animate);
 };
