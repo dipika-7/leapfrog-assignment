@@ -170,7 +170,7 @@ const animate = () => {
     humans.forEach((human) => {
         human.draw(ctx);
         human.x -= VELOCITY.x;
-        checkZombieCollideWithHuman(human)
+        // checkZombieCollideWithHuman(human)
     });
 
     requestAnimationFrame(animate);
