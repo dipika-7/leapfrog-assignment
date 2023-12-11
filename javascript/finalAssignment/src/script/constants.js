@@ -26,6 +26,9 @@ const CHARACTER_POSITIONY = 470
 const CHARACTER_WIDTH = 100
 const CHARACTER_HEIGHT = 120
 
+const VEHICLE_WIDTH = 150
+const VEHICLE_HEIGHT = 120
+
 const VELOCITY = {
     x: 4,
     y: 80
@@ -34,3 +37,7 @@ const VELOCITY = {
 const ZOMBIE_WIDTH = 100;
 const ZOMBIE_HEIGHT = 120;
 const ZOMBIE_DISTANCE = 30;
+
+const ROTATE_ANGLE = Math.PI + 50
+
+const OBSTACLE_TYPE = ['car', 'debris', 'barricade'];

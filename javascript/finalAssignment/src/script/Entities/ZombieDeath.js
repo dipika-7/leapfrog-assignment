@@ -1,4 +1,4 @@
-class Vehicle {
+class ZombieDeath {
     /**
      * 
      * @param {number} x 
@@ -6,13 +6,20 @@ class Vehicle {
      * @param {number} width 
      * @param {number} height 
      */
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, type) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.type = type;
 
-        this.color = 'red';
+        if (this.type == "car") {
+            this.color = 'yellow';
+        } else if (this.type == "debris") {
+            this.color = "black"
+        } else {
+            this.color = 'lightblue';
+        }
 
         this.img = null;
 
@@ -20,7 +27,7 @@ class Vehicle {
 
         this.numberOfZombie = 0;
 
-        let vehicleImg = new Image();
+        // let vehicleImg = new Image();
         // vehicleImg.src = "./src/assets/images/vehicle.png"
         // this.img = vehicleImg;
     }

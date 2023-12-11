@@ -14,6 +14,7 @@ class Platform {
         this.color = "green";
         this.hasHuman = false;
         this.hasVehicle = false;
+        this.hasZombieDeathObject = false;
     }
 
     /**

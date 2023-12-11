@@ -6,11 +6,12 @@ class Zombie {
      * @param {number} width 
      * @param {number} height 
      */
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, angle) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.angle = angle;
 
         this.color = '#49c';
 
@@ -36,10 +37,20 @@ class Zombie {
      * @param {*} ctx 
      */
     draw(ctx) {
-        this.ctx = ctx;
-        // ctx.fillStyle = this.color;
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        if (!this.angle) {
+            this.ctx = ctx;
+            // ctx.fillStyle = this.color;
+            // ctx.fillRect(this.x, this.y, this.width, this.height);
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        } else {
+            ctx.save()
+            ctx.translate(this.x, this.y);
+            ctx.rotate(-this.angle);
+            ctx.fillStyle = this.color;
+            // ctx.fillRect(0, 0, this.width, this.height);
+            ctx.drawImage(this.img, 0, 0, this.width, this.height)
+            ctx.restore()
+        }
     }
     rightMove() {
         if (this.isRunning) {
@@ -66,5 +77,8 @@ class Zombie {
         } else {
             this.vy += GRAVITY;
         }
+    }
+    remove() {
+        ctx.clearRect(this.x, this.y, this.width, this.height);
     }
 }

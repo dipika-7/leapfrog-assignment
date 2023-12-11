@@ -11,7 +11,8 @@ class Human {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.angle = angle;
+        this.angle = 0;
+        this.rotationSpeed = 1
 
         this.color = 'blue';
 
@@ -22,8 +23,8 @@ class Human {
         this.vy = 0.2
         this.rotationSpeed = 0.5;
         let humanImg = new Image();
-        // humanImg.src = "./src/assets/images/human.png"
-        // this.img = humanImg;
+        humanImg.src = "./src/assets/images/human.png"
+        this.img = humanImg;
     }
 
     /**
@@ -36,15 +37,18 @@ class Human {
         // ctx.fillStyle = this.color;
         // ctx.fillRect(this.x, this.y, this.width, this.height);
         if (this.angle) {
+            console.log("Iam here")
             ctx.save()
             ctx.translate(this.x, this.y);
-            ctx.rotate(-Math.PI / 4);
+            ctx.rotate((this.angle * Math.PI) / 180);
             ctx.fillStyle = this.color;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
+            // ctx.fillRect(0, 0, this.width, this.height);
+            ctx.drawImage(this.img, 0, 0, this.width, this.height)
             ctx.restore()
         } else {
             ctx.fillStyle = this.color;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
+            // ctx.fillRect(this.x, this.y, this.width, this.height);
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
         }
         // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
@@ -52,7 +56,7 @@ class Human {
         ctx.clearRect(this.x, this.y, this.width, this.height);
     }
     update() {
-        // this.angle += this.rotationSpeed
+        this.angle += this.rotationSpeed
         this.draw();
     }
 }
