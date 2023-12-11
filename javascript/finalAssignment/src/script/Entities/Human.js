@@ -19,6 +19,8 @@ class Human {
 
         this.img = null;
 
+        this.vy = 0.2
+        this.rotationSpeed = 0.5;
         let humanImg = new Image();
         // humanImg.src = "./src/assets/images/human.png"
         // this.img = humanImg;
@@ -29,13 +31,28 @@ class Human {
      * 
      * @param {*} ctx 
      */
-    draw(ctx) {
-        this.ctx = ctx;
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+    draw() {
+        // this.ctx = ctx;
+        // ctx.fillStyle = this.color;
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
         if (this.angle) {
-            this.ctx.rotate(this.angle);
+            ctx.save()
+            ctx.translate(this.x, this.y);
+            ctx.rotate(-Math.PI / 4);
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+            ctx.restore()
+        } else {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
         }
         // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    }
+    remove() {
+        ctx.clearRect(this.x, this.y, this.width, this.height);
+    }
+    update() {
+        // this.angle += this.rotationSpeed
+        this.draw();
     }
 }

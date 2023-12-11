@@ -11,7 +11,9 @@ class Platform {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.color = "green"
+        this.color = "green";
+        this.hasHuman = false;
+        this.hasVehicle = false;
     }
 
     /**

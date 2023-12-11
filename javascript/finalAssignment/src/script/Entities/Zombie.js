@@ -37,12 +37,14 @@ class Zombie {
      */
     draw(ctx) {
         this.ctx = ctx;
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        // ctx.fillStyle = this.color;
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
     rightMove() {
-        this.x += this.vx;
+        if (this.isRunning) {
+            this.x += this.vx;
+        }
     }
     /**
      * jump character at certain level
