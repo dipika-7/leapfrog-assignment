@@ -37,7 +37,6 @@ class Human {
         // ctx.fillStyle = this.color;
         // ctx.fillRect(this.x, this.y, this.width, this.height);
         if (this.angle) {
-            console.log("Iam here")
             ctx.save()
             ctx.translate(this.x, this.y);
             ctx.rotate((this.angle * Math.PI) / 180);

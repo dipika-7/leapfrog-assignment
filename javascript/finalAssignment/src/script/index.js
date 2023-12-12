@@ -160,7 +160,7 @@ const generateVehicle = () => {
             VEHICLE_WIDTH,
             VEHICLE_HEIGHT
         )
-        vehicle.numberOfZombie = 1;
+        vehicle.numberOfZombie = 2;
         vehicles.push(vehicle)
         platforms[platformIndex].hasVehicle = true;
     }
@@ -211,11 +211,13 @@ const checkZombieCollideWithVehicle = (vehicle) => {
                 break;
                 // return;
             } else {
+                // if (zombie.x <= vehicle.x) {
                 zombie.x = vehicle.x - zombie.width;
                 if (zombie.x + zombie.width <= 0) {
                     const zombieIndex = zombies.indexOf(zombie)
                     zombies.splice(zombieIndex, 1)
                 }
+                // }
             }
         }
     }
@@ -257,9 +259,9 @@ const animate = () => {
         }
         if (platform.x + platform.width < 0) {
             generatePlatform(CANVAS_WIDTH);
-            // generateHuman();
+            generateHuman();
+            generateVehicle();
             generateZombieDeathObject();
-            // generateVehicle();
         }
         // })
     });
@@ -305,9 +307,9 @@ const animate = () => {
 
     if (gameOver) {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        ctx.fillText(`Your Score is: ${score}`, CANVAS_WIDTH / 3, CANVAS_HEIGHT * 3 / 8)
-        ctx.fillText(`Your High Score is: ${scores.getHighScore()}`, CANVAS_WIDTH / 3, CANVAS_HEIGHT * 4 / 8)
-        ctx.fillText("Game Over: Press 'Space' to Restart", CANVAS_WIDTH / 4, CANVAS_HEIGHT * 5 / 8)
+        ctx.fillText(`Your Score is: ${score}`, CANVAS_WIDTH / 2 - 50, CANVAS_HEIGHT * 3 / 8)
+        ctx.fillText(`Your High Score is: ${scores.getHighScore()}`, CANVAS_WIDTH / 2 - 80, CANVAS_HEIGHT * 3.5 / 8)
+        // ctx.fillText("Game Over: Press 'Space' to Restart", CANVAS_WIDTH / 4, CANVAS_HEIGHT * 5 / 8)
     }
 
     if (!gameOver) {

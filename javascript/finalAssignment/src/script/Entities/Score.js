@@ -10,10 +10,6 @@ class Score {
         localStorage.setItem("high_score", score.toString())
     }
     updateHighScore(score) {
-        // console.log("----", {
-        //     previous: this.high,
-        //     now: score
-        // })
         if (score > this.high) {
             this.setHighScore(score)
         }
