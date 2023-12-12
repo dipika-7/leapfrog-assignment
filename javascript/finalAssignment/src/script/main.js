@@ -1,5 +1,5 @@
-import { Game } from "./entities/Game";
-import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../script/constants";
+import { CANVAS_WIDTH, CANVAS_HEIGHT } from "./constants.js";
+import { Game } from "./entities/Game.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
