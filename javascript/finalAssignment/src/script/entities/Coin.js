@@ -1,40 +1,26 @@
-class ZombieDeath {
+class Coin {
     /**
      * 
      * @param {number} x 
      * @param {number} y 
      * @param {number} width 
      * @param {number} height 
-     * @param {string} type
      */
-    constructor(x, y, width, height, type) {
+    constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.type = type;
 
-        if (this.type == "car") {
-            this.color = 'yellow';
-        } else if (this.type == "debris") {
-            this.color = "black"
-        } else {
-            this.color = 'lightblue';
-        }
+        this.color = "darkyellow"
 
         this.img = null;
 
         this.vy = 0.2
-
-        this.numberOfZombie = 0;
-
-        // let vehicleImg = new Image();
-        // vehicleImg.src = "./src/assets/images/vehicle.png"
-        // this.img = vehicleImg;
     }
 
     /**
-     * draw vehicle on screen
+     * draw power on screen
      * 
      * @param {*} ctx 
      */

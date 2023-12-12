@@ -6,7 +6,7 @@ class Zombie {
      * @param {number} width 
      * @param {number} height 
      */
-    constructor(x, y, width, height, angle) {
+    constructor(x, y, width, height, angle, power = null) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -19,7 +19,9 @@ class Zombie {
         this.isGrounded = false;
         this.canJump = false;
 
-        this.vx = 4;
+        this.power = power;
+
+        this.vx = ZOMBIE_VX;
         this.vy = 0;
 
         this.jumpStart = 0;
@@ -80,5 +82,8 @@ class Zombie {
     }
     remove() {
         ctx.clearRect(this.x, this.y, this.width, this.height);
+    }
+    removePower() {
+        this.power = null
     }
 }

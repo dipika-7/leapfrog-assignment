@@ -5,7 +5,6 @@ const keys = {
 
 // events listener for key down press
 window.onkeydown = (e) => {
-    console.log(e.code)
     switch (e.code) {
         case 'Space':
             keys.Space = true;

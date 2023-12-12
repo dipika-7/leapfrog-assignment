@@ -1,5 +1,3 @@
-// let SPEED = 2;
-
 const GRAVITY = 0.2;
 
 const PLATFORM_FIRST_XPOSITION = -40;
@@ -34,6 +32,9 @@ const VELOCITY = {
     y: 80
 }
 
+const ZOMBIE_X = 30
+const ZOMBIE_Y = 400
+const ZOMBIE_VX = 4
 const ZOMBIE_WIDTH = 100;
 const ZOMBIE_HEIGHT = 120;
 const ZOMBIE_DISTANCE = 30;
@@ -41,3 +42,5 @@ const ZOMBIE_DISTANCE = 30;
 const ROTATE_ANGLE = Math.PI + 50
 
 const OBSTACLE_TYPE = ['car', 'debris', 'barricade'];
+const POWER_TYPE = ['protection'];
+const POWER_TIME = 30000; //half minute

@@ -1,4 +1,4 @@
-class ZombieDeath {
+class Power {
     /**
      * 
      * @param {number} x 
@@ -14,27 +14,19 @@ class ZombieDeath {
         this.height = height;
         this.type = type;
 
-        if (this.type == "car") {
-            this.color = 'yellow';
-        } else if (this.type == "debris") {
-            this.color = "black"
+        if (this.type == "protection") {
+            this.color = 'purple';
         } else {
-            this.color = 'lightblue';
+            this.color = 'gray';
         }
 
         this.img = null;
 
         this.vy = 0.2
-
-        this.numberOfZombie = 0;
-
-        // let vehicleImg = new Image();
-        // vehicleImg.src = "./src/assets/images/vehicle.png"
-        // this.img = vehicleImg;
     }
 
     /**
-     * draw vehicle on screen
+     * draw power on screen
      * 
      * @param {*} ctx 
      */

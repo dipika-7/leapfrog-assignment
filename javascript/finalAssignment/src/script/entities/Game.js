@@ -26,7 +26,7 @@ const initialSetup = (platforms, zombies) => {
     zombies.push(zombie)
 };
 
-class Game {
+export class Game {
     constructor(ctx) {
         this.ctx = ctx;
         this.platforms = [];
