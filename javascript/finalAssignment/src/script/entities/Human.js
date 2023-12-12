@@ -41,13 +41,13 @@ class Human {
             ctx.translate(this.x, this.y);
             ctx.rotate((this.angle * Math.PI) / 180);
             ctx.fillStyle = this.color;
-            // ctx.fillRect(0, 0, this.width, this.height);
-            ctx.drawImage(this.img, 0, 0, this.width, this.height)
+            ctx.fillRect(0, 0, this.width, this.height);
+            // ctx.drawImage(this.img, 0, 0, this.width, this.height)
             ctx.restore()
         } else {
             ctx.fillStyle = this.color;
-            // ctx.fillRect(this.x, this.y, this.width, this.height);
-            ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+            // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
         }
         // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
