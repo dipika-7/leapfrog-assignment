@@ -1,4 +1,4 @@
-import { Game } from "../script/entities/Game";
+import { Game } from "./entities/Game";
 import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../script/constants";
 
 const canvas = document.getElementById("canvas");
