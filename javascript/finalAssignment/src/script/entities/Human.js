@@ -23,7 +23,7 @@ class Human {
         this.vy = 0.2
         this.rotationSpeed = 0.5;
         let humanImg = new Image();
-        humanImg.src = "./src/assets/images/human.png"
+        humanImg.src = "./src/assets/images/man.png"
         this.img = humanImg;
     }
 
