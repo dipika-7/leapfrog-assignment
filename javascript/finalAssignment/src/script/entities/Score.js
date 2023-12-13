@@ -1,18 +1,27 @@
 class Score {
     constructor() {
-        this.high = +localStorage.getItem("high_score") ?? 0;
+        this.highScore = +localStorage.getItem("high_score") ?? 0;
+        this.coins = +localStorage.getItem("coins") ?? 0;
     }
-    getHighScore() {
-        return this.high;
+    getScore() {
+        return {
+            highScore: this.highScore,
+            coins: this.coins
+        }
     }
-    setHighScore(score) {
-        this.high = score;
+    setScore(score) {
+        this.highScore = score;
         localStorage.setItem("high_score", score.toString())
     }
-    updateHighScore(score) {
-        if (score > this.high) {
-            this.setHighScore(score)
+    setCoins(coins) {
+        this.coins = coins;
+        localStorage.setItem("coins", coins.toString())
+    }
+    updateScore(score, coins) {
+        if (score > this.highScore) {
+            this.setScore(score)
         }
+        this.setCoins(coins)
     }
 
 }

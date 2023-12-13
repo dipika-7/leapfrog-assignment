@@ -16,6 +16,7 @@ const generateCoins = () => {
                 )
                 coinsArray.push((coinObj));
             })
+            lastCoinTime = currentCoinTime;
         }
     }
 }

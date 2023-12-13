@@ -26,7 +26,7 @@ let gameOver = false;
 
 let score = 1;
 const scores = new Score();
-let collectedCoinsScore = 0;
+let collectedCoinsScore = scores.getScore().coins;
 
 let coinsArray = [];
 
@@ -152,6 +152,7 @@ const generateHuman = () => {
         humans.push(human);
         platforms[platformIndex].hasHuman = true;
     }
+    console.log(humans)
     // }
 }
 
@@ -378,6 +379,13 @@ const animate = () => {
         zombieDeathObject.draw();
     });
 
+    coinsArray.forEach((coin, index) => {
+        coin.update()
+        if (coin.x <= 0) {
+            coinsArray.splice(index, 1)
+        }
+    })
+
     zombies.forEach((zombie, index) => {
         zombie.draw(ctx);
         checkCollision(zombies, platforms);
@@ -389,23 +397,19 @@ const animate = () => {
         setPosition(zombie, index);
     });
 
-    coinsArray.forEach((coin) => {
-        coin.update()
-    })
-
     removePlatform();
     removeZombie();
-    scores.updateHighScore(score);
+    scores.updateScore(score, collectedCoinsScore);
     ctx.fillStyle = "red";
     ctx.font = "16px sans-serif";
     ctx.fillText(`Score: ${score}`, 5, 20);
-    ctx.fillText(`High Score: ${scores.getHighScore()}`, 5, 50);
+    ctx.fillText(`High Score: ${scores.getScore().highScore}`, 5, 50);
     ctx.fillText(`Collected Coins: ${collectedCoinsScore}`, 5, 80);
 
     if (gameOver) {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         ctx.fillText(`Your Score is: ${score}`, CANVAS_WIDTH / 2 - 50, CANVAS_HEIGHT * 3 / 8)
-        ctx.fillText(`Your High Score is: ${scores.getHighScore()}`, CANVAS_WIDTH / 2 - 80, CANVAS_HEIGHT * 3.5 / 8)
+        ctx.fillText(`Your High Score is: ${scores.getScore().highScore}`, CANVAS_WIDTH / 2 - 80, CANVAS_HEIGHT * 3.5 / 8)
         ctx.fillText("Game Over: Press 'Enter' to Restart", CANVAS_WIDTH / 2 - 120, CANVAS_HEIGHT * 4 / 8)
     }
 
