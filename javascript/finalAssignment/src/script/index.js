@@ -5,6 +5,7 @@ canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
 let platforms = [];
+let lastCoinTime = new Date();
 
 let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
 const zombie1 = new Zombie(-10, 300, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
@@ -19,10 +20,15 @@ let vehicles = [];
 let zombieDeathObjects = []
 let powers = []
 
+const background = new Background(canvas, BACKGROUND_X, BACKGROUND_Y, ctx);
+
 let gameOver = false;
 
 let score = 1;
 const scores = new Score();
+let collectedCoinsScore = 0;
+
+let coinsArray = [];
 
 /**
  * initial platform for setup
@@ -311,8 +317,22 @@ const resetGame = () => {
     }
 }
 
+const moveBackground = () => {
+    zombies.forEach((zombie) => {
+        if (zombie.x >= canvas.clientWidth / 3) {
+            background.update()
+        }
+    })
+}
+
+const coin = new Coin(150, 150, COIN_WIDTH, COIN_HEIGHT);
+
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    background.draw();
+    moveBackground()
+
+    // coin.draw()
 
     platforms.forEach((platform) => {
         platform.draw(ctx);
@@ -322,10 +342,11 @@ const animate = () => {
         }
         if (platform.x + platform.width < 0) {
             generatePlatform(CANVAS_WIDTH);
-            generateHuman();
-            generatePower();
-            generateVehicle();
-            generateZombieDeathObject();
+            // generateHuman();
+            // generatePower();
+            // generateVehicle();
+            // generateZombieDeathObject();
+            generateCoins()
         }
         // })
     });
@@ -360,20 +381,26 @@ const animate = () => {
     zombies.forEach((zombie, index) => {
         zombie.draw(ctx);
         checkCollision(zombies, platforms);
-        checkZombieCollideWithPower(zombie)
+        checkZombieCollideWithPower(zombie);
+        collisionDetectionWithCoin(zombie)
         zombieMovement();
         zombie.applyGravity();
         zombie.rightMove(ctx);
         setPosition(zombie, index);
     });
 
+    coinsArray.forEach((coin) => {
+        coin.update()
+    })
+
     removePlatform();
     removeZombie();
     scores.updateHighScore(score);
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "red";
     ctx.font = "16px sans-serif";
     ctx.fillText(`Score: ${score}`, 5, 20);
     ctx.fillText(`High Score: ${scores.getHighScore()}`, 5, 50);
+    ctx.fillText(`Collected Coins: ${collectedCoinsScore}`, 5, 80);
 
     if (gameOver) {
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);

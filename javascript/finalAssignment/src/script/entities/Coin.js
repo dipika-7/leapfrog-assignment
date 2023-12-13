@@ -15,8 +15,11 @@ class Coin {
         this.color = "darkyellow"
 
         this.img = null;
+        let coinImg = new Image();
+        coinImg.src = "./src/assets/images/coin-icon.png"
+        this.img = coinImg;
 
-        this.vy = 0.2
+        this.vx = VELOCITY.x
     }
 
     /**
@@ -26,9 +29,13 @@ class Coin {
      */
     draw() {
         this.ctx = ctx;
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        // ctx.fillStyle = this.color;
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    }
+    update() {
+        this.draw();
+        this.x -= this.vx;
     }
     remove() {
         ctx.clearRect(this.x, this.y, this.width, this.height);

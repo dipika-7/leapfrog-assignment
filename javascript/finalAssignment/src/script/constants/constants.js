@@ -2,12 +2,12 @@ const GRAVITY = 0.2;
 
 const PLATFORM_FIRST_XPOSITION = -40;
 const PLATFORM_FIRST_WIDTH = 800;
-const PLATFORM_YPOSITION = 590;
+const PLATFORM_YPOSITION = 680;
 
 const PLATFORM_MIN_WIDTH = 550
 const PLATFORM_MAX_WIDTH = 1000
 
-const PLATFORM_HEIGHT = 300
+const PLATFORM_HEIGHT = 250
 
 const PLATFORM_MINX = 350
 const PLATFORM_MAXY = 400
@@ -44,3 +44,10 @@ const ROTATE_ANGLE = Math.PI + 50
 const OBSTACLE_TYPE = ['car', 'debris', 'barricade'];
 const POWER_TYPE = ['protection'];
 const POWER_TIME = 30000; //half minute
+
+const BACKGROUND_X = 0;
+const BACKGROUND_Y = 0;
+
+const COIN_WIDTH = 30;
+const COIN_HEIGHT = 30;
+const COIN_INTERVAL = 10000; //half minute

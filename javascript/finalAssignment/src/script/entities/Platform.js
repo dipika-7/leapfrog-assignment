@@ -15,6 +15,7 @@ class Platform {
         this.hasHuman = false;
         this.hasVehicle = false;
         this.hasZombieDeathObject = false;
+        this.img = null;
     }
 
     /**
@@ -24,11 +25,11 @@ class Platform {
      */
     draw(ctx) {
         this.ctx = ctx;
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        // let tile = new Image();
-        // tile.src = "./src/assets/images/tile2.png";
-        // this.img = tile;
-        // ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        // ctx.fillStyle = this.color;
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        let tile = new Image();
+        tile.src = "./src/assets/images/tile.png";
+        this.img = tile;
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 }
