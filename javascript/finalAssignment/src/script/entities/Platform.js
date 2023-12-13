@@ -1,3 +1,5 @@
+import { getRandom } from "../util.js";
+
 export class Platform {
     /**
      *

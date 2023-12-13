@@ -5,7 +5,7 @@
  * @param {number} maxValue 
  * @returns number
  */
-const getRandom = (minValue, maxValue) => {
+export const getRandom = (minValue, maxValue) => {
     return minValue + Math.random() * (maxValue - minValue);
 }
 
@@ -17,7 +17,7 @@ const getRandom = (minValue, maxValue) => {
  * @returns boolean
  */
 
-function collisionDetection(rect1, rect2) {
+export function collisionDetection(rect1, rect2) {
     return (
         rect1.x <= rect2.x + rect2.width &&
         rect1.x + rect1.width >= rect2.x &&

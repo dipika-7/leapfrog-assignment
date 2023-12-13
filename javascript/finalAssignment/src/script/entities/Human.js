@@ -32,7 +32,7 @@ export class Human {
      * 
      * @param {*} ctx 
      */
-    draw() {
+    draw(ctx) {
         // this.ctx = ctx;
         // ctx.fillStyle = this.color;
         // ctx.fillRect(this.x, this.y, this.width, this.height);

@@ -1,5 +1,4 @@
-import { CANVAS_WIDTH, CANVAS_HEIGHT } from "./constants.js";
-import { Game } from "./entities/Game.js";
+import { animate } from "./index.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -7,8 +6,8 @@ const ctx = canvas.getContext("2d");
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
-const game = new Game(ctx);
-
+// const game = new Game(ctx);
+initialPlatform();
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     requestAnimationFrame(animate);
