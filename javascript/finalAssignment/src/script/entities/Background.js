@@ -1,6 +1,6 @@
 class Background {
     constructor(canvas, x, y, ctx) {
-        this.x = 0;
+        this.x = x;
         this.y = y;
         this.canvas = canvas
         this.ctx = ctx;

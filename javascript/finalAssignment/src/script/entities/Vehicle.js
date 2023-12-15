@@ -20,8 +20,8 @@ class Vehicle {
 
         this.numberOfZombie = 0;
 
-        let vehicleImg = new Image();
-        // vehicleImg.src = "./src/assets/images/vehicle.png"
+        // let vehicleImg = new Image();
+        // vehicleImg.src = "./src/assets/images/vehicle3.jpg"
         // this.img = vehicleImg;
     }
 

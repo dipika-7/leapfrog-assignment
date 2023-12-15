@@ -27,7 +27,6 @@ const collisionDetectionWithCoin = (zombie) => {
             const coinIndex = coinsArray.indexOf(coin);
             coinsArray.splice(coinIndex, 1);
             collectedCoinsScore += 1
-            coin.remove();
         }
     }
 }

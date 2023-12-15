@@ -43,3 +43,9 @@ function collisionDetectionTwoRect(rect1, rect2) {
         console.log('No collision.');
     }
 }
+
+const minValueObject = (arrayOfObjects) => {
+    return arrayOfObjects.reduce((minObject, currentObject) => {
+        return currentObject.x < minObject.x ? currentObject : minObject;
+    }, arrayOfObjects[0]);
+}

@@ -14,35 +14,38 @@ class ZombieDeath {
         this.height = height;
         this.type = type;
 
-        if (this.type == "car") {
-            this.color = 'yellow';
-        } else if (this.type == "debris") {
-            this.color = "black"
-        } else {
-            this.color = 'lightblue';
-        }
 
         this.img = null;
 
         this.vy = 0.2
 
         this.numberOfZombie = 0;
-
-        // let vehicleImg = new Image();
-        // vehicleImg.src = "./src/assets/images/vehicle.png"
-        // this.img = vehicleImg;
     }
-
     /**
      * draw vehicle on screen
      * 
      * @param {*} ctx 
      */
     draw() {
-        this.ctx = ctx;
-        ctx.fillStyle = this.color;
+        let obstacleImg = new Image();
+        if (this.type == "car") {
+            this.y = this.y + 20;
+            obstacleImg.src = "./src/assets/images/bomb.png"
+            this.img = obstacleImg;
+        } else if (this.type == "debris") {
+            this.y = this.y + 20;
+            obstacleImg.src = "./src/assets/images/bomb.png"
+            this.img = obstacleImg;
+        } else if (this.type == "bomb") {
+            this.y = this.y + 20;
+            obstacleImg.src = "./src/assets/images/bomb.png"
+            this.img = obstacleImg;
+        }
+        // this.ctx = ctx;
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        ctx.fillStyle = "rgba(255,0,0,0.2)"
+        // ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
-        // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
     remove() {
         ctx.clearRect(this.x, this.y, this.width, this.height);

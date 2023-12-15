@@ -6,7 +6,7 @@ class Zombie {
      * @param {number} width 
      * @param {number} height 
      */
-    constructor(x, y, width, height, angle, power = null) {
+    constructor(x, y, width, height, isRunning = false, angle, power = null) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -15,9 +15,10 @@ class Zombie {
 
         this.color = '#49c';
 
-        this.isRunning = true
+        this.isRunning = isRunning
         this.isGrounded = false;
         this.canJump = false;
+        this.isBackwarded = false;
 
         this.power = power;
 
@@ -29,7 +30,7 @@ class Zombie {
         this.img = null;
 
         let zombieImg = new Image();
-        zombieImg.src = "./src/assets/images/zombie.png"
+        zombieImg.src = "./src/assets/images/zombie-spritesheet1.png"
         this.img = zombieImg;
     }
 
@@ -38,19 +39,21 @@ class Zombie {
      * 
      * @param {*} ctx 
      */
-    draw(ctx) {
+    draw(ctx, index) {
+        // ctx.fillStyle = "rgba(255,0,0,0.2)"
+        // ctx.fillRect(this.x, this.y, this.width, this.height)
         if (!this.angle) {
             this.ctx = ctx;
-            // ctx.fillStyle = this.color;
-            // ctx.fillRect(this.x, this.y, this.width, this.height);
-            ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+            // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+            // ctx.drawImage(this.img, 32, 420, 59, 75, this.x, this.y, this.width, this.height)
+            ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
+
         } else {
             ctx.save()
             ctx.translate(this.x, this.y);
             ctx.rotate(-this.angle);
-            ctx.fillStyle = this.color;
-            // ctx.fillRect(0, 0, this.width, this.height);
-            ctx.drawImage(this.img, 0, 0, this.width, this.height)
+            // ctx.drawImage(this.img, 0, 0, this.width, this.height)
+            ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
             ctx.restore()
         }
     }
@@ -86,4 +89,49 @@ class Zombie {
     removePower() {
         this.power = null
     }
+    checkHorizontalCollisions(platforms) {
+        for (const platform of platforms) {
+            if (collisionDetection(this, platform)) {
+                if (this.vx > 0) {
+                    this.vx = 0;
+                    this.x = platform.x - this.width - 0.01;
+                    break;
+                }
+            }
+        }
+    }
+    checkVerticalCollisions(platforms) {
+        for (const platform of platforms) {
+            if (collisionDetection(this, platform)) {
+                if (this.vy > 0) {
+                    this.vy = 0;
+                    this.isGrounded = true;
+                    this.canJump = true;
+                    this.y = platform.y - this.height - 0.01;
+                    break;
+                }
+            } else {
+                this.isGrounded = false;
+            }
+        }
+    }
+    moveZombie = (zombies) => {
+        zombies.forEach((zombie, index) => {
+            if (keys.Space == true && zombie.canJump) {
+                this.draw(ctx, 0)
+                if (zombie.isGrounded) {
+                    zombie.jumpStart = zombie.y;
+                }
+                setTimeout(() => { zombie.jump(); }, 100 * index)
+            } else {
+                zombie.canJump = false;
+            }
+        })
+    };
+    setPosition = (zombie, index) => {
+        if (zombie.x >= canvas.clientWidth / 3 && zombie.isRunning) {
+            zombie.x = canvas.clientWidth / 3 - index * 40;
+            zombie.isRunning = false
+        }
+    };
 }

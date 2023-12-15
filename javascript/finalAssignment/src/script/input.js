@@ -7,6 +7,7 @@ const keys = {
 window.onkeydown = (e) => {
     switch (e.code) {
         case 'Space':
+            console.log("space")
             keys.Space = true;
             break;
         case 'Enter':

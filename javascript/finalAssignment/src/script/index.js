@@ -7,9 +7,13 @@ canvas.height = CANVAS_HEIGHT;
 let platforms = [];
 let lastCoinTime = new Date();
 
-let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
+let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
 const zombie1 = new Zombie(-10, 300, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
 let zombies = [zombie];
+for (let i = 1; i < 10; i++) {
+    let zombie = new Zombie(ZOMBIE_X + 0.5 * i, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
+    zombies.push(zombie);
+}
 
 const human1 = new Human(600, 400, 100, 100);
 let humans = [];
@@ -30,6 +34,8 @@ let collectedCoinsScore = scores.getScore().coins;
 
 let coinsArray = [];
 
+let gameFrame = 0;
+let staggerFrames = 30;
 /**
  * initial platform for setup
  */
@@ -77,18 +83,6 @@ const checkCollision = (listOfrec1, listofrect2) => {
     }
 };
 
-const setPosition = (zombie, index) => {
-    if (zombie.x >= canvas.clientWidth / 3 && zombie.isRunning) {
-        //     zombie.x += VELOCITY.x;
-        // } else {
-        zombie.x = canvas.clientWidth / 3 - index * 40;
-        zombie.isRunning = false
-        // console.log(index, zombie.x)
-    }
-    // }
-    // });
-};
-
 /**
  * generate platform randomly
  */
@@ -102,22 +96,6 @@ function generatePlatform() {
     )
     platforms.push(platform);
 }
-
-/**
- * movement of zombie
- */
-const zombieMovement = () => {
-    zombies.forEach((zombie) => {
-        if (keys.Space == true && zombie.canJump) {
-            if (zombie.isGrounded) {
-                zombie.jumpStart = zombie.y;
-            }
-            zombie.jump();
-        } else {
-            zombie.canJump = false;
-        }
-    })
-};
 
 //remove platform from list of platforms
 const removePlatform = () => {
@@ -152,7 +130,6 @@ const generateHuman = () => {
         humans.push(human);
         platforms[platformIndex].hasHuman = true;
     }
-    console.log(humans)
     // }
 }
 
@@ -165,7 +142,7 @@ const generateVehicle = () => {
             VEHICLE_WIDTH,
             VEHICLE_HEIGHT
         )
-        vehicle.numberOfZombie = 1;
+        vehicle.numberOfZombie = 3;
         vehicles.push(vehicle)
         platforms[platformIndex].hasVehicle = true;
     }
@@ -178,12 +155,12 @@ const generateZombieDeathObject = () => {
         const zombieDeathObject = new ZombieDeath(
             platforms[platformIndex].x + platforms[platformIndex].width / 2,
             CHARACTER_POSITIONY,
-            VEHICLE_WIDTH,
-            VEHICLE_HEIGHT,
+            OBSTACLE_WIDTH,
+            OBSTACLE_HEIGHT,
             OBSTACLE_TYPE[obstacleTypeIndex]
         )
         zombieDeathObjects.push(zombieDeathObject)
-        platforms[platformIndex].hasVehicle = true;
+        platforms[platformIndex].hasZombieDeathObject = true;
     }
 }
 
@@ -210,11 +187,9 @@ const checkZombieCollideWithHuman = (human) => {
             const humanIndex = humans.indexOf(human)
             human.angle = ROTATE_ANGLE;
             humans.splice(humanIndex, 1);
-            // human.remove()
-            zombies.push(new Zombie(lastZombie.x + lastZombie.width + ZOMBIE_DISTANCE, lastZombie.y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
+            zombies.push(new Zombie(lastZombie.x - ZOMBIE_DISTANCE, lastZombie.y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
             score += 1;
             break;
-            // return;
         }
     }
 }
@@ -234,9 +209,18 @@ const checkZombieCollideWithVehicle = (vehicle) => {
             } else {
                 // if (zombie.x <= vehicle.x) {
                 zombie.x = vehicle.x - zombie.width;
+                // background.update();
                 if (zombie.x + zombie.width <= 0) {
                     const zombieIndex = zombies.indexOf(zombie)
+
                     zombies.splice(zombieIndex, 1)
+
+                    // zombies.forEach((zombie, index) => {
+                    //     if (index > zombieIndex) {
+                    //         console.log("I ama here")
+                    //         zombie.x = zombie.x + ZOMBIE_DISTANCE;
+                    //     }
+                    // })
                 }
                 // }
             }
@@ -254,11 +238,11 @@ const checkZombieCollideWithZombieDeathObject = (zombieDeathObject) => {
             } else {
                 const zombieIndex = zombies.indexOf(zombie)
                 zombie.angle = ROTATE_ANGLE;
-                zombie.remove()
+                // zombie.remove()
                 zombies.splice(zombieIndex, 1)
 
                 const zombieDeathObjectIndex = zombieDeathObjects.indexOf(zombieDeathObject);
-                zombieDeathObject.remove();
+                // zombieDeathObject.remove();
                 zombieDeathObjects.splice(zombieDeathObjectIndex, 1)
                 break;
             }
@@ -270,7 +254,6 @@ const checkZombieCollideWithPower = (zombie) => {
     for (const power of powers) {
         if (collisionDetection(zombie, power)) {
             const powerIndex = powers.indexOf(power);
-            power.remove();
             powers.splice(powerIndex, 1)
 
             zombie.power = power.type;
@@ -314,26 +297,30 @@ const resetGame = () => {
 
         zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
         zombie.vx = ZOMBIE_VX;
+        zombie.isRunning = true;
         zombies.push(zombie)
     }
 }
 
 const moveBackground = () => {
-    zombies.forEach((zombie) => {
-        if (zombie.x >= canvas.clientWidth / 3) {
-            background.update()
+    // for (const zombie of zombies) {
+    if (zombies.length > 0) {
+        if (!zombies[0].isRunning) {
+            background.update();
+            // break;
         }
-    })
+    }
+    // }
 }
 
-const coin = new Coin(150, 150, COIN_WIDTH, COIN_HEIGHT);
+let zombieSpriteIndex = 0;
+let humanSpriteIndex = 0;
 
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     background.draw();
     moveBackground()
-
-    // coin.draw()
+    // background.update()
 
     platforms.forEach((platform) => {
         platform.draw(ctx);
@@ -343,11 +330,11 @@ const animate = () => {
         }
         if (platform.x + platform.width < 0) {
             generatePlatform(CANVAS_WIDTH);
-            // generateHuman();
+            generateHuman();
             // generatePower();
             // generateVehicle();
             // generateZombieDeathObject();
-            generateCoins()
+            // generateCoins();
         }
         // })
     });
@@ -362,7 +349,11 @@ const animate = () => {
         checkCollision(humans, platforms);
         checkZombieCollideWithHuman(human)
         human.x -= VELOCITY.x;
-        human.draw()
+        human.draw(humanSpriteIndex)
+        if (gameFrame % staggerFrames == 0) {
+            if (humanSpriteIndex >= humanCordinate.length - 1) humanSpriteIndex = -1;
+            humanSpriteIndex++
+        }
     });
 
     vehicles.forEach((vehicle) => {
@@ -380,21 +371,59 @@ const animate = () => {
     });
 
     coinsArray.forEach((coin, index) => {
-        coin.update()
+        coin.update();
         if (coin.x <= 0) {
             coinsArray.splice(index, 1)
         }
     })
 
     zombies.forEach((zombie, index) => {
-        zombie.draw(ctx);
-        checkCollision(zombies, platforms);
+        // zombie.checkVerticalCollisions(vehicles);
+
+        // checkCollision(zombies, platforms);
         checkZombieCollideWithPower(zombie);
-        collisionDetectionWithCoin(zombie)
-        zombieMovement();
+        collisionDetectionWithCoin(zombie);
+        zombie.moveZombie(zombies);
+
+        if (!zombie.canJump) {
+            zombie.draw(ctx, zombieSpriteIndex);
+            if (gameFrame % staggerFrames == 0) {
+                if (zombieSpriteIndex >= zombieCordinate.length - 1) zombieSpriteIndex = 0;
+                zombieSpriteIndex++;
+            }
+        }
+        gameFrame++;
+
+        zombie.checkHorizontalCollisions(platforms);
         zombie.applyGravity();
+        zombie.checkVerticalCollisions(platforms);
         zombie.rightMove(ctx);
-        setPosition(zombie, index);
+        zombie.setPosition(zombie, index);
+
+        if (zombie.power == "magnetic") {
+            coinsArray.forEach((coin) => {
+                // console.log(coin)
+                if (coin.x + coin.width <= CANVAS_WIDTH) {
+                    if (zombie.x < coin.x) {
+                        coin.vx = VELOCITY.x * 2;
+                    } else {
+                        coin.vx = -VELOCITY.x * 2;
+                    }
+                    if (zombie.y < coin.y) {
+                        coin.vy = -VELOCITY.y;
+                    } else {
+                        coin.vy = VELOCITY.y;
+                    }
+                    coin.y += coin.vy;
+                } else {
+                    coin.vx = VELOCITY.x
+                }
+            })
+        }
+
+        if (zombie.x < canvas.clientWidth / 3 - index * ZOMBIE_DISTANCE && !zombie.isRunning) {
+            zombie.x += zombie.vx;
+        }
     });
 
     removePlatform();
