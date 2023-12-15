@@ -56,4 +56,4 @@ const BACKGROUND_Y = 0;
 
 const COIN_WIDTH = 30;
 const COIN_HEIGHT = 30;
-const COIN_INTERVAL = 30000; //half minute
+const COIN_INTERVAL = 10000; //half minute

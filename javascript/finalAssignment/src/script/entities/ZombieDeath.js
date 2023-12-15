@@ -42,8 +42,8 @@ class ZombieDeath {
             this.img = obstacleImg;
         }
         // this.ctx = ctx;
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-        ctx.fillStyle = "rgba(255,0,0,0.2)"
+        // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        // ctx.fillStyle = "rgba(255,0,0,0.2)"
         // ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }

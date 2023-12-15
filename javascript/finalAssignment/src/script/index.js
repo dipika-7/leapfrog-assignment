@@ -232,7 +232,6 @@ const checkGameOver = () => {
         gameOver = true;
     } else {
         zombies.forEach((zombie) => {
-            // console.log(zombie.x, zombie.width, CANVAS_WIDTH)
             if (zombie.x + zombie.width >= CANVAS_WIDTH) {
                 gameOver = true;
             }
@@ -258,6 +257,7 @@ const resetGame = () => {
         zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
         zombie.vx = ZOMBIE_VX;
         zombie.isRunning = true;
+        zombie.power = null;
         zombies.push(zombie)
     }
 }
@@ -271,6 +271,29 @@ const moveBackground = () => {
         }
     }
     // }
+}
+
+const getMagnetPower = () => {
+    coinsArray.forEach((coin) => {
+        if (coin.x + coin.width + 20 <= CANVAS_WIDTH) {
+            if (zombie.x < coin.x) {
+                coin.vx = VELOCITY.x * 2;
+            } else {
+                coin.vx = -VELOCITY.x * 2;
+            }
+            // if (zombie.y - coin.y < 0 || zombie.y - coin.y > -5) {
+            //     coin.vy = 0
+            // } else 
+            if (zombie.y < coin.y) {
+                coin.vy = -VELOCITY.x / 3;
+            } else {
+                coin.vy = VELOCITY.x / 3;
+            }
+            coin.y += coin.vy;
+        } else {
+            coin.vx = VELOCITY.x
+        }
+    })
 }
 
 let zombieSpriteIndex = 0;
@@ -337,7 +360,6 @@ const animate = () => {
 
     zombies.forEach((zombie, index) => {
         // zombie.checkVerticalCollisions(vehicles);
-
         checkZombieCollideWithPower(zombie);
         collisionDetectionWithCoin(zombie);
         zombie.moveZombie(zombies);
@@ -358,23 +380,7 @@ const animate = () => {
         zombie.setPosition(zombie, index);
 
         if (zombie.power == "magnetic") {
-            coinsArray.forEach((coin) => {
-                if (coin.x + coin.width <= CANVAS_WIDTH) {
-                    if (zombie.x < coin.x) {
-                        coin.vx = VELOCITY.x * 2;
-                    } else {
-                        coin.vx = -VELOCITY.x * 2;
-                    }
-                    if (zombie.y < coin.y) {
-                        coin.vy = -VELOCITY.y;
-                    } else {
-                        coin.vy = VELOCITY.y;
-                    }
-                    coin.y += coin.vy;
-                } else {
-                    coin.vx = VELOCITY.x
-                }
-            })
+            getMagnetPower();
         }
 
         if (zombie.x < canvas.clientWidth / 3 - index * ZOMBIE_DISTANCE && !zombie.isRunning) {

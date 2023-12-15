@@ -58,7 +58,7 @@ class Vehicle {
 
                     zombies.push(new Zombie(minValueObject(zombies) - ZOMBIE_DISTANCE, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
                     score += 1;
-                    // return;
+                    return;
                 } else if (zombie.x + zombie.width < this.x + 10) {
                     zombie.x = this.x - zombie.width - 0.01;
                     if (zombie.x + zombie.width <= 0) {
