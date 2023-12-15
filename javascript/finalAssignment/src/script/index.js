@@ -11,11 +11,6 @@ let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
 const zombie1 = new Zombie(-10, 300, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
 let zombies = [zombie];
 
-// for (let i = 1; i < 8; i++) {
-//     let zombie = new Zombie(ZOMBIE_X + 0.5 * i, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
-//     zombies.push(zombie);
-// }
-
 const human1 = new Human(600, 400, 100, 100);
 let humans = [];
 
@@ -178,7 +173,6 @@ const generatePower = () => {
             POWER_TYPE[powerTypeIndex]
         )
         powers.push(power)
-        // platforms[platformIndex].hasVehicle = true;
     }
 }
 
@@ -188,7 +182,6 @@ const checkZombieCollideWithHuman = (human) => {
             const humanIndex = humans.indexOf(human)
             human.angle = ROTATE_ANGLE;
             humans.splice(humanIndex, 1);
-            // const newZombieX = minValueObject(zombies)
             zombies.push(new Zombie(minValueObject(zombies) - ZOMBIE_DISTANCE, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
             score += 1;
             break;
@@ -290,19 +283,17 @@ const animate = () => {
 
     platforms.forEach((platform) => {
         platform.draw(ctx);
-        // zombies.forEach((zombie) => {
         if (!zombie.isRunning) {
             platform.x -= VELOCITY.x;
         }
         if (platform.x + platform.width < 0) {
             generatePlatform(CANVAS_WIDTH);
             generateHuman();
-            // generatePower();
-            // generateVehicle();
+            generatePower();
+            generateVehicle();
             generateZombieDeathObject();
-            // generateCoins();
+            generateCoins();
         }
-        // })
     });
 
     powers.forEach((power) => {
@@ -317,7 +308,6 @@ const animate = () => {
         human.x -= VELOCITY.x;
         human.draw(humanSpriteIndex)
         if (gameFrame % staggerFrames === 0) {
-            // console.log(humanSpriteIndex)
             if (humanSpriteIndex >= humanCordinate.length - 1) humanSpriteIndex = -1;
             humanSpriteIndex++
         }
@@ -348,7 +338,6 @@ const animate = () => {
     zombies.forEach((zombie, index) => {
         // zombie.checkVerticalCollisions(vehicles);
 
-        // checkCollision(zombies, platforms);
         checkZombieCollideWithPower(zombie);
         collisionDetectionWithCoin(zombie);
         zombie.moveZombie(zombies);
@@ -370,7 +359,6 @@ const animate = () => {
 
         if (zombie.power == "magnetic") {
             coinsArray.forEach((coin) => {
-                // console.log(coin)
                 if (coin.x + coin.width <= CANVAS_WIDTH) {
                     if (zombie.x < coin.x) {
                         coin.vx = VELOCITY.x * 2;
