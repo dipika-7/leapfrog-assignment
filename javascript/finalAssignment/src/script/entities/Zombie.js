@@ -92,11 +92,9 @@ class Zombie {
     checkHorizontalCollisions(platforms) {
         for (const platform of platforms) {
             if (collisionDetection(this, platform)) {
-                if (this.vx > 0) {
-                    this.vx = 0;
-                    this.x = platform.x - this.width - 0.01;
-                    break;
-                }
+                this.vx = 0;
+                this.x = platform.x - this.width - 0.01;
+                break;
             }
         }
     }
@@ -104,11 +102,16 @@ class Zombie {
         for (const platform of platforms) {
             if (collisionDetection(this, platform)) {
                 if (this.vy > 0) {
-                    this.vy = 0;
-                    this.isGrounded = true;
-                    this.canJump = true;
-                    this.y = platform.y - this.height - 0.01;
-                    break;
+                    if (this.y >= platform.y) {
+                        rect1.y += rect1.vy;
+                        rect1.vy += GRAVITY;
+                    } else {
+                        this.vy = 0;
+                        this.isGrounded = true;
+                        this.canJump = true;
+                        this.y = platform.y - this.height - 0.01;
+                        break;
+                    }
                 }
             } else {
                 this.isGrounded = false;

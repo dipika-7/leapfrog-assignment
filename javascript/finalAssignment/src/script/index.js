@@ -10,10 +10,11 @@ let lastCoinTime = new Date();
 let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
 const zombie1 = new Zombie(-10, 300, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
 let zombies = [zombie];
-for (let i = 1; i < 10; i++) {
-    let zombie = new Zombie(ZOMBIE_X + 0.5 * i, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
-    zombies.push(zombie);
-}
+
+// for (let i = 1; i < 8; i++) {
+//     let zombie = new Zombie(ZOMBIE_X + 0.5 * i, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
+//     zombies.push(zombie);
+// }
 
 const human1 = new Human(600, 400, 100, 100);
 let humans = [];
@@ -111,6 +112,7 @@ const removeZombie = () => {
     platforms.forEach((platform) => {
         zombies.forEach((zombie, index) => {
             if (zombie.y >= platform.y) {
+                updateArray(zombies, index);
                 zombies.splice(index, 1);
             }
         })
@@ -138,7 +140,7 @@ const generateVehicle = () => {
     if (!platforms[platformIndex].hasHuman && !platforms[platformIndex].hasVehicle && !platforms[platformIndex].hasZombieDeathObject) {
         const vehicle = new Vehicle(
             platforms[platformIndex].x + platforms[platformIndex].width / 2,
-            CHARACTER_POSITIONY,
+            VEHICLE_Y,
             VEHICLE_WIDTH,
             VEHICLE_HEIGHT
         )
@@ -182,48 +184,14 @@ const generatePower = () => {
 
 const checkZombieCollideWithHuman = (human) => {
     for (const zombie of zombies) {
-        const lastZombie = zombies[zombies.length - 1]
         if (collisionDetection(zombie, human)) {
             const humanIndex = humans.indexOf(human)
             human.angle = ROTATE_ANGLE;
             humans.splice(humanIndex, 1);
-            zombies.push(new Zombie(lastZombie.x - ZOMBIE_DISTANCE, lastZombie.y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
+            // const newZombieX = minValueObject(zombies)
+            zombies.push(new Zombie(minValueObject(zombies) - ZOMBIE_DISTANCE, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
             score += 1;
             break;
-        }
-    }
-}
-
-const checkZombieCollideWithVehicle = (vehicle) => {
-    for (const zombie of zombies) {
-        const lastZombie = zombies[zombies.length - 1]
-        if (collisionDetection(zombie, vehicle)) {
-            if (vehicle.numberOfZombie <= zombies.length) {
-                const vehicleIndex = vehicles.indexOf(vehicle)
-                vehicles.splice(vehicleIndex, 1);
-
-                zombies.push(new Zombie(lastZombie.x, lastZombie.y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
-                score += 1;
-                break;
-                // return;
-            } else {
-                // if (zombie.x <= vehicle.x) {
-                zombie.x = vehicle.x - zombie.width;
-                // background.update();
-                if (zombie.x + zombie.width <= 0) {
-                    const zombieIndex = zombies.indexOf(zombie)
-
-                    zombies.splice(zombieIndex, 1)
-
-                    // zombies.forEach((zombie, index) => {
-                    //     if (index > zombieIndex) {
-                    //         console.log("I ama here")
-                    //         zombie.x = zombie.x + ZOMBIE_DISTANCE;
-                    //     }
-                    // })
-                }
-                // }
-            }
         }
     }
 }
@@ -238,9 +206,8 @@ const checkZombieCollideWithZombieDeathObject = (zombieDeathObject) => {
             } else {
                 const zombieIndex = zombies.indexOf(zombie)
                 zombie.angle = ROTATE_ANGLE;
-                // zombie.remove()
+                updateArray(zombies, zombieIndex);
                 zombies.splice(zombieIndex, 1)
-
                 const zombieDeathObjectIndex = zombieDeathObjects.indexOf(zombieDeathObject);
                 // zombieDeathObject.remove();
                 zombieDeathObjects.splice(zombieDeathObjectIndex, 1)
@@ -320,7 +287,6 @@ const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     background.draw();
     moveBackground()
-    // background.update()
 
     platforms.forEach((platform) => {
         platform.draw(ctx);
@@ -333,7 +299,7 @@ const animate = () => {
             generateHuman();
             // generatePower();
             // generateVehicle();
-            // generateZombieDeathObject();
+            generateZombieDeathObject();
             // generateCoins();
         }
         // })
@@ -350,16 +316,18 @@ const animate = () => {
         checkZombieCollideWithHuman(human)
         human.x -= VELOCITY.x;
         human.draw(humanSpriteIndex)
-        if (gameFrame % staggerFrames == 0) {
+        if (gameFrame % staggerFrames === 0) {
+            // console.log(humanSpriteIndex)
             if (humanSpriteIndex >= humanCordinate.length - 1) humanSpriteIndex = -1;
             humanSpriteIndex++
         }
     });
 
     vehicles.forEach((vehicle) => {
-        checkCollision(vehicles, platforms);
-        checkZombieCollideWithVehicle(vehicle)
-        vehicle.x -= VELOCITY.x;
+        // checkCollision(vehicles, platforms);
+        // checkZombieCollideWithVehicle(vehicle)
+        vehicle.checkHorizontalCollisions(zombies)
+        vehicle.checkVerticalCollisions(zombies);
         vehicle.draw();
     });
 
@@ -388,7 +356,7 @@ const animate = () => {
         if (!zombie.canJump) {
             zombie.draw(ctx, zombieSpriteIndex);
             if (gameFrame % staggerFrames == 0) {
-                if (zombieSpriteIndex >= zombieCordinate.length - 1) zombieSpriteIndex = 0;
+                if (zombieSpriteIndex >= zombieCordinate.length - 1) zombieSpriteIndex = -1;
                 zombieSpriteIndex++;
             }
         }
@@ -428,6 +396,7 @@ const animate = () => {
 
     removePlatform();
     removeZombie();
+
     scores.updateScore(score, collectedCoinsScore);
     ctx.fillStyle = "red";
     ctx.font = "16px sans-serif";

@@ -26,26 +26,18 @@ function collisionDetection(rect1, rect2) {
     );
 }
 
-function collisionDetectionTwoRect(rect1, rect2) {
-    const rect1Length = rect1.offsetWidth; // Length of rect1
-    const rect2Breadth = rect2.offsetHeight; // Breadth of rect2
-
-    // Horizontal collision detection based on length and breadth
-    const isCollision = rect1Length > 0 && rect2Breadth > 0 &&
-        rect1.offsetLeft + rect1Length > rect2.offsetLeft &&
-        rect1.offsetLeft < rect2.offsetLeft + rect2.offsetWidth &&
-        rect1.offsetTop + rect1.offsetHeight > rect2.offsetTop &&
-        rect1.offsetTop < rect2.offsetTop + rect2Breadth;
-
-    if (isCollision) {
-        console.log('Collision detected!');
-    } else {
-        console.log('No collision.');
-    }
+const minValueObject = (arrayOfObjects) => {
+    let minVal = arrayOfObjects[0].x;
+    arrayOfObjects.forEach((object) => {
+        if (object.x < minVal) {
+            minVal = object.x
+        }
+    })
+    return minVal;
 }
 
-const minValueObject = (arrayOfObjects) => {
-    return arrayOfObjects.reduce((minObject, currentObject) => {
-        return currentObject.x < minObject.x ? currentObject : minObject;
-    }, arrayOfObjects[0]);
+function updateArray(array, indexToRemove) {
+    for (let i = indexToRemove + 1; i < array.length; i++) {
+        array[i].x -= ZOMBIE_DISTANCE;
+    }
 }
