@@ -37,7 +37,7 @@ const VELOCITY = {
 }
 
 const ZOMBIE_X = 30
-const ZOMBIE_Y = 400
+const ZOMBIE_Y = 550
 const ZOMBIE_VX = 4
 const ZOMBIE_WIDTH = 120;
 const ZOMBIE_HEIGHT = 120;
