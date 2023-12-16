@@ -14,10 +14,13 @@ class Power {
         this.height = height;
         this.type = type;
 
+        let powerImg = new Image();
         if (this.type == "protection") {
-            this.color = 'purple';
-        } else {
-            this.color = 'gray';
+            powerImg.src = "./src/assets/images/shield.png"
+            this.img = powerImg;
+        } else if (this.type == "magnetic") {
+            powerImg.src = "./src/assets/images/magnet.png"
+            this.img = powerImg;
         }
 
         this.img = null;
@@ -32,9 +35,9 @@ class Power {
      */
     draw() {
         this.ctx = ctx;
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        // ctx.fillStyle = this.color;
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
     remove() {
         ctx.clearRect(this.x, this.y, this.width, this.height);

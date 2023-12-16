@@ -15,10 +15,13 @@ let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
 const zombie1 = new Zombie(-10, 300, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
 let zombies = [zombie];
 
-const human1 = new Human(600, 400, 100, 100);
+// for (let i = 1; i < 10; i++) {
+//     let zombie = new Zombie(ZOMBIE_X + i * 0.5, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
+//     zombies.push(zombie)
+// }
+
 let humans = [];
 
-const vehicle1 = new Vehicle(380, 400, 100, 100);
 let vehicles = [];
 
 let zombieDeathObjects = []
@@ -34,8 +37,9 @@ let collectedCoinsScore = scores.getScore().coins;
 
 let coinsArray = [];
 
-let gameFrame = 0;
-let staggerFrames = 30;
+let frameCount = 0
+let currentFrame = 0;
+let animationSpeed = 30;
 
 initialPlatform();
 
@@ -45,7 +49,7 @@ let humanSpriteIndex = 0;
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     background.draw();
-    moveBackground()
+    moveBackground();
 
     platforms.forEach((platform) => {
         platform.draw(ctx);
@@ -54,11 +58,11 @@ const animate = () => {
         }
         if (platform.x + platform.width < 0) {
             generatePlatform(CANVAS_WIDTH);
-            generateHuman();
-            generatePower();
+            // generateHuman();
+            // generatePower();
             generateVehicle();
-            generateZombieDeathObject();
-            generateCoins();
+            // generateZombieDeathObject();
+            // generateCoins();
         }
     });
 
@@ -71,12 +75,8 @@ const animate = () => {
     humans.forEach((human) => {
         checkCollision(humans, platforms);
         checkZombieCollideWithHuman(human)
+        human.update()
         human.x -= VELOCITY.x;
-        human.draw(humanSpriteIndex)
-        if (gameFrame % staggerFrames === 0) {
-            if (humanSpriteIndex >= humanCordinate.length - 1) humanSpriteIndex = -1;
-            humanSpriteIndex++
-        }
     });
 
     vehicles.forEach((vehicle) => {
@@ -84,7 +84,7 @@ const animate = () => {
         // checkZombieCollideWithVehicle(vehicle)
         vehicle.checkHorizontalCollisions(zombies)
         vehicle.checkVerticalCollisions(zombies);
-        vehicle.draw();
+        vehicle.update();
     });
 
     zombieDeathObjects.forEach((zombieDeathObject) => {
@@ -107,14 +107,14 @@ const animate = () => {
         collisionDetectionWithCoin(zombie);
         zombie.moveZombie(zombies);
 
+        // zombie.updateAnimation();
         if (!zombie.canJump) {
-            zombie.draw(ctx, zombieSpriteIndex);
-            if (gameFrame % staggerFrames == 0) {
-                if (zombieSpriteIndex >= zombieCordinate.length - 1) zombieSpriteIndex = -1;
-                zombieSpriteIndex++;
+            frameCount++;
+            zombie.draw(ctx, currentFrame);
+            if (frameCount % animationSpeed === 0) {
+                currentFrame = (currentFrame + 1) % zombieCordinate.length;
             }
         }
-        gameFrame++;
 
         zombie.checkHorizontalCollisions(platforms);
         zombie.applyGravity();

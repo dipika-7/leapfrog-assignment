@@ -21,7 +21,7 @@ const MAX_JUMP_VELOCITY = 4;
 const MAX_JUMP_HEIGHT = 180;
 
 const CHARACTER_POSITIONY = 570;
-const CHARACTER_WIDTH = 100;
+const CHARACTER_WIDTH = 120;
 const CHARACTER_HEIGHT = 120;
 
 const VEHICLE_Y = 540;
@@ -32,30 +32,29 @@ const OBSTACLE_WIDTH = 120;
 const OBSTACLE_HEIGHT = 120;
 
 const VELOCITY = {
-    x: 4,
+    x: 5,
     y: 80,
 };
 
 const ZOMBIE_X = 30;
 const ZOMBIE_Y = 550;
-const ZOMBIE_VX = 4;
+const ZOMBIE_VX = 5;
 const ZOMBIE_WIDTH = 120;
 const ZOMBIE_HEIGHT = 120;
 const ZOMBIE_DISTANCE = 30;
 
 const ROTATE_ANGLE = Math.PI + 50;
 
-const OBSTACLE_TYPE = ["bomb"];
-// const OBSTACLE_TYPE = ['car', 'debris', 'bomb'];
+const OBSTACLE_TYPE = ['car', 'debris', 'bomb'];
 const POWER_TYPE = ["protection", "magnetic"];
 const POWER_TIME = 30000; //half minute
 
 const BACKGROUND_X = 0;
 const BACKGROUND_Y = 0;
 
-const COIN_WIDTH = 30;
-const COIN_HEIGHT = 30;
-const COIN_INTERVAL = 20000; //half minute
+const COIN_WIDTH = 40;
+const COIN_HEIGHT = 40;
+const COIN_INTERVAL = 1000; //half minute
 
 const HUMAN_INTERVAL = 1000;
 const POWER_INTERVAL = 30000;

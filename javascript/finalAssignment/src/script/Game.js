@@ -85,6 +85,20 @@ const generateHuman = () => {
     }
 }
 
+const getExplosion = (ctx) => {
+    // this.frameCount++;
+
+    // if (frameCount % animationSpeed === 0) {
+    //     if (currentFrame >= explosionCoordinate.length - 1) {
+    //         currentFrame = -1;
+    //     }
+    //     currentFrame = (currentFrame + 1) % humanCordinate.length;
+    // }
+    let explodeImg = new Image();
+    explodeImg.src = "./src/assets/images/explode1.png"
+    ctx.drawImage(explodeImg, 120, 220, 120, 120)
+}
+
 const checkZombieCollideWithHuman = (human) => {
     for (const zombie of zombies) {
         if (collisionDetection(zombie, human)) {
@@ -177,6 +191,7 @@ const generateCoins = () => {
                 )
                 coinsArray.push((coinObj));
             })
+            console.log(coinsArray)
             lastCoinTime = currentCoinTime;
         }
     }

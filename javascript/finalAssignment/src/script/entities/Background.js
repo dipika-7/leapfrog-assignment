@@ -6,7 +6,7 @@ class Background {
         this.ctx = ctx;
 
         let backgroundImg = new Image();
-        backgroundImg.src = "./src/assets/images/background1.jpg"
+        backgroundImg.src = "./src/assets/images/background4.jpeg"
         this.img = backgroundImg;
     }
     draw() {

@@ -27,11 +27,11 @@ class Zombie {
 
         this.jumpStart = 0;
 
-        this.img = null;
+        this.frameCount = 0
+        this.currentFrame = 0;
+        this.animationSpeed = 20;
 
-        let zombieImg = new Image();
-        zombieImg.src = "./src/assets/images/zombie-spritesheet1.png"
-        this.img = zombieImg;
+        this.img = null;
     }
 
     /**
@@ -40,21 +40,31 @@ class Zombie {
      * @param {*} ctx 
      */
     draw(ctx, index) {
-        // ctx.fillStyle = "rgba(255,0,0,0.2)"
-        // ctx.fillRect(this.x, this.y, this.width, this.height)
-        if (!this.angle) {
-            this.ctx = ctx;
-            // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-            // ctx.drawImage(this.img, 32, 420, 59, 75, this.x, this.y, this.width, this.height)
-            ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
+        // // ctx.fillStyle = "rgba(255,0,0,0.2)"
+        // // ctx.fillRect(this.x, this.y, this.width, this.height)
+        // if (!this.angle) {
+        //     this.ctx = ctx;
+        //     // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        //     // ctx.drawImage(this.img, 32, 420, 59, 75, this.x, this.y, this.width, this.height)
+        //     ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
 
+        // } else {
+        //     ctx.save()
+        //     ctx.translate(this.x, this.y);
+        //     ctx.rotate(-this.angle);
+        //     // ctx.drawImage(this.img, 0, 0, this.width, this.height)
+        //     ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
+        //     ctx.restore()
+        // }
+        let zombieImg = new Image();
+        if (this.power == "magnetic") {
+            zombieImg.src = "./src/assets/images/zombie-spritesheet.png"
+            this.img = zombieImg;
+            ctx.drawImage(this.img, zombiePowerCordinate[index].sx, zombiePowerCordinate[index].sy, zombiePowerCordinate[index].sw, zombiePowerCordinate[index].sh, this.x, this.y, this.width, this.height)
         } else {
-            ctx.save()
-            ctx.translate(this.x, this.y);
-            ctx.rotate(-this.angle);
-            // ctx.drawImage(this.img, 0, 0, this.width, this.height)
+            zombieImg.src = "./src/assets/images/zombie-spritesheet1.png"
+            this.img = zombieImg;
             ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
-            ctx.restore()
         }
     }
     rightMove() {
@@ -137,4 +147,13 @@ class Zombie {
             zombie.isRunning = false
         }
     };
+    updateAnimation = () => {
+        if (!this.canJump) {
+            this.frameCount++;
+            if (this.frameCount % this.animationSpeed === 0) {
+                this.currentFrame = (this.currentFrame + 1) % zombieCordinate.length;
+            }
+            this.draw(ctx, this.currentFrame);
+        }
+    }
 }

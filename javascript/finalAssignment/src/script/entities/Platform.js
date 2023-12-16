@@ -28,8 +28,8 @@ class Platform {
         // ctx.fillStyle = this.color;
         // ctx.fillRect(this.x, this.y, this.width, this.height);
         let tile = new Image();
-        tile.src = "./src/assets/images/tile.png";
+        tile.src = "./src/assets/images/tile4.png";
         this.img = tile;
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.img, this.x, this.y - 20, this.width, this.height);
     }
 }

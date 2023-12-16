@@ -12,14 +12,19 @@ class Vehicle {
         this.width = width;
         this.height = height;
 
-        this.color = "red";
-
         this.img = null;
 
-        this.vx = 4;
+        this.vx = 5;
         this.vy = 0.2;
 
+        this.sw = 243;
+        this.sh = 186;
+
         this.numberOfZombie = 0;
+
+        this.frameCount = 0;
+        this.currentFrame = 0;
+        this.animationSpeed = 40;
 
         let vehicleImg = new Image();
         vehicleImg.src = "./src/assets/images/vehicle.png";
@@ -31,14 +36,11 @@ class Vehicle {
      *
      * @param {*} ctx
      */
-    draw() {
+    draw(index) {
         // ctx.fillStyle = "rgba(255,0,0,0.2)"
         // ctx.fillRect(this.x, this.y, this.width, this.height)
-        this.ctx = ctx;
+        ctx.drawImage(this.img, vehicleCordinate[index].sx, vehicleCordinate[index].sy, this.sw, this.sh, this.x, this.y, this.width, this.height);
         this.x -= this.vx;
-        // ctx.fillStyle = this.color;
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
     checkVerticalCollisions(zombies) {
         for (const zombie of zombies) {
@@ -71,5 +73,13 @@ class Vehicle {
                 }
             }
         }
+    }
+    update() {
+        this.frameCount++;
+
+        if (this.frameCount % this.animationSpeed === 0) {
+            this.currentFrame = (this.currentFrame + 1) % vehicleCordinate.length;
+        }
+        this.draw(this.currentFrame);
     }
 }
