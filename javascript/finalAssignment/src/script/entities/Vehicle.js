@@ -50,9 +50,10 @@ class Vehicle {
         }
     }
     checkHorizontalCollisions(zombies) {
+        let collidedZombie = 0;
         for (const zombie of zombies) {
             if (collisionDetection(this, zombie)) {
-                if (this.numberOfZombie <= zombies.length) {
+                if (this.numberOfZombie <= collidedZombie) {
                     const vehicleIndex = vehicles.indexOf(this);
                     vehicles.splice(vehicleIndex, 1);
 
@@ -60,6 +61,7 @@ class Vehicle {
                     score += 1;
                     return;
                 } else if (zombie.x + zombie.width < this.x + 10) {
+                    collidedZombie++;
                     zombie.x = this.x - zombie.width - 0.01;
                     if (zombie.x + zombie.width <= 0) {
                         const zombieIndex = zombies.indexOf(zombie);
