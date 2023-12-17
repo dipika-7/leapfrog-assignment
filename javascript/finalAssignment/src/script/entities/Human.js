@@ -26,6 +26,7 @@ class Human {
 
         this.vy = 0.2
         this.rotationSpeed = 0.5;
+
         let humanImg = new Image();
         humanImg.src = "./src/assets/images/human-spritsheet2.png"
         this.img = humanImg;
@@ -50,10 +51,11 @@ class Human {
         // ctx.fillRect(this.x, this.y, this.width, this.height);
         // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
         ctx.drawImage(this.img, humanCordinate[index].sx, humanCordinate[index].sy, humanCordinate[index].sw, humanCordinate[index].sh, this.x, this.y, this.width, this.height)
+
+        let helpImg = new Image();
+        helpImg.src = "./src/assets/images/help.png";
+        ctx.drawImage(helpImg, this.x - 60, this.y - 150, this.width, this.height + 20);
         // }
-    }
-    remove() {
-        ctx.clearRect(this.x, this.y, this.width, this.height);
     }
     update() {
         this.frameCount++;

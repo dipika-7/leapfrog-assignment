@@ -55,7 +55,4 @@ class Coin {
         this.draw(this.currentFrame)
         this.x -= this.vx;
     }
-    remove() {
-        ctx.clearRect(this.x, this.y, this.width, this.height);
-    }
 }

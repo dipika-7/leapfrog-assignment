@@ -37,9 +37,12 @@ class Vehicle {
      * @param {*} ctx
      */
     draw(index) {
-        // ctx.fillStyle = "rgba(255,0,0,0.2)"
-        // ctx.fillRect(this.x, this.y, this.width, this.height)
         ctx.drawImage(this.img, vehicleCordinate[index].sx, vehicleCordinate[index].sy, this.sw, this.sh, this.x, this.y, this.width, this.height);
+
+        let vehicleDescImg = new Image();
+        vehicleDescImg.src = "./src/assets/images/vehicleImg.png";
+        ctx.drawImage(vehicleDescImg, this.x - 50, this.y - 140, this.width, this.height);
+
         this.x -= this.vx;
     }
     checkVerticalCollisions(zombies) {

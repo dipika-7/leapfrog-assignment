@@ -10,15 +10,31 @@
 
 <body>
     <div class="main">
-        <canvas id="canvas"></canvas>
+        <div class="first-wrapper" id="introPage">
+            <img src="./src/assets/images/intro.png" alt="intro" class="intro-img">
+            <button id="sound">
+                <img src="./src/assets/images/sound-on.png" alt="sound-on" id="sound-on">
+                <img src="./src/assets/images/sound-off.png" alt="sound-off" id="sound-off">
+            </button>
+            <div class="icon">
+                <button id="menu"><img src="./src/assets/images/icon.png" alt="icon" class="icon-img"></button>
+                <div class="game-instruction">
+                    <p>You have to press space for jump</p>
+                </div>
+            </div>
+            <button id="startGame" class="btn">Play Game</button>
+        </div>
+        <div class="second-wrapper" id="canvasPage">
+            <canvas id="canvas"></canvas>
+        </div>
     </div>
+
     <script src="./src/script/constants/constants.js"></script>
     <script src="./src/script/constants/coinPattern.js"></script>
     <script src="./src/script/constants/spriteCoordinates.js"></script>
     <script src="./src/script/input.js"></script>
     <script src="./src/script/util.js"></script>
     <script src="./src/script/entities/Sprite.js"></script>
-    <!-- <script src="./src/script/coinFunctions.js"></script> -->
     <script src="./src/script/entities/Background.js"></script>
     <script src="./src/script/entities/Platform.js"></script>
     <script src="./src/script/entities/Zombie.js"></script>
@@ -28,11 +44,10 @@
     <script src="./src/script/entities/Power.js"></script>
     <script src="./src/script/entities/Score.js"></script>
     <script src="./src/script/entities/Coin.js"></script>
-    <script src="./src/script/Game.js"></script>
+    <script src="./src/script/game.js"></script>
+    <script src="./src/script/gameOver.js"></script>
     <script src="src/script/index.js"></script>
-
-    <!-- <script src="./src/script/entities/Game.js"></script> -->
-    <!-- <script type="module" src="src/script/main.js"></script> -->
+    <script src="src/script/intro.js"></script>
 </body>
 
 </html>

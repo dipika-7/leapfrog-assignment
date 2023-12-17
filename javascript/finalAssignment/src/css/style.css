@@ -6,3 +6,80 @@
 #canvas {
   display: block;
 }
+
+.first-wrapper {
+  width: 100%;
+  height: calc(100vh - 320px);
+  position: relative;
+}
+
+.game-instruction {
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 75%;
+  color: black;
+  background: white;
+  padding: 20px;
+}
+
+.icon-img {
+  width: 4%;
+  position: absolute;
+  top: 8%;
+  left: 88%;
+  cursor: pointer;
+}
+
+.icon:hover .game-instruction {
+  display: block;
+}
+
+.intro-img {
+  width: 100%;
+}
+
+.btn {
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 20px 40px;
+  color: #17c2ec;
+  border: 2px solid #17c2ec;
+  background: rgba(196, 196, 196, 0.1);
+  position: absolute;
+  top: 120%;
+  left: 45%;
+}
+
+.btn:hover {
+  background: #45a4bc;
+  color: white;
+}
+
+.second-wrapper {
+  display: none;
+}
+
+.menu-card {
+  border: 1px solid black;
+}
+
+#sound-on {
+  border: none;
+  position: absolute;
+  top: 8%;
+  width: 4%;
+  left: 82%;
+  display: block;
+}
+
+#sound-off {
+  border: none;
+  position: absolute;
+  top: 8%;
+  width: 4%;
+  left: 82%;
+  display: none;
+}

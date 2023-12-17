@@ -15,11 +15,6 @@ let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
 const zombie1 = new Zombie(-10, 300, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
 let zombies = [zombie];
 
-// for (let i = 1; i < 10; i++) {
-//     let zombie = new Zombie(ZOMBIE_X + i * 0.5, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
-//     zombies.push(zombie)
-// }
-
 let humans = [];
 
 let vehicles = [];
@@ -60,8 +55,8 @@ const animate = () => {
             generatePlatform(CANVAS_WIDTH);
             // generateHuman();
             // generatePower();
-            generateVehicle();
-            // generateZombieDeathObject();
+            // generateVehicle();
+            generateZombieDeathObject();
             // generateCoins();
         }
     });
@@ -134,19 +129,16 @@ const animate = () => {
     removePlatform();
     removeZombie();
 
-    scores.updateScore(score, collectedCoinsScore);
-    ctx.fillStyle = "red";
-    ctx.font = "16px sans-serif";
-    ctx.fillText(`Score: ${score}`, 5, 20);
-    ctx.fillText(`High Score: ${scores.getScore().highScore}`, 5, 50);
-    ctx.fillText(`Collected Coins: ${collectedCoinsScore}`, 5, 80);
+    updateScore();
 
-    if (gameOver) {
-        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        ctx.fillText(`Your Score is: ${score}`, CANVAS_WIDTH / 2 - 50, CANVAS_HEIGHT * 3 / 8)
-        ctx.fillText(`Your High Score is: ${scores.getScore().highScore}`, CANVAS_WIDTH / 2 - 80, CANVAS_HEIGHT * 3.5 / 8)
-        ctx.fillText("Game Over: Press 'Enter' to Restart", CANVAS_WIDTH / 2 - 120, CANVAS_HEIGHT * 4 / 8)
-    }
+    // if (gameOver) {
+    // ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    // ctx.fillText(`Your Score is: ${score}`, CANVAS_WIDTH / 2 - 50, CANVAS_HEIGHT * 3 / 8)
+    // ctx.fillText(`Your High Score is: ${scores.getScore().highScore}`, CANVAS_WIDTH / 2 - 80, CANVAS_HEIGHT * 3.5 / 8)
+    // ctx.fillText("Game Over: Press 'Enter' to Restart", CANVAS_WIDTH / 2 - 120, CANVAS_HEIGHT * 4 / 8)
+    // }
+
+    showScoreCard();
 
     if (!gameOver) {
         checkGameOver()
@@ -155,5 +147,3 @@ const animate = () => {
 
     requestAnimationFrame(animate);
 };
-
-animate();

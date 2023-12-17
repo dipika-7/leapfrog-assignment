@@ -14,15 +14,6 @@ class Power {
         this.height = height;
         this.type = type;
 
-        let powerImg = new Image();
-        if (this.type == "protection") {
-            powerImg.src = "./src/assets/images/shield.png"
-            this.img = powerImg;
-        } else if (this.type == "magnetic") {
-            powerImg.src = "./src/assets/images/magnet.png"
-            this.img = powerImg;
-        }
-
         this.img = null;
 
         this.vy = 0.2
@@ -34,12 +25,17 @@ class Power {
      * @param {*} ctx 
      */
     draw() {
-        this.ctx = ctx;
-        // ctx.fillStyle = this.color;
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        let powerImg = new Image();
+        if (this.type == "protection") {
+            powerImg.src = "./src/assets/images/shield.png"
+            this.img = powerImg;
+        } else if (this.type == "magnetic") {
+            powerImg.src = "./src/assets/images/magnet.png"
+            this.img = powerImg;
+        }
+        this.x -= VELOCITY.x
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-    }
-    remove() {
-        ctx.clearRect(this.x, this.y, this.width, this.height);
+        // ctx.fillStyle = "black";
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }

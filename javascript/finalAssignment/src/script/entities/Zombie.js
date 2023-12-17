@@ -93,9 +93,6 @@ class Zombie {
             this.vy += GRAVITY;
         }
     }
-    remove() {
-        ctx.clearRect(this.x, this.y, this.width, this.height);
-    }
     removePower() {
         this.power = null
     }

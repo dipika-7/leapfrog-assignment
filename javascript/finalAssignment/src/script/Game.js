@@ -45,6 +45,12 @@ const removePlatform = () => {
     }
 }
 
+/**
+ * check collision between two rectangle
+ * 
+ * @param {Array} listOfrec1 
+ * @param {Array} listofrect2 
+ */
 const checkCollision = (listOfrec1, listofrect2) => {
     for (const rect1 of listOfrec1) {
         for (const rect2 of listofrect2) {
@@ -66,7 +72,9 @@ const checkCollision = (listOfrec1, listofrect2) => {
 };
 
 //human section
-
+/**
+ * add humans in array 
+ */
 const generateHuman = () => {
     let currentHumanTime = new Date();
     const platformIndex = Math.round(getRandom(2, platforms.length - 1));
@@ -85,7 +93,7 @@ const generateHuman = () => {
     }
 }
 
-const getExplosion = (ctx) => {
+const getExplosion = () => {
     // this.frameCount++;
 
     // if (frameCount % animationSpeed === 0) {
@@ -99,6 +107,11 @@ const getExplosion = (ctx) => {
     ctx.drawImage(explodeImg, 120, 220, 120, 120)
 }
 
+/**
+ * check whether zombie collide with human or not
+ * 
+ * @param {humanObject} human 
+ */
 const checkZombieCollideWithHuman = (human) => {
     for (const zombie of zombies) {
         if (collisionDetection(zombie, human)) {
@@ -112,7 +125,9 @@ const checkZombieCollideWithHuman = (human) => {
     }
 }
 
-//power section
+/**
+ * Add power up for power 
+ */
 const generatePower = () => {
     let currentPowerTime = new Date();
     const platformIndex = Math.round(getRandom(2, platforms.length - 1));
@@ -121,9 +136,9 @@ const generatePower = () => {
         if (!platforms[platformIndex].hasHuman && !platforms[platformIndex].hasVehicle && !platforms[platformIndex].hasZombieDeathObject) {
             const power = new Power(
                 platforms[platformIndex].x + platforms[platformIndex].width / 4,
-                CHARACTER_POSITIONY,
-                VEHICLE_WIDTH,
-                VEHICLE_HEIGHT,
+                POWER_POSITIONY,
+                POWER_WIDTH,
+                POWER_HEIGHT,
                 POWER_TYPE[powerTypeIndex]
             )
             powers.push(power)
@@ -132,7 +147,9 @@ const generatePower = () => {
     }
 }
 
-//vehicle section
+/**
+ * Generates a new vehicle object 
+ */
 const generateVehicle = () => {
     const currentVehicleTime = new Date();
     const platformIndex = Math.round(getRandom(2, platforms.length - 1));
@@ -152,7 +169,9 @@ const generateVehicle = () => {
     }
 }
 
-
+/**
+ * Generates a new zombie obstacle object
+ */
 const generateZombieDeathObject = () => {
     const currentObstacleTime = new Date();
     const platformIndex = Math.round(getRandom(2, platforms.length - 1));
@@ -197,21 +216,28 @@ const generateCoins = () => {
     }
 }
 
-
+/**
+ * Checks for collision detection between zombie and zombie obstacle
+ * 
+ * @param {obstacleObject} zombieDeathObject 
+ */
 const checkZombieCollideWithZombieDeathObject = (zombieDeathObject) => {
     for (const zombie of zombies) {
         if (collisionDetection(zombie, zombieDeathObject)) {
+            if (zombieDeathObject.type == "bomb" && isSoundOn) {
+                const bombSound = new Audio("./src/assets/sounds/bomb.mp3");
+                bombSound.play();
+            }
             if (zombie.power == "protection") {
                 const zombieDeathObjectIndex = zombieDeathObjects.indexOf(zombieDeathObject);
-                zombieDeathObject.remove();
-                zombieDeathObjects.splice(zombieDeathObjectIndex, 1)
+                zombieDeathObjects.splice(zombieDeathObjectIndex, 1);
+                break;
             } else {
                 const zombieIndex = zombies.indexOf(zombie)
                 zombie.angle = ROTATE_ANGLE;
                 updateArray(zombies, zombieIndex);
                 zombies.splice(zombieIndex, 1)
                 const zombieDeathObjectIndex = zombieDeathObjects.indexOf(zombieDeathObject);
-                // zombieDeathObject.remove();
                 zombieDeathObjects.splice(zombieDeathObjectIndex, 1)
                 break;
             }
@@ -219,9 +245,15 @@ const checkZombieCollideWithZombieDeathObject = (zombieDeathObject) => {
     }
 }
 
+/**
+ * Checks for collision detection between power and zombie 
+ * 
+ * @param {object} zombie 
+ */
 const checkZombieCollideWithPower = (zombie) => {
     for (const power of powers) {
         if (collisionDetection(zombie, power)) {
+            console.log("power")
             const powerIndex = powers.indexOf(power);
             powers.splice(powerIndex, 1)
 
@@ -235,6 +267,11 @@ const checkZombieCollideWithPower = (zombie) => {
     }
 }
 
+/**
+ * Checks for collision detection between coin and zombie 
+ * 
+ * @param {object} zombie 
+ */
 const collisionDetectionWithCoin = (zombie) => {
     for (const coin of coinsArray) {
         if (collisionDetection(zombie, coin)) {
@@ -272,6 +309,9 @@ const checkGameOver = () => {
     }
 }
 
+/**
+ * set all values to default and restart game
+ */
 const resetGame = () => {
     if (keys.Enter && gameOver) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -297,6 +337,9 @@ const resetGame = () => {
     }
 }
 
+/**
+ * animate the background image
+ */
 const moveBackground = () => {
     // for (const zombie of zombies) {
     if (zombies.length > 0) {
@@ -305,9 +348,11 @@ const moveBackground = () => {
             // break;
         }
     }
-    // }
 }
 
+/**
+ * attract coins towards zombie
+ */
 const getMagnetPower = () => {
     coinsArray.forEach((coin) => {
         if (coin.x + coin.width + 20 <= CANVAS_WIDTH) {
