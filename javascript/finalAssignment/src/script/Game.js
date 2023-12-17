@@ -251,6 +251,7 @@ const checkZombieCollideWithZombieDeathObject = (zombieDeathObject) => {
  * @param {object} zombie 
  */
 const checkZombieCollideWithPower = (zombie) => {
+    console.log("zombie power")
     for (const power of powers) {
         if (collisionDetection(zombie, power)) {
             console.log("power")
