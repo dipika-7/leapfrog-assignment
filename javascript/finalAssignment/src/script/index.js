@@ -54,10 +54,10 @@ const animate = () => {
         if (platform.x + platform.width < 0) {
             generatePlatform(CANVAS_WIDTH);
             generateHuman();
-            // generatePower();
-            // generateVehicle();
+            generatePower();
+            generateVehicle();
             generateZombieDeathObject();
-            // generateCoins();
+            generateCoins();
         }
     });
 
