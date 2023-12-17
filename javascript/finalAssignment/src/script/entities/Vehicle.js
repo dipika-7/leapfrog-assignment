@@ -56,13 +56,18 @@ class Vehicle {
     }
     checkHorizontalCollisions(zombies) {
         let collidedZombie = 0;
+        let lastZombie = zombies[zombies.length - 1];
         for (const zombie of zombies) {
             if (collisionDetection(this, zombie)) {
                 if (this.numberOfZombie <= collidedZombie) {
                     const vehicleIndex = vehicles.indexOf(this);
                     vehicles.splice(vehicleIndex, 1);
 
-                    zombies.push(new Zombie(minValueObject(zombies) - ZOMBIE_DISTANCE, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
+                    const newZombie = new Zombie(minValueObject(zombies) - ZOMBIE_DISTANCE, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT)
+                    if (lastZombie.power) {
+                        newZombie.power = lastZombie.power
+                    }
+                    zombies.push(newZombie)
                     score += 1;
                     return;
                 } else if (zombie.x + zombie.width < this.x + 10) {

@@ -54,10 +54,10 @@ const animate = () => {
         if (platform.x + platform.width < 0) {
             generatePlatform(CANVAS_WIDTH);
             generateHuman();
-            generatePower();
-            generateVehicle();
+            // generatePower();
+            // generateVehicle();
             generateZombieDeathObject();
-            generateCoins();
+            // generateCoins();
         }
     });
 
@@ -76,7 +76,6 @@ const animate = () => {
 
     vehicles.forEach((vehicle) => {
         // checkCollision(vehicles, platforms);
-        // checkZombieCollideWithVehicle(vehicle)
         vehicle.checkHorizontalCollisions(zombies)
         vehicle.checkVerticalCollisions(zombies);
         vehicle.update();
@@ -85,8 +84,7 @@ const animate = () => {
     zombieDeathObjects.forEach((zombieDeathObject) => {
         checkCollision(zombieDeathObjects, platforms);
         checkZombieCollideWithZombieDeathObject(zombieDeathObject)
-        zombieDeathObject.x -= VELOCITY.x;
-        zombieDeathObject.draw();
+        zombieDeathObject.update()
     });
 
     coinsArray.forEach((coin, index) => {

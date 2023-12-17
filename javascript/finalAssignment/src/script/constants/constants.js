@@ -45,9 +45,9 @@ const ZOMBIE_DISTANCE = 30;
 
 const ROTATE_ANGLE = Math.PI + 50;
 
-const OBSTACLE_TYPE = ['car', 'bomb'];
+const OBSTACLE_TYPE = ['car'];
 // const OBSTACLE_TYPE = ['car', 'debris', 'bomb'];
-const POWER_TYPE = ["magnetic"];
+const POWER_TYPE = ["magnetic", "protection"];
 const POWER_TIME = 30000; //half minute
 
 const BACKGROUND_X = 0;
@@ -62,8 +62,8 @@ const COIN_HEIGHT = 40;
 const COIN_INTERVAL = 1000; //half minute
 
 const HUMAN_INTERVAL = 1000;
-const POWER_INTERVAL = 30000;
+const POWER_INTERVAL = 1000;
 const VEHICLE_INTERVAL = 1000;
-const OBSTACLE_INTERVAL = 9500;
+const OBSTACLE_INTERVAL = 1000;
 
 let isSoundOn = true;

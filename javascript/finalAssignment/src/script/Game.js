@@ -113,12 +113,17 @@ const getExplosion = () => {
  * @param {humanObject} human 
  */
 const checkZombieCollideWithHuman = (human) => {
+    const lastZombie = zombies[zombies.length - 1]
     for (const zombie of zombies) {
         if (collisionDetection(zombie, human)) {
             const humanIndex = humans.indexOf(human)
             human.angle = ROTATE_ANGLE;
             humans.splice(humanIndex, 1);
-            zombies.push(new Zombie(minValueObject(zombies) - ZOMBIE_DISTANCE, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT))
+            const newZombie = new Zombie(minValueObject(zombies) - ZOMBIE_DISTANCE, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT)
+            if (lastZombie.power) {
+                newZombie.power = lastZombie.power
+            }
+            zombies.push(newZombie);
             score += 1;
             break;
         }
@@ -178,15 +183,25 @@ const generateZombieDeathObject = () => {
     const obstacleTypeIndex = Math.round(getRandom(0, OBSTACLE_TYPE.length - 1));
     if (currentObstacleTime - lastObstacleTime >= OBSTACLE_INTERVAL) {
         if (!platforms[platformIndex].hasHuman && !platforms[platformIndex].hasVehicle && !platforms[platformIndex].hasZombieDeathObject) {
-            const zombieDeathObject = new ZombieDeath(
-                platforms[platformIndex].x + platforms[platformIndex].width / 2,
-                CHARACTER_POSITIONY,
-                OBSTACLE_WIDTH,
-                OBSTACLE_HEIGHT,
-                OBSTACLE_TYPE[obstacleTypeIndex]
-            )
-            zombieDeathObjects.push(zombieDeathObject)
+            if (OBSTACLE_TYPE[obstacleTypeIndex] == "car") {
+                var zombieDeathObject = new ZombieDeath(
+                    platforms[platformIndex].x + platforms[platformIndex].width - OBSTACLE_WIDTH - 50,
+                    CHARACTER_POSITIONY,
+                    OBSTACLE_WIDTH,
+                    OBSTACLE_HEIGHT,
+                    OBSTACLE_TYPE[obstacleTypeIndex],
+                )
+            } else {
+                var zombieDeathObject = new ZombieDeath(
+                    platforms[platformIndex].x + platforms[platformIndex].width / 2,
+                    CHARACTER_POSITIONY,
+                    OBSTACLE_WIDTH,
+                    OBSTACLE_HEIGHT,
+                    OBSTACLE_TYPE[obstacleTypeIndex]
+                )
+            }
             platforms[platformIndex].hasZombieDeathObject = true;
+            zombieDeathObjects.push(zombieDeathObject)
         }
         lastObstacleTime = currentObstacleTime;
     }
@@ -251,14 +266,14 @@ const checkZombieCollideWithZombieDeathObject = (zombieDeathObject) => {
  * @param {object} zombie 
  */
 const checkZombieCollideWithPower = (zombie) => {
-    console.log("zombie power")
     for (const power of powers) {
         if (collisionDetection(zombie, power)) {
-            console.log("power")
             const powerIndex = powers.indexOf(power);
             powers.splice(powerIndex, 1)
 
-            zombie.power = power.type;
+            zombies.forEach((zombie) => {
+                zombie.power = power.type;
+            })
 
             setTimeout(() => {
                 zombie.power = null;
@@ -375,4 +390,11 @@ const getMagnetPower = () => {
             coin.vx = VELOCITY.x
         }
     })
+}
+
+const checkZombiehasPower = (newZombie) => {
+    const lastZombie = zombies[zombies.length - 1];
+    if (lastZombie.power) {
+        newZombie.power = lastZombie.power
+    }
 }

@@ -17,6 +17,7 @@ class ZombieDeath {
 
         this.img = null;
 
+        this.vx = VELOCITY.x
         this.vy = 0.2
 
         this.numberOfZombie = 0;
@@ -39,6 +40,15 @@ class ZombieDeath {
             obstacleImg.src = "./src/assets/images/bomb.png"
             this.img = obstacleImg;
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        }
+    }
+    update() {
+        this.draw();
+        // console.log(zombieDeathObjects)
+        if (this.type == 'car' && this.x > CANVAS_WIDTH) {
+            this.x -= this.vx + 1.5
+        } else {
+            this.x -= this.vx;
         }
     }
 }
