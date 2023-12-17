@@ -28,7 +28,7 @@ class Coin {
     }
 
     /**
-     * draw power on screen
+     * draw coin on screen
      *
      * @param {*} ctx
      */
@@ -45,6 +45,9 @@ class Coin {
             this.height
         );
     }
+    /**
+     * update coins on screen
+     */
     update() {
         this.frameCount++;
 

@@ -9,10 +9,16 @@ class Background {
         backgroundImg.src = "./src/assets/images/background4.jpeg"
         this.img = backgroundImg;
     }
+    /**
+     * draw background image for game 
+     */
     draw() {
         this.ctx.drawImage(this.img, this.x, this.y, this.canvas.width, CANVAS_HEIGHT)
         this.ctx.drawImage(this.img, this.x + this.canvas.width, this.y, this.canvas.width, CANVAS_HEIGHT)
     }
+    /**
+     * update background image 
+     */
     update() {
         if (gameOver) return;
 

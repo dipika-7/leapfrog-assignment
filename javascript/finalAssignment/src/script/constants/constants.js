@@ -1,5 +1,8 @@
 const GRAVITY = 0.2;
 
+const CANVAS_WIDTH = window.innerWidth;
+const CANVAS_HEIGHT = window.innerHeight;
+
 const PLATFORM_FIRST_XPOSITION = -40;
 const PLATFORM_FIRST_WIDTH = 800;
 const PLATFORM_YPOSITION = 680;
@@ -12,10 +15,7 @@ const PLATFORM_HEIGHT = 250;
 const PLATFORM_MINX = 350;
 const PLATFORM_MAXY = 400;
 
-const CANVAS_WIDTH = window.innerWidth;
-const CANVAS_HEIGHT = window.innerHeight;
-
-const PLATFORM_DISTANCE = 200;
+const PLATFORM_DISTANCE = 300;
 
 const MAX_JUMP_VELOCITY = 4;
 const MAX_JUMP_HEIGHT = 180;
@@ -45,8 +45,7 @@ const ZOMBIE_DISTANCE = 30;
 
 const ROTATE_ANGLE = Math.PI + 50;
 
-const OBSTACLE_TYPE = ['car'];
-// const OBSTACLE_TYPE = ['car', 'debris', 'bomb'];
+const OBSTACLE_TYPE = ['car', 'bomb'];
 const POWER_TYPE = ["magnetic", "protection"];
 const POWER_TIME = 30000; //half minute
 
@@ -59,11 +58,11 @@ const POWER_HEIGHT = 100;
 
 const COIN_WIDTH = 40;
 const COIN_HEIGHT = 40;
-const COIN_INTERVAL = 1000; //half minute
+const COIN_INTERVAL = 20000; //20sec
 
 const HUMAN_INTERVAL = 1000;
-const POWER_INTERVAL = 1000;
+const POWER_INTERVAL = 4000;
 const VEHICLE_INTERVAL = 1000;
-const OBSTACLE_INTERVAL = 1000;
+const OBSTACLE_INTERVAL = 2000;
 
 let isSoundOn = true;

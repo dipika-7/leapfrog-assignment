@@ -12,7 +12,6 @@ let lastVehicleTime = new Date();
 let lastObstacleTime = new Date();
 
 let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
-const zombie1 = new Zombie(-10, 300, ZOMBIE_WIDTH, ZOMBIE_HEIGHT);
 let zombies = [zombie];
 
 let humans = [];
@@ -34,15 +33,25 @@ let coinsArray = [];
 
 let frameCount = 0
 let currentFrame = 0;
-let animationSpeed = 30;
+let animationSpeed = 10;
 
 initialPlatform();
 
 let zombieSpriteIndex = 0;
 let humanSpriteIndex = 0;
 
+const backgroundSound = new Audio("./src/assets/sounds/background-music.mp3");
+backgroundSound.volume = 0.75;
+
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (isSoundOn) {
+        background.loop = true
+        backgroundSound.play();
+    } else {
+        backgroundSound.pause();
+    }
     background.draw();
     moveBackground();
 
@@ -75,7 +84,6 @@ const animate = () => {
     });
 
     vehicles.forEach((vehicle) => {
-        // checkCollision(vehicles, platforms);
         vehicle.checkHorizontalCollisions(zombies)
         vehicle.checkVerticalCollisions(zombies);
         vehicle.update();
@@ -95,12 +103,10 @@ const animate = () => {
     })
 
     zombies.forEach((zombie, index) => {
-        // zombie.checkVerticalCollisions(vehicles);
         checkZombieCollideWithPower(zombie);
         collisionDetectionWithCoin(zombie);
         zombie.moveZombie(zombies);
 
-        // zombie.updateAnimation();
         if (!zombie.canJump) {
             frameCount++;
             zombie.draw(ctx, currentFrame);
@@ -128,14 +134,6 @@ const animate = () => {
     removeZombie();
 
     updateScore();
-
-    // if (gameOver) {
-    // ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    // ctx.fillText(`Your Score is: ${score}`, CANVAS_WIDTH / 2 - 50, CANVAS_HEIGHT * 3 / 8)
-    // ctx.fillText(`Your High Score is: ${scores.getScore().highScore}`, CANVAS_WIDTH / 2 - 80, CANVAS_HEIGHT * 3.5 / 8)
-    // ctx.fillText("Game Over: Press 'Enter' to Restart", CANVAS_WIDTH / 2 - 120, CANVAS_HEIGHT * 4 / 8)
-    // }
-
     showScoreCard();
 
     if (!gameOver) {

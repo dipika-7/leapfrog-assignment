@@ -27,10 +27,6 @@ class Zombie {
 
         this.jumpStart = 0;
 
-        this.frameCount = 0
-        this.currentFrame = 0;
-        this.animationSpeed = 20;
-
         this.img = null;
     }
 
@@ -40,33 +36,32 @@ class Zombie {
      * @param {*} ctx 
      */
     draw(ctx, index) {
-        // // ctx.fillStyle = "rgba(255,0,0,0.2)"
-        // // ctx.fillRect(this.x, this.y, this.width, this.height)
-        // if (!this.angle) {
-        //     this.ctx = ctx;
-        //     // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-        //     // ctx.drawImage(this.img, 32, 420, 59, 75, this.x, this.y, this.width, this.height)
-        //     ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
-
-        // } else {
-        //     ctx.save()
-        //     ctx.translate(this.x, this.y);
-        //     ctx.rotate(-this.angle);
-        //     // ctx.drawImage(this.img, 0, 0, this.width, this.height)
-        //     ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
-        //     ctx.restore()
-        // }
         let zombieImg = new Image();
         if (this.power == "magnetic") {
             zombieImg.src = "./src/assets/images/zombie-spritesheet.png"
             this.img = zombieImg;
             ctx.drawImage(this.img, zombiePowerCordinate[index].sx, zombiePowerCordinate[index].sy, zombiePowerCordinate[index].sw, zombiePowerCordinate[index].sh, this.x, this.y, this.width, this.height)
+        } else if (this.power == "protection") {
+            zombieImg.src = "./src/assets/images/zombie-spritesheet1.png"
+            this.img = zombieImg;
+
+            // Draw protection circle
+            ctx.beginPath();
+            ctx.arc(this.x + 55, this.y + 55, 70, 0, 2 * Math.PI);
+            ctx.fillStyle = 'rgba(0, 255, 0, 0.2)'; // Green color with transparency
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
         } else {
             zombieImg.src = "./src/assets/images/zombie-spritesheet1.png"
             this.img = zombieImg;
             ctx.drawImage(this.img, zombieCordinate[index].sx, zombieCordinate[index].sy, zombieCordinate[index].sw, zombieCordinate[index].sh, this.x, this.y, this.width, this.height)
         }
     }
+    /**
+     * move to right position of x
+     */
     rightMove() {
         if (this.isRunning) {
             this.x += this.vx;
@@ -85,6 +80,9 @@ class Zombie {
             this.vy = -MAX_JUMP_VELOCITY;
         }
     }
+    /** 
+     * apply gravity for zombie
+     */
     applyGravity() {
         this.y += this.vy;
         if (this.isGrounded) {
@@ -93,9 +91,17 @@ class Zombie {
             this.vy += GRAVITY;
         }
     }
+    /**
+     * remove power of zombie
+     */
     removePower() {
         this.power = null
     }
+    /**
+     * check horizontal collision between two rectangle
+     * 
+     * @param {array} platforms 
+     */
     checkHorizontalCollisions(platforms) {
         for (const platform of platforms) {
             if (collisionDetection(this, platform)) {
@@ -105,6 +111,11 @@ class Zombie {
             }
         }
     }
+    /**
+     * check vertical collision between two rectangle
+     * 
+     * @param {array} platforms 
+     */
     checkVerticalCollisions(platforms) {
         for (const platform of platforms) {
             if (collisionDetection(this, platform)) {
@@ -125,6 +136,12 @@ class Zombie {
             }
         }
     }
+
+    /**
+     * movement of zombie
+     * 
+     * @param {array} zombies 
+     */
     moveZombie = (zombies) => {
         zombies.forEach((zombie, index) => {
             if (keys.Space == true && zombie.canJump) {
@@ -138,19 +155,13 @@ class Zombie {
             }
         })
     };
+    /**     
+     * place fix position for zombie i.e clinet width/3
+     */
     setPosition = (zombie, index) => {
         if (zombie.x >= canvas.clientWidth / 3 && zombie.isRunning) {
             zombie.x = canvas.clientWidth / 3 - index * 40;
             zombie.isRunning = false
         }
     };
-    updateAnimation = () => {
-        if (!this.canJump) {
-            this.frameCount++;
-            if (this.frameCount % this.animationSpeed === 0) {
-                this.currentFrame = (this.currentFrame + 1) % zombieCordinate.length;
-            }
-            this.draw(ctx, this.currentFrame);
-        }
-    }
 }

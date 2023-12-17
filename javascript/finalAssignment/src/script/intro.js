@@ -1,7 +1,9 @@
-// const wrapper = document.getElementById("introPage");
 const playButton = document.getElementById("startGame");
 const soundButton = document.getElementById("sound");
 
+/**
+ * add event listener for playButton
+ */
 playButton.addEventListener('click', (e) => {
     const introPage = document.getElementById('introPage');
     introPage.style.display = "none";
@@ -12,26 +14,19 @@ playButton.addEventListener('click', (e) => {
     animate();
 })
 
-// menuButton.addEventListener('click', () => {
-//     const divElement = document.createElement('div');
-//     divElement.class = 'menu-card';
-
-//     const title = document.createElement("p");
-//     title.innerHTML = "You have to press space button to jump";
-
-//     divElement.appendChild(title)
-//     wrapper.appendChild(divElement)
-// })
-
-
+/**     
+ * add event listener for soundButton
+ */
 soundButton.addEventListener('click', (e) => {
     const soundoffPage = document.getElementById('sound-off');
     const soundonPage = document.getElementById('sound-on');
     if (soundoffPage.style.display == "block") {
         soundoffPage.style.display = "none";
         soundonPage.style.display = "block";
+        isSoundOn = true;
     } else {
         soundonPage.style.display = "none";
-        soundoffPage.style.display = "block"
+        soundoffPage.style.display = "block";
+        isSoundOn = false;
     }
 })

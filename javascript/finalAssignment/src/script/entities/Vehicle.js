@@ -45,6 +45,11 @@ class Vehicle {
 
         this.x -= this.vx;
     }
+    /**
+     * check vertical collision between two rectangle
+     * 
+     * @param {array} zombies 
+     */
     checkVerticalCollisions(zombies) {
         for (const zombie of zombies) {
             if (collisionDetection(this, zombie) && zombie.y + zombie.height < this.y + 10) {
@@ -54,12 +59,21 @@ class Vehicle {
             }
         }
     }
+    /**
+     * check horizontal collision between two rectangle
+     * 
+     * @param {array} zombies 
+     */
     checkHorizontalCollisions(zombies) {
         let collidedZombie = 0;
         let lastZombie = zombies[zombies.length - 1];
         for (const zombie of zombies) {
             if (collisionDetection(this, zombie)) {
                 if (this.numberOfZombie <= collidedZombie) {
+                    if (isSoundOn) {
+                        const eatSound = new Audio("./src/assets/sounds/explosion.mp3");
+                        eatSound.play();
+                    }
                     const vehicleIndex = vehicles.indexOf(this);
                     vehicles.splice(vehicleIndex, 1);
 
@@ -82,6 +96,9 @@ class Vehicle {
             }
         }
     }
+    /**
+     * update vahicle  animation
+     */
     update() {
         this.frameCount++;
 

@@ -7,6 +7,7 @@ coinImg.src = "./src/assets/images/coine.png"
 let zombieHeadImg = new Image();
 zombieHeadImg.src = "./src/assets/images/zombie-head.png"
 
+//update score of player
 const updateScore = () => {
     scores.updateScore(score, collectedCoinsScore);
     ctx.fillStyle = "white";
@@ -25,6 +26,8 @@ const updateScore = () => {
  */
 const showScoreCard = () => {
     if (gameOver) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         let gameOverImg = new Image();
         gameOverImg.src = "./src/assets/images/background-blur.png";
         ctx.drawImage(gameOverImg, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)

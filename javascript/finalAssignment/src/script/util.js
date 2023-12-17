@@ -26,6 +26,12 @@ function collisionDetection(rect1, rect2) {
     );
 }
 
+/**
+ * get mimimum value from array of objects
+ * 
+ * @param {arrayOfObjects} arrayOfObjects 
+ * @returns value
+ */
 const minValueObject = (arrayOfObjects) => {
     let minVal = arrayOfObjects[0].x;
     arrayOfObjects.forEach((object) => {
@@ -36,6 +42,12 @@ const minValueObject = (arrayOfObjects) => {
     return minVal;
 }
 
+/**
+ * update array
+ * 
+ * @param {array} array 
+ * @param {index} indexToRemove 
+ */
 function updateArray(array, indexToRemove) {
     for (let i = indexToRemove + 1; i < array.length; i++) {
         array[i].x -= ZOMBIE_DISTANCE;

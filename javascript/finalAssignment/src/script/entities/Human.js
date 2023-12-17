@@ -38,25 +38,15 @@ class Human {
      * @param {*} ctx 
      */
     draw(index) {
-        // if (this.angle) {
-        //     ctx.save()
-        //     ctx.translate(this.x, this.y);
-        //     ctx.rotate((this.angle * Math.PI) / 180);
-        //     ctx.fillStyle = this.color;
-        //     // ctx.fillRect(0, 0, this.width, this.height);
-        //     ctx.drawImage(this.img, 0, 0, this.width, this.height)
-        //     ctx.restore()
-        // } else {
-        // ctx.fillStyle = this.color;
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
-        // ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
         ctx.drawImage(this.img, humanCordinate[index].sx, humanCordinate[index].sy, humanCordinate[index].sw, humanCordinate[index].sh, this.x, this.y, this.width, this.height)
 
         let helpImg = new Image();
         helpImg.src = "./src/assets/images/help.png";
         ctx.drawImage(helpImg, this.x - 60, this.y - 150, this.width, this.height + 20);
-        // }
     }
+    /**
+     * update human animation
+     */
     update() {
         this.frameCount++;
 
@@ -64,7 +54,6 @@ class Human {
             this.currentFrame = (this.currentFrame + 1) % humanCordinate.length;
         }
 
-        // this.angle += this.rotationSpeed
         this.draw(this.currentFrame);
     }
 }

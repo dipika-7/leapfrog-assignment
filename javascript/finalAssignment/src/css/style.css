@@ -16,10 +16,10 @@
 .game-instruction {
   display: none;
   position: absolute;
-  top: 25%;
-  left: 75%;
-  color: black;
-  background: white;
+  top: 20%;
+  left: 65%;
+  color: white;
+  background: #45a4bc;
   padding: 20px;
 }
 
@@ -70,7 +70,7 @@
   border: none;
   position: absolute;
   top: 8%;
-  width: 4%;
+  width: 3.5%;
   left: 82%;
   display: block;
 }
@@ -78,8 +78,13 @@
 #sound-off {
   border: none;
   position: absolute;
-  top: 8%;
-  width: 4%;
+  top: 8.5%;
+  width: 3%;
   left: 82%;
   display: none;
+}
+
+.instruction-item {
+  list-style-type: square;
+  padding-top: 5px;
 }

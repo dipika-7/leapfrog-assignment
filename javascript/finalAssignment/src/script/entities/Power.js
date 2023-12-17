@@ -26,6 +26,8 @@ class Power {
      */
     draw() {
         let powerImg = new Image();
+
+        //image as per power type
         if (this.type == "protection") {
             powerImg.src = "./src/assets/images/shield.png"
             this.img = powerImg;
@@ -33,9 +35,8 @@ class Power {
             powerImg.src = "./src/assets/images/magnet.png"
             this.img = powerImg;
         }
+
         this.x -= VELOCITY.x
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-        // ctx.fillStyle = "black";
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }
