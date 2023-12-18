@@ -220,7 +220,7 @@ const generateCoins = () => {
 const checkZombieCollideWithZombieDeathObject = (zombieDeathObject) => {
     for (const zombie of zombies) {
         if (collisionDetection(zombie, zombieDeathObject)) {
-            if (zombieDeathObject.type == "bomb" && isSoundOn) {
+            if (isSoundOn) {
                 const bombSound = new Audio("./src/assets/sounds/bomb.mp3");
                 bombSound.play();
             }

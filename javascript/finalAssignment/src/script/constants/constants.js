@@ -47,7 +47,7 @@ const ROTATE_ANGLE = Math.PI + 50;
 
 const OBSTACLE_TYPE = ['car', 'bomb'];
 const POWER_TYPE = ["magnetic", "protection"];
-const POWER_TIME = 30000; //half minute
+const POWER_TIME = 10000;
 
 const BACKGROUND_X = 0;
 const BACKGROUND_Y = 0;
@@ -58,7 +58,7 @@ const POWER_HEIGHT = 100;
 
 const COIN_WIDTH = 40;
 const COIN_HEIGHT = 40;
-const COIN_INTERVAL = 20000; //20sec
+const COIN_INTERVAL = 2000;
 
 const HUMAN_INTERVAL = 1000;
 const POWER_INTERVAL = 4000;

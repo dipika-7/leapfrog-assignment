@@ -32,7 +32,7 @@ class ZombieDeath {
         if (this.type == "car") {
             obstacleImg.src = "./src/assets/images/Car.png"
             this.img = obstacleImg;
-            ctx.drawImage(this.img, this.x, this.y, this.width + 60, this.height)
+            ctx.drawImage(this.img, this.x, this.y, this.width + 80, this.height)
         } else if (this.type == "bomb") {
             obstacleImg.src = "./src/assets/images/bomb.png"
             this.img = obstacleImg;
