@@ -14,6 +14,11 @@ let lastObstacleTime = new Date();
 let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
 let zombies = [zombie];
 
+for (let i = 1; i < 20; i++) {
+    let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
+    zombies.push(zombie);
+}
+
 let humans = [];
 
 let vehicles = [];
@@ -31,10 +36,6 @@ let collectedCoinsScore = scores.getScore().coins;
 
 let coinsArray = [];
 
-let frameCount = 0
-let currentFrame = 0;
-let animationSpeed = 10;
-
 initialPlatform();
 
 let zombieSpriteIndex = 0;
@@ -42,6 +43,10 @@ let humanSpriteIndex = 0;
 
 const backgroundSound = new Audio("./src/assets/sounds/background-music.mp3");
 backgroundSound.volume = 0.75;
+
+let frameCount = 0;
+let animationSpeed = 10;
+let currentFrame = 0;
 
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -102,19 +107,18 @@ const animate = () => {
         }
     })
 
+    if (!zombie.canJump) {
+        frameCount++;
+        if (frameCount % animationSpeed === 0) {
+            currentFrame = (currentFrame + 1) % zombieCordinate.length;
+        }
+    }
+
     zombies.forEach((zombie, index) => {
         checkZombieCollideWithPower(zombie);
         collisionDetectionWithCoin(zombie);
         zombie.moveZombie(zombies);
-
-        if (!zombie.canJump) {
-            frameCount++;
-            zombie.draw(ctx, currentFrame);
-            if (frameCount % animationSpeed === 0) {
-                currentFrame = (currentFrame + 1) % zombieCordinate.length;
-            }
-        }
-
+        zombie.draw(ctx, currentFrame);
         zombie.checkHorizontalCollisions(platforms);
         zombie.applyGravity();
         zombie.checkVerticalCollisions(platforms);
