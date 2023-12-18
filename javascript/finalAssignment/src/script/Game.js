@@ -262,7 +262,9 @@ const checkZombieCollideWithPower = (zombie) => {
             })
 
             setTimeout(() => {
-                zombie.power = null;
+                zombies.forEach((zombie) => {
+                    zombie.power = null;
+                })
             }, POWER_TIME)
             break;
         }
