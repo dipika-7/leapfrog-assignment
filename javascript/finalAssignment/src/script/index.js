@@ -14,10 +14,6 @@ let lastObstacleTime = new Date();
 let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
 let zombies = [zombie];
 
-for (let i = 1; i < 20; i++) {
-    let zombie = new Zombie(ZOMBIE_X, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT, true);
-    zombies.push(zombie);
-}
 
 let humans = [];
 

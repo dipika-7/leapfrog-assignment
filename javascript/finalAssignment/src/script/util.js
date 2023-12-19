@@ -27,7 +27,7 @@ function collisionDetection(rect1, rect2) {
 }
 
 /**
- * get mimimum value from array of objects
+ * get minimum value from array of objects
  * 
  * @param {arrayOfObjects} arrayOfObjects 
  * @returns value

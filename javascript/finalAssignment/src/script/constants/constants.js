@@ -43,8 +43,6 @@ const ZOMBIE_WIDTH = 120;
 const ZOMBIE_HEIGHT = 120;
 const ZOMBIE_DISTANCE = 30;
 
-const ROTATE_ANGLE = Math.PI + 50;
-
 const OBSTACLE_TYPE = ['car', 'bomb'];
 const POWER_TYPE = ["magnetic", "protection"];
 const POWER_TIME = 10000;

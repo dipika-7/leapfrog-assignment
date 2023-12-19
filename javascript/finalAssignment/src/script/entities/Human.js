@@ -6,12 +6,11 @@ class Human {
      * @param {number} width 
      * @param {number} height 
      */
-    constructor(x, y, width, height, angle) {
+    constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.angle = 0;
         this.rotationSpeed = 1
 
         this.color = 'blue';

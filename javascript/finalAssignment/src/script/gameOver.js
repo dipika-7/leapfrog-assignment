@@ -39,7 +39,6 @@ const showScoreCard = () => {
         ctx.fillText(`Game Over!!`, CANVAS_WIDTH / 2 - 120, CANVAS_HEIGHT * 3 / 8)
 
         ctx.font = "20px sans-serif";
-        // ctx.drawImage(brainImg, 15, 15, 60, 50);
         ctx.fillText(`Your Score is: ${score}`, CANVAS_WIDTH / 2 - 100, CANVAS_HEIGHT * 4 / 8)
         ctx.fillText(`Your High Score is: ${scores.getScore().highScore}`, CANVAS_WIDTH / 2 - 120, CANVAS_HEIGHT * 4.5 / 8)
         ctx.fillText("Game Over: Press 'Enter' to Restart", CANVAS_WIDTH / 2 - 160, CANVAS_HEIGHT * 5 / 8)

@@ -6,12 +6,11 @@ class Zombie {
      * @param {number} width 
      * @param {number} height 
      */
-    constructor(x, y, width, height, isRunning = false, angle, power = null) {
+    constructor(x, y, width, height, isRunning = false, power = null) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.angle = angle;
 
         this.color = '#49c';
 

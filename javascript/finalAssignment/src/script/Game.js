@@ -71,7 +71,6 @@ const checkCollision = (listOfrec1, listofrect2) => {
     }
 };
 
-//human section
 /**
  * add humans in array 
  */
@@ -108,7 +107,6 @@ const checkZombieCollideWithHuman = (human) => {
             }
 
             const humanIndex = humans.indexOf(human)
-            human.angle = ROTATE_ANGLE;
             humans.splice(humanIndex, 1);
 
             const newZombie = new Zombie(minValueObject(zombies) - ZOMBIE_DISTANCE, ZOMBIE_Y, ZOMBIE_WIDTH, ZOMBIE_HEIGHT)
@@ -224,13 +222,13 @@ const checkZombieCollideWithZombieDeathObject = (zombieDeathObject) => {
                 const bombSound = new Audio("./src/assets/sounds/bomb.mp3");
                 bombSound.play();
             }
+
             if (zombie.power == "protection") {
                 const zombieDeathObjectIndex = zombieDeathObjects.indexOf(zombieDeathObject);
                 zombieDeathObjects.splice(zombieDeathObjectIndex, 1);
                 break;
             } else {
                 const zombieIndex = zombies.indexOf(zombie)
-                zombie.angle = ROTATE_ANGLE;
                 updateArray(zombies, zombieIndex);
                 zombies.splice(zombieIndex, 1)
                 const zombieDeathObjectIndex = zombieDeathObjects.indexOf(zombieDeathObject);
@@ -349,11 +347,9 @@ const resetGame = () => {
  * animate the background image
  */
 const moveBackground = () => {
-    // for (const zombie of zombies) {
     if (zombies.length > 0) {
         if (!zombies[0].isRunning) {
             background.update();
-            // break;
         }
     }
 }
@@ -369,9 +365,7 @@ const getMagnetPower = () => {
             } else {
                 coin.vx = -VELOCITY.x * 2;
             }
-            // if (zombie.y - coin.y < 0 || zombie.y - coin.y > -5) {
-            //     coin.vy = 0
-            // } else 
+
             if (zombie.y < coin.y) {
                 coin.vy = -VELOCITY.x / 3;
             } else {

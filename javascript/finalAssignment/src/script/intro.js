@@ -20,6 +20,7 @@ playButton.addEventListener('click', (e) => {
 soundButton.addEventListener('click', (e) => {
     const soundoffPage = document.getElementById('sound-off');
     const soundonPage = document.getElementById('sound-on');
+
     if (soundoffPage.style.display == "block") {
         soundoffPage.style.display = "none";
         soundonPage.style.display = "block";
