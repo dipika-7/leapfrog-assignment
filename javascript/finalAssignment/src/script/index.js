@@ -70,7 +70,7 @@ const animate = () => {
 
     powers.forEach((power) => {
         checkCollision(powers, platforms);
-        power.x -= VELOCITY.x;
+        // power.x -= VELOCITY.x;
         power.draw();
     });
 
@@ -78,7 +78,7 @@ const animate = () => {
         checkCollision(humans, platforms);
         checkZombieCollideWithHuman(human)
         human.update()
-        human.x -= VELOCITY.x;
+        // human.x -= VELOCITY.x;
     });
 
     vehicles.forEach((vehicle) => {
@@ -100,7 +100,7 @@ const animate = () => {
         }
     })
 
-    if (!zombies[0].canJump) {
+    if (!zombies[0]?.canJump) {
         frameCount++;
         if (frameCount % animationSpeed === 0) {
             currentFrame = (currentFrame + 1) % zombieCordinate.length;
