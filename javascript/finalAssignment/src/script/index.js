@@ -34,9 +34,6 @@ let coinsArray = [];
 
 initialPlatform();
 
-let zombieSpriteIndex = 0;
-let humanSpriteIndex = 0;
-
 const backgroundSound = new Audio("./src/assets/sounds/background-music.mp3");
 backgroundSound.volume = 0.75;
 
@@ -103,7 +100,7 @@ const animate = () => {
         }
     })
 
-    if (!zombie.canJump) {
+    if (!zombies[0].canJump) {
         frameCount++;
         if (frameCount % animationSpeed === 0) {
             currentFrame = (currentFrame + 1) % zombieCordinate.length;
@@ -130,9 +127,13 @@ const animate = () => {
         }
     });
 
+    // remove platform if platform is more than 10
     removePlatform();
+
+    //remove zombie if zombie falls from platform 
     removeZombie();
 
+    //score of zombie
     updateScore();
     showScoreCard();
 

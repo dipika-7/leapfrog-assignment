@@ -56,11 +56,11 @@ const POWER_HEIGHT = 100;
 
 const COIN_WIDTH = 40;
 const COIN_HEIGHT = 40;
-const COIN_INTERVAL = 2000;
+const COIN_INTERVAL = 2000; // 2sec
 
-const HUMAN_INTERVAL = 1000;
-const POWER_INTERVAL = 10000;
-const VEHICLE_INTERVAL = 1000;
-const OBSTACLE_INTERVAL = 2000;
+const HUMAN_INTERVAL = 2000; //2sec
+const POWER_INTERVAL = 10000; //10sec
+const VEHICLE_INTERVAL = 1000; //1sec
+const OBSTACLE_INTERVAL = 2000; //2sec
 
 let isSoundOn = true;

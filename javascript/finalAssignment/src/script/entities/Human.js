@@ -11,7 +11,6 @@ class Human {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.rotationSpeed = 1
 
         this.color = 'blue';
 
@@ -24,7 +23,6 @@ class Human {
         this.animationSpeed = 40;
 
         this.vy = 0.2
-        this.rotationSpeed = 0.5;
 
         let humanImg = new Image();
         humanImg.src = "./src/assets/images/human-spritsheet2.png"

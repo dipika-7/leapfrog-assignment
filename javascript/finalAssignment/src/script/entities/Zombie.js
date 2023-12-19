@@ -144,7 +144,7 @@ class Zombie {
     moveZombie = (zombies) => {
         zombies.forEach((zombie, index) => {
             if (keys.Space == true && zombie.canJump) {
-                this.draw(ctx, 0)
+                // this.draw(ctx, 0)
                 if (zombie.isGrounded) {
                     zombie.jumpStart = zombie.y;
                 }
