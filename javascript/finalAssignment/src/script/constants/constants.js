@@ -64,3 +64,8 @@ const VEHICLE_INTERVAL = 1000; //1sec
 const OBSTACLE_INTERVAL = 2000; //2sec
 
 let isSoundOn = true;
+
+const keys = {
+    Space: false,
+    Enter: false
+};

@@ -1,8 +1,3 @@
-const keys = {
-    Space: false,
-    Enter: false
-};
-
 // events listener for key down press
 window.onkeydown = (e) => {
     switch (e.code) {
