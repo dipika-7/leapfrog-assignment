@@ -1,0 +1,101 @@
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.nav {
+  color: #666;
+  background: white;
+  margin: 0 auto;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.nav-icon {
+  display: inline;
+  font-size: 40px;
+  border-radius: 50%;
+  margin: 0;
+  padding: 5px;
+}
+.nav-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 88%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.task-list {
+  width: 85%;
+  margin: 5px auto;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input {
+  width: 90%;
+  height: 20px;
+  border-radius: 10px;
+  height: 50px;
+  border: none;
+  padding: 0 10px;
+  border-bottom: 1px solid #1d1c3133;
+}
+
+.searchInput {
+  margin-bottom: 30px;
+}
+
+.btn {
+  background-color: rgb(132, 43, 43);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.section-for-add {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  font-size: 30px;
+  left: 86%; /* Adjust the left position based on your design */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media screen and (min-width: 762px) {
+  .nav {
+    width: 85%;
+    margin-bottom: 20px;
+  }
+  .input {
+    width: 80%;
+  }
+}

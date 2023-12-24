@@ -78,7 +78,7 @@ const animate = () => {
         checkCollision(humans, platforms);
         checkZombieCollideWithHuman(human)
         human.update()
-        human.x -= VELOCITY.x;
+        // human.x -= VELOCITY.x;
     });
 
     vehicles.forEach((vehicle) => {
