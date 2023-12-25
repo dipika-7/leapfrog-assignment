@@ -84,6 +84,7 @@ const createElements = (tasks: TaskList) => {
 const removeTask = (list: TaskList, id: string) => {
   const index = list.list.findIndex((task: Task) => task.id == id);
   list.list.splice(index, 1);
+  taskList.list.splice(index, 1);
   createElements(list);
 };
 
@@ -126,4 +127,6 @@ remainingTask?.addEventListener("click", () => {
   createElements(newTaskList);
 });
 
-allTask?.addEventListener("click", () => createElements(taskList));
+allTask?.addEventListener("click", () => {
+  createElements(taskList);
+});
