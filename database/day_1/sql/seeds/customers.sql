@@ -89,9 +89,3 @@ INSERT INTO customers VALUES (88, 'Wellington Importadora', 'Paula Parente', 'Ru
 INSERT INTO customers VALUES (89, 'White Clover Markets', 'Karl Jablonski', '305 - 14th Ave. S. Suite 3B', 'Seattle', '98128', 'USA');
 INSERT INTO customers VALUES (90, 'Wilman Kala', 'Matti Karttunen', 'Keskuskatu 45', 'Helsinki', '21240', 'Finland');
 INSERT INTO customers VALUES (91, 'Wolski', 'Zbyszek', 'ul. Filtrowa 68', 'Walla', '01-012', 'Poland');
-
-
---
--- PostgreSQL database dump complete
---
-
