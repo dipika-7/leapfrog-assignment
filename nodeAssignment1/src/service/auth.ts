@@ -1,13 +1,14 @@
-import * as fs from "fs/promises";
-
 import config from "../config";
 import { ISignup, ILogin } from "../interface/auth";
 import { comparePassword, hashPassword } from "../helper/password";
 import { generateToken, verifyToken } from "../helper/jwt";
 import * as User from "../model/users";
 
-const filePath = "src/constant/user.json";
-
+/**
+ * Signs up a new user by checking if the email is unique, hashing the password, and adding the user to the file.
+ * @param body - The user details for signup.
+ * @returns A promise that resolves to true if signup is successful, false otherwise.
+ */
 export const signup = async (body: ISignup) => {
   const userDetail = await User.getUserByEmail(body.email);
   if (userDetail) {
@@ -22,6 +23,11 @@ export const signup = async (body: ISignup) => {
   }
 };
 
+/**
+ * Logs in a user by verifying the email and password, generating access and refresh tokens, and updating the user's tokens.
+ * @param data - The login credentials.
+ * @returns A promise that resolves to an object with login status, message, and user data if successful.
+ */
 export const login = async (data: ILogin) => {
   const userDetail = await User.getUserByEmail(data.email);
   if (!userDetail) {
@@ -43,11 +49,10 @@ export const login = async (data: ILogin) => {
   }
 
   const user = {
-    id: userDetail.id,
+    id: userDetail.userId,
     email: data.email,
     tokenType: "accessToken",
   };
-
   const accessToken = await generateToken(
     user,
     config.jwt.accessTokenExpiresIn
@@ -62,7 +67,7 @@ export const login = async (data: ILogin) => {
   userDetail.accessToken = accessToken;
   userDetail.refreshToken = refreshToken;
 
-  const updateUserDetail = await User.updateUser(userDetail.id, userDetail);
+  const updateUserDetail = await User.updateUser(userDetail.userId, userDetail);
   delete userDetail.password;
 
   return {
@@ -72,6 +77,11 @@ export const login = async (data: ILogin) => {
   };
 };
 
+/**
+ * Generates a new access and refresh token pair using a valid refresh token.
+ * @param token - The refresh token to use for generating new tokens.
+ * @returns A promise that resolves to an object with new access and refresh tokens and a status message.
+ */
 export const generateRefreshToken = async (token: string) => {
   const payload: any = await verifyToken(token);
   const userDetail = await User.getUserById(payload.id);
@@ -117,4 +127,21 @@ export const generateRefreshToken = async (token: string) => {
     refreshToken: refreshToken,
     message: "Token Refreshed",
   };
+};
+
+/**
+ * Logs out a user by clearing the access and refresh tokens.
+ * @param refreshToken - The refresh token to identify the user.
+ * @returns A promise that resolves to the updated user or false if the user is not found.
+ */
+export const logout = async (refreshToken: string) => {
+  const user = await User.getUserByRefreshToken(refreshToken);
+  if (!user) {
+    return user;
+  } else {
+    user.accessToken = "";
+    user.refreshToken = "";
+    const updateUser = await User.updateUser(user.id, user);
+    return updateUser;
+  }
 };

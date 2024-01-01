@@ -5,6 +5,12 @@ import * as authService from "../service/auth";
 
 import { GLOBALVARS } from "../constant/statusCode";
 
+/**
+ * Handles user signup.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
 export const signup = async (
   req: Request,
   res: Response,
@@ -29,6 +35,12 @@ export const signup = async (
     .catch((e) => next(e));
 };
 
+/**
+ * Handles user login.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
 export const login = async (
   req: Request,
   res: Response,
@@ -54,6 +66,12 @@ export const login = async (
     .catch((e) => next(e));
 };
 
+/**
+ * Generates a new refresh token.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
 export const generateRefreshToken = async (
   req: Request,
   res: Response,
@@ -80,4 +98,25 @@ export const generateRefreshToken = async (
       }
     })
     .catch((e) => next(e));
+};
+
+/**
+ * Handles user logout.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
+export const logout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const data = req.body;
+  if (data.refreshToken) {
+    const resetToken = await authService.logout(data.refreshToken);
+  }
+  res.json({
+    status: GLOBALVARS.successStatusCode,
+    message: "Logout Successfully",
+  });
 };

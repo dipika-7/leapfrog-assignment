@@ -1,12 +1,19 @@
-import { Request, Response } from "express";
-import * as fs from "fs";
+import { Request, Response, NextFunction } from "express";
 
 import * as taskService from "../service/task";
 
 import { GLOBALVARS } from "../constant/statusCode";
+import "../util/custom";
 
-export const addTask = async (req: Request, res: Response) => {
+/**
+ * Handles the addition of a new task.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
+export const addTask = async (req: any, res: Response, next: NextFunction) => {
   const body = req.body;
+  body.userId = req.user.userId;
   await taskService
     .createTask(body)
     .then((result) => {
@@ -19,15 +26,27 @@ export const addTask = async (req: Request, res: Response) => {
         res.json({
           status: GLOBALVARS.successStatusCode,
           message: "Successfully added",
+          data: result,
         });
       }
     })
-    .catch((e) => e);
+    .catch((e) => next(e));
 };
 
-export const listOfTask = async (req: Request, res: Response) => {
+/**
+ * Handles listing tasks by user ID.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
+export const listOfTaskByUserId = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
+  const userid = req.user.userId;
   await taskService
-    .getTaskList()
+    .getTaskListByUserId(userid)
     .then((result) => {
       if (!result) {
         res.json({
@@ -42,13 +61,24 @@ export const listOfTask = async (req: Request, res: Response) => {
         });
       }
     })
-    .catch((e) => e);
+    .catch((e) => next(e));
 };
 
-export const listOfTaskById = async (req: Request, res: Response) => {
+/**
+ * Handles listing a task by its ID.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
+export const listOfTaskById = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
   const id = req.params.id;
+  const userId = req.user.userId;
   await taskService
-    .getTaskById(id)
+    .getTaskById(id, userId)
     .then((result) => {
       if (!result) {
         res.json({
@@ -63,17 +93,28 @@ export const listOfTaskById = async (req: Request, res: Response) => {
         });
       }
     })
-    .catch((e) => e);
+    .catch((e) => next(e));
 };
 
-export const listOfTaskByStatus = async (req: Request, res: Response) => {
+/**
+ * Handles listing tasks by status.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
+export const listOfTaskByStatus = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
   const statusMappings: Record<string, boolean> = {
     true: true,
     false: false,
   };
   const data = statusMappings[req.params.status];
+  const user = req.user.userId;
   await taskService
-    .getTaskListByStatus(data)
+    .getTaskListByStatus(data, user)
     .then((result) => {
       if (!result) {
         res.json({
@@ -88,12 +129,23 @@ export const listOfTaskByStatus = async (req: Request, res: Response) => {
         });
       }
     })
-    .catch((e) => e);
+    .catch((e) => next(e));
 };
 
-export const updateTask = async (req: Request, res: Response) => {
+/**
+ * Handles updating a task by its ID.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
+export const updateTask = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
   const id = req.params.id;
   const data = req.body;
+  data.userId = req.user.userId;
   await taskService
     .updateTask(id, data)
     .then((result) => {
@@ -110,12 +162,23 @@ export const updateTask = async (req: Request, res: Response) => {
         });
       }
     })
-    .catch((e) => e);
+    .catch((e) => next(e));
 };
 
-export const updateTaskByStatus = async (req: Request, res: Response) => {
+/**
+ * Handles updating a task's status by its ID.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
+export const updateTaskStatus = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
   const id = req.params.id;
-  const data = req.body.completed;
+  const data = req.body;
+  data.userId = req.user.userId;
   await taskService
     .updateTaskStatus(id, data)
     .then((result) => {
@@ -132,13 +195,24 @@ export const updateTaskByStatus = async (req: Request, res: Response) => {
         });
       }
     })
-    .catch((e) => e);
+    .catch((e) => next(e));
 };
 
-export const deleteTask = async (req: Request, res: Response) => {
+/**
+ * Handles deleting a task by its ID.
+ * @param req - Express Request object.
+ * @param res - Express Response object.
+ * @param next - Express NextFunction for error handling.
+ */
+export const deleteTask = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
+  const userId = req.user.userId;
   const id = req.params.id;
   await taskService
-    .deleteTask(id)
+    .deleteTask(id, userId)
     .then((result) => {
       if (!result) {
         res.json({
@@ -152,5 +226,5 @@ export const deleteTask = async (req: Request, res: Response) => {
         });
       }
     })
-    .catch((e) => e);
+    .catch((e) => next(e));
 };

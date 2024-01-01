@@ -1,19 +1,18 @@
 [
   {
-    "username": "ahja",
-    "email": "dipika2@gmail.com",
-    "password": "$2b$10$ce3KDIwtPz1b1UG/UglnqeTJy0foC2ctxyxpguKrQlg1LUmaiMLG.",
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpcGlrYTJAZ21haWwuY29tIiwidG9rZW5UeXBlIjoiYWNjZXNzVG9rZW4iLCJpYXQiOjE3MDQxMzM0MjIsImV4cCI6MTcwNDEzMzcyMn0.PiutOZ3GXNVKNyTflyRDOXt6YeGFIrx4AyGwoDQTfEk",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpcGlrYTJAZ21haWwuY29tIiwidG9rZW5UeXBlIjoicmVmcmVzaFRva2VuIiwiaWF0IjoxNzA0MTMzNDIyLCJleHAiOjE3MDQxMzM5MjJ9.PXe48HuGhcacUaZoyFkI9gFe__AqAqnFkBmufxebI-k"
+    "username": "dipika",
+    "email": "dipik1@gmail.com",
+    "password": "$2b$10$ESBnW0h63cfky4b5NGyrM.MMIOGuutxWNnr5r7bqEuSdCuKzEbdsW",
+    "userId": "DpY1XzJTVrea",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkRwWTFYekpUVnJlYSIsImVtYWlsIjoiZGlwaWsxQGdtYWlsLmNvbSIsInRva2VuVHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNzA0MTQwNDAxLCJleHAiOjE3MDQxNzA0MDF9.P5gLGX0htl3mg6lRxWkrKtKtFUWO33VXrnqcf2p9Zuc",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkRwWTFYekpUVnJlYSIsImVtYWlsIjoiZGlwaWsxQGdtYWlsLmNvbSIsInRva2VuVHlwZSI6InJlZnJlc2hUb2tlbiIsImlhdCI6MTcwNDE0MDQwMSwiZXhwIjoxNzA0MTQwOTAxfQ.R7Zp0HhrjBoPeio9YMqGJyEuXEUx0Y36TUD-8dtzcCM"
   },
   {
-    "username": "ahja",
-    "email": "dipika1@gmail.com",
-    "password": "$2b$10$189qoBXeZP6iaVPoot3ePOfwq1IZAFWZ/lZQde6wxDB/uBmipQzj2"
-  },
-  {
-    "username": "ahja",
-    "email": "dipika2@gmail.com",
-    "password": "$2b$10$ce3KDIwtPz1b1UG/UglnqeTJy0foC2ctxyxpguKrQlg1LUmaiMLG."
+    "username": "dipika",
+    "email": "dipik2@gmail.com",
+    "password": "$2b$10$X7Z21wcwwMDJGlrHqoNk.OkHegUmi3eVKPtcIEPjGLvEQLlzDm3Y6",
+    "userId": "INQ4Zn7u7yiq",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IklOUTRabjd1N3lpcSIsImVtYWlsIjoiZGlwaWsyQGdtYWlsLmNvbSIsInRva2VuVHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNzA0MTM5OTAxLCJleHAiOjE3MDQxNjk5MDF9.BVfhmTxe6TJiJfd6t23xoLfGW4WQo6SIm98WFo4mrpw",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IklOUTRabjd1N3lpcSIsImVtYWlsIjoiZGlwaWsyQGdtYWlsLmNvbSIsInRva2VuVHlwZSI6InJlZnJlc2hUb2tlbiIsImlhdCI6MTcwNDEzOTkwMSwiZXhwIjoxNzA0MTQwNDAxfQ.VvKednMS2efksYh4XzTxBIvtU4UkTqPr4P4Fnk8B6bY"
   }
 ]

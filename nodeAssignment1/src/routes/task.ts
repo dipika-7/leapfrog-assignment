@@ -1,26 +1,30 @@
 import { Router } from "express";
 import {
   addTask,
-  listOfTask,
+  listOfTaskByUserId,
   listOfTaskById,
   listOfTaskByStatus,
   updateTask,
-  updateTaskByStatus,
+  updateTaskStatus,
   deleteTask,
 } from "../controller/task";
 import { Auth } from "../middleware/Auth";
 
 const router = Router();
 
-router.route("/").get(Auth, listOfTask).post(Auth, addTask);
+// Routes for handling task operations
+router
+  .route("/")
+  .get(Auth, listOfTaskByUserId) // Get the list of tasks
+  .post(Auth, addTask); // Add a new task
 
 router
   .route("/:id")
-  .get(Auth, listOfTaskById)
-  .put(Auth, updateTask)
-  .patch(Auth, updateTaskByStatus)
-  .delete(Auth, deleteTask);
+  .get(Auth, listOfTaskById) // Get a specific task by ID
+  .put(Auth, updateTask) // Update a specific task
+  .patch(Auth, updateTaskStatus) // Update a specific task's status
+  .delete(Auth, deleteTask); // Delete a specific task
 
-router.route("/list/:status").get(listOfTaskByStatus);
+router.route("/list/:status").get(Auth, listOfTaskByStatus); // Get the list of tasks by status
 
 export default router;
