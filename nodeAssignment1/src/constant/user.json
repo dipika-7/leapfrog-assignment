@@ -1,0 +1,19 @@
+[
+  {
+    "username": "ahja",
+    "email": "dipika2@gmail.com",
+    "password": "$2b$10$ce3KDIwtPz1b1UG/UglnqeTJy0foC2ctxyxpguKrQlg1LUmaiMLG.",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpcGlrYTJAZ21haWwuY29tIiwidG9rZW5UeXBlIjoiYWNjZXNzVG9rZW4iLCJpYXQiOjE3MDQxMzM0MjIsImV4cCI6MTcwNDEzMzcyMn0.PiutOZ3GXNVKNyTflyRDOXt6YeGFIrx4AyGwoDQTfEk",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpcGlrYTJAZ21haWwuY29tIiwidG9rZW5UeXBlIjoicmVmcmVzaFRva2VuIiwiaWF0IjoxNzA0MTMzNDIyLCJleHAiOjE3MDQxMzM5MjJ9.PXe48HuGhcacUaZoyFkI9gFe__AqAqnFkBmufxebI-k"
+  },
+  {
+    "username": "ahja",
+    "email": "dipika1@gmail.com",
+    "password": "$2b$10$189qoBXeZP6iaVPoot3ePOfwq1IZAFWZ/lZQde6wxDB/uBmipQzj2"
+  },
+  {
+    "username": "ahja",
+    "email": "dipika2@gmail.com",
+    "password": "$2b$10$ce3KDIwtPz1b1UG/UglnqeTJy0foC2ctxyxpguKrQlg1LUmaiMLG."
+  }
+]
