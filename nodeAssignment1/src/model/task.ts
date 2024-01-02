@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-import { ITask } from "../interface/task";
+import { ITask, ITaskQuery } from "../interface/task";
 import { getRandomString } from "../util/utils";
 import { ID_LENGTH } from "../constant/constants";
 
@@ -39,12 +39,22 @@ export const getTaskList = async () => {
  * @param userId - The ID of the user for whom to retrieve tasks.
  * @returns A promise that resolves to the list of tasks for the specified user.
  */
-export const getTaskListByUserId = async (userId: string) => {
+export const getTaskListByUserId = async (
+  userId: string,
+  query: ITaskQuery
+) => {
+  const { search, completed } = query;
   const tasks: ITask[] = JSON.parse(await fs.readFile(taskFilePath, "utf-8"));
-  const filteredTask = tasks.filter(
-    (task: { userId: string }) => task.userId == userId
+
+  const completedBool = completed === "true" ? true : false;
+  return tasks.filter(
+    (task) =>
+      task.userId === userId &&
+      (search
+        ? task.value.toLowerCase().includes(search.toLowerCase())
+        : true) &&
+      (completed ? task.completed === completedBool : true)
   );
-  return filteredTask;
 };
 
 /**

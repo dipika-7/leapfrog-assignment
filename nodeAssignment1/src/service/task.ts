@@ -1,6 +1,7 @@
-import { ITask } from "../interface/task";
+import { ITask, ITaskQuery } from "../interface/task";
 
 import * as Task from "../model/task";
+import NotFoundError from "../error/notFoundError";
 
 /**
  * Creates a new task by adding it.
@@ -8,7 +9,7 @@ import * as Task from "../model/task";
  * @returns A promise that resolves to the created task.
  */
 export const createTask = async (data: ITask) => {
-  return Task.createTask(data);
+  return await Task.createTask(data);
 };
 
 /**
@@ -16,7 +17,7 @@ export const createTask = async (data: ITask) => {
  * @returns A promise that resolves to an array of tasks.
  */
 export const getTaskList = async () => {
-  return Task.getTaskList();
+  return await Task.getTaskList();
 };
 
 /**
@@ -25,7 +26,11 @@ export const getTaskList = async () => {
  * @returns A promise that resolves to the task with the specified ID.
  */
 export const getTaskById = async (id: string, userId: string) => {
-  return Task.getTaskById(id, userId);
+  const task = await Task.getTaskById(id, userId);
+  if (!task) {
+    throw new NotFoundError(`Task with id ${id} Not Found`);
+  }
+  return task;
 };
 
 /**
@@ -33,8 +38,12 @@ export const getTaskById = async (id: string, userId: string) => {
  * @param id - The unique identifier of the user.
  * @returns A promise that resolves to an array of tasks belonging to the user.
  */
-export const getTaskListByUserId = async (id: string) => {
-  return Task.getTaskListByUserId(id);
+export const getTaskListByUserId = async (id: string, query: ITaskQuery) => {
+  const task = await Task.getTaskListByUserId(id, query);
+  if (!task || task.length <= 0) {
+    throw new NotFoundError(`Task with id ${id} Not Found`);
+  }
+  return task;
 };
 
 /**
@@ -44,7 +53,12 @@ export const getTaskListByUserId = async (id: string) => {
  * @returns A promise that resolves to an array of tasks with the specified completion status and user association.
  */
 export const getTaskListByStatus = async (status: boolean, user: string) => {
-  return Task.getTaskListByStatus(status, user);
+  const task = await Task.getTaskListByStatus(status, user);
+  console.log(task);
+  if (!task || task.length <= 0) {
+    throw new NotFoundError(`Task Not Found`);
+  }
+  return task;
 };
 
 /**
@@ -57,7 +71,7 @@ export const updateTaskStatus = async (
   id: string,
   data: { completed: boolean; userId: string }
 ) => {
-  return Task.updateTaskStatus(id, data);
+  return await Task.updateTaskStatus(id, data);
 };
 
 /**
@@ -67,7 +81,11 @@ export const updateTaskStatus = async (
  * @returns A promise that resolves to the updated task.
  */
 export const updateTask = async (id: string, data: ITask) => {
-  return Task.updateTask(id, data);
+  const task = await Task.updateTask(id, data);
+  if (!task) {
+    throw new NotFoundError(`Task with id ${id} Not Found`);
+  }
+  return task;
 };
 
 /**
@@ -76,5 +94,9 @@ export const updateTask = async (id: string, data: ITask) => {
  * @returns A promise that resolves to the updated list of tasks after deletion.
  */
 export const deleteTask = async (id: string, userId: string) => {
-  return Task.deleteTask(id, userId);
+  const task = await Task.deleteTask(id, userId);
+  if (!task) {
+    throw new NotFoundError(`Task with id ${id} Not Found`);
+  }
+  return task;
 };

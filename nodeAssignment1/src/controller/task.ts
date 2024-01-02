@@ -44,9 +44,10 @@ export const listOfTaskByUserId = async (
   res: Response,
   next: NextFunction
 ) => {
+  const query = req.query;
   const userid = req.user.userId;
   await taskService
-    .getTaskListByUserId(userid)
+    .getTaskListByUserId(userid, query)
     .then((result) => {
       if (!result) {
         res.json({

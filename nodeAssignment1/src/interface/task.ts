@@ -4,3 +4,8 @@ export interface ITask {
   value: string;
   completed: boolean;
 }
+
+export interface ITaskQuery {
+  search?: string;
+  completed?: string;
+}
