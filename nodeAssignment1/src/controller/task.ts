@@ -13,7 +13,8 @@ import "../util/custom";
  */
 export const addTask = async (req: any, res: Response, next: NextFunction) => {
   const body = req.body;
-  body.userId = req.user.userId;
+  body.userId = req.user.id;
+  body.created_by = req.user.id;
   await taskService
     .createTask(body)
     .then((result) => {
@@ -44,10 +45,9 @@ export const listOfTaskByUserId = async (
   res: Response,
   next: NextFunction
 ) => {
-  const query = req.query;
-  const userid = req.user.userId;
+  const userid = req.user.id;
   await taskService
-    .getTaskListByUserId(userid, query)
+    .getTaskListByUserId(userid)
     .then((result) => {
       if (!result) {
         res.json({
@@ -77,7 +77,7 @@ export const listOfTaskById = async (
   next: NextFunction
 ) => {
   const id = req.params.id;
-  const userId = req.user.userId;
+  const userId = req.user.id;
   await taskService
     .getTaskById(id, userId)
     .then((result) => {
@@ -113,7 +113,7 @@ export const listOfTaskByStatus = async (
     false: false,
   };
   const data = statusMappings[req.params.status];
-  const user = req.user.userId;
+  const user = req.user.id;
   await taskService
     .getTaskListByStatus(data, user)
     .then((result) => {
@@ -146,7 +146,7 @@ export const updateTask = async (
 ) => {
   const id = req.params.id;
   const data = req.body;
-  data.userId = req.user.userId;
+  data.userId = req.user.id;
   await taskService
     .updateTask(id, data)
     .then((result) => {
@@ -179,7 +179,7 @@ export const updateTaskStatus = async (
 ) => {
   const id = req.params.id;
   const data = req.body;
-  data.userId = req.user.userId;
+  data.userId = req.user.id;
   await taskService
     .updateTaskStatus(id, data)
     .then((result) => {
@@ -210,7 +210,7 @@ export const deleteTask = async (
   res: Response,
   next: NextFunction
 ) => {
-  const userId = req.user.userId;
+  const userId = req.user.id;
   const id = req.params.id;
   await taskService
     .deleteTask(id, userId)

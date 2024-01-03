@@ -1,103 +1,66 @@
-import * as fs from "fs/promises";
-
+import BaseModel from "./baseModel";
 import { ILogin, ISignup, IUser } from "../interface/auth";
-import { getRandomString } from "../util/utils";
-import { ID_LENGTH } from "../constant/constants";
 
-const filePath = "src/constant/user.json";
-
-/**
- * Creates a new user and adds it to the user list.
- * @param data - The user data to be created.
- * @returns A promise that resolves to the created user.
- */
-export const createUser = async (data: ISignup) => {
-  const users: ISignup[] = JSON.parse(await fs.readFile(filePath, "utf-8"));
-  data.userId = getRandomString(ID_LENGTH);
-  users.push(data);
-  await fs.writeFile(filePath, JSON.stringify(users, null, 2));
-  return data;
-};
-
-/**
- * Retrieves a user by their email.
- * @param email - The email of the user to retrieve.
- * @returns A promise that resolves to the retrieved user or false if not found.
- */
-export const getUserByEmail = async (email: string) => {
-  const existingUsers = JSON.parse(await fs.readFile(filePath, "utf-8"));
-  const userIndex = existingUsers.findIndex(
-    (user: ILogin) => user.email === email
-  );
-  if (userIndex >= 0) {
-    return existingUsers[userIndex];
-  } else {
-    return false;
+export default class UserModel extends BaseModel {
+  static async getAll() {
+    return this.queryBuilder()
+      .select({
+        id: "id",
+        username: "username",
+        email: "email",
+      })
+      .from("users");
   }
-};
 
-/**
- * Retrieves a user by their refresh token.
- * @param refreshToken - The refresh token of the user to retrieve.
- * @returns A promise that resolves to the retrieved user or false if not found.
- */
-export const getUserByRefreshToken = async (refreshToken: string) => {
-  const existingUsers = JSON.parse(await fs.readFile(filePath, "utf-8"));
-  const userIndex = existingUsers.findIndex(
-    (user: IUser) => user.refreshToken === refreshToken
-  );
-  if (userIndex >= 0) {
-    return existingUsers[userIndex];
-  } else {
-    return false;
+  static async getById(id: number) {
+    return this.queryBuilder()
+      .select({
+        id: "id",
+        username: "username",
+        email: "email",
+        refreshToken: "refresh_token",
+      })
+      .from("users")
+      .where({ id })
+      .first();
   }
-};
 
-/**
- * Retrieves a user by their ID.
- * @param id - The ID of the user to retrieve.
- * @returns A promise that resolves to the retrieved user or false if not found.
- */
-export const getUserById = async (id: string) => {
-  const existingUsers = JSON.parse(await fs.readFile(filePath, "utf-8"));
-  const userIndex = existingUsers.findIndex(
-    (user: { id: string }) => user.id === id
-  );
-  if (userIndex >= 0) {
-    return existingUsers[userIndex];
-  } else {
-    return false;
-  }
-};
+  static async getByEmail(email: string) {
+    const user = await this.queryBuilder()
+      .select({
+        id: "id",
+        username: "username",
+        password: "password",
+        email: "email",
+      })
+      .from("users")
+      .where({ email });
 
-/**
- * Retrieves the list of all users.
- * @returns A promise that resolves to the list of users.
- */
-export const getUserList = async () => {
-  const existingUsers = JSON.parse(await fs.readFile(filePath, "utf-8"));
-  if (existingUsers.length >= 0) {
-    return existingUsers;
-  } else {
-    return false;
+    return user?.[0];
   }
-};
 
-/**
- * Updates a user by their ID with new data.
- * @param id - The ID of the user to update.
- * @param data - The new data for the user.
- * @returns A promise that resolves to the updated user or false if not found.
- */
-export const updateUser = async (id: string, data: Object) => {
-  const existingUsers = JSON.parse(await fs.readFile(filePath, "utf-8"));
-  const userIndex = existingUsers.findIndex(
-    (user: IUser) => user.userId === id
-  );
-  if (userIndex >= 0) {
-    existingUsers[userIndex] = data;
-    await fs.writeFile(filePath, JSON.stringify(existingUsers, null, 2));
-    return existingUsers[userIndex];
+  static async create(user: ISignup) {
+    return this.queryBuilder().insert(user).table("users");
   }
-  return false;
-};
+
+  static async update(id: number, user: IUser) {
+    return await this.queryBuilder().update(user).table("users").where({ id });
+  }
+
+  static async delete(id: number) {
+    return this.queryBuilder().table("users").where({ id }).del();
+  }
+
+  static async getByRefreshToken(refreshToken: string) {
+    const user = await this.queryBuilder()
+      .select({
+        id: "id",
+        username: "username",
+        email: "email",
+      })
+      .from("users")
+      .where({ refreshToken });
+
+    return user?.[0];
+  }
+}

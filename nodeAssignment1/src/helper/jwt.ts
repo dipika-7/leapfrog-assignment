@@ -20,11 +20,13 @@ export const generateToken = async (data: Object, expiresIn: string) => {
  * @returns The decoded payload if the token is valid, otherwise false.
  */
 export const verifyToken = async (token: string) => {
+  console.log(token);
   const tokenStatus = jwt.verify(
     token,
     config.jwt.tokenSecret!,
     (err, decoded) => {
       if (err) {
+        console.log(err);
         return false;
       } else {
         return decoded;

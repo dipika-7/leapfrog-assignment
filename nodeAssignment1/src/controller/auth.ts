@@ -77,7 +77,7 @@ export const generateRefreshToken = async (
   res: Response,
   next: NextFunction
 ) => {
-  const refreshToken = req.body.refreshToken;
+  const refreshToken = req.body.refresh_token;
   await authService
     .generateRefreshToken(refreshToken)
     .then((result) => {

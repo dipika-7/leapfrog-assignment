@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { GLOBALVARS } from "../constant/statusCode";
-import * as User from "../model/users";
+import UserModel from "../model/users";
 import { verifyToken } from "../helper/jwt";
 
 import "../util/custom";
@@ -27,7 +27,7 @@ export const Auth = async (req: any, res: Response, next: NextFunction) => {
       });
     } else {
       // Retrieve user information from the database
-      const user = await User.getUserById(payload.userId);
+      const user = await UserModel.getById(payload.id);
 
       // Assign user information to req.user
       req.user = user;

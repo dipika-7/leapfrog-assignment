@@ -1,6 +1,6 @@
 import { ITask, ITaskQuery } from "../interface/task";
 
-import * as Task from "../model/task";
+import TaskModel from "../model/task";
 import NotFoundError from "../error/notFoundError";
 
 /**
@@ -9,7 +9,7 @@ import NotFoundError from "../error/notFoundError";
  * @returns A promise that resolves to the created task.
  */
 export const createTask = async (data: ITask) => {
-  return await Task.createTask(data);
+  return await TaskModel.create(data);
 };
 
 /**
@@ -17,7 +17,7 @@ export const createTask = async (data: ITask) => {
  * @returns A promise that resolves to an array of tasks.
  */
 export const getTaskList = async () => {
-  return await Task.getTaskList();
+  return await TaskModel.getAll();
 };
 
 /**
@@ -25,8 +25,8 @@ export const getTaskList = async () => {
  * @param id - The unique identifier of the task.
  * @returns A promise that resolves to the task with the specified ID.
  */
-export const getTaskById = async (id: string, userId: string) => {
-  const task = await Task.getTaskById(id, userId);
+export const getTaskById = async (id: number, userId: number) => {
+  const task = await TaskModel.getById(id, userId);
   if (!task) {
     throw new NotFoundError(`Task with id ${id} Not Found`);
   }
@@ -38,8 +38,8 @@ export const getTaskById = async (id: string, userId: string) => {
  * @param id - The unique identifier of the user.
  * @returns A promise that resolves to an array of tasks belonging to the user.
  */
-export const getTaskListByUserId = async (id: string, query: ITaskQuery) => {
-  const task = await Task.getTaskListByUserId(id, query);
+export const getTaskListByUserId = async (id: number) => {
+  const task = await TaskModel.getByUserId(id);
   if (!task || task.length <= 0) {
     throw new NotFoundError(`Task with id ${id} Not Found`);
   }
@@ -53,7 +53,7 @@ export const getTaskListByUserId = async (id: string, query: ITaskQuery) => {
  * @returns A promise that resolves to an array of tasks with the specified completion status and user association.
  */
 export const getTaskListByStatus = async (status: boolean, user: string) => {
-  const task = await Task.getTaskListByStatus(status, user);
+  const task = await TaskModel.getByStatus(status, user);
   console.log(task);
   if (!task || task.length <= 0) {
     throw new NotFoundError(`Task Not Found`);
@@ -68,10 +68,10 @@ export const getTaskListByStatus = async (status: boolean, user: string) => {
  * @returns A promise that resolves to the updated task.
  */
 export const updateTaskStatus = async (
-  id: string,
+  id: number,
   data: { completed: boolean; userId: string }
 ) => {
-  return await Task.updateTaskStatus(id, data);
+  return await TaskModel.update(id, data);
 };
 
 /**
@@ -80,8 +80,8 @@ export const updateTaskStatus = async (
  * @param data - The updated task details.
  * @returns A promise that resolves to the updated task.
  */
-export const updateTask = async (id: string, data: ITask) => {
-  const task = await Task.updateTask(id, data);
+export const updateTask = async (id: number, data: ITask) => {
+  const task = await TaskModel.update(id, data);
   if (!task) {
     throw new NotFoundError(`Task with id ${id} Not Found`);
   }
@@ -93,8 +93,8 @@ export const updateTask = async (id: string, data: ITask) => {
  * @param id - The unique identifier of the task.
  * @returns A promise that resolves to the updated list of tasks after deletion.
  */
-export const deleteTask = async (id: string, userId: string) => {
-  const task = await Task.deleteTask(id, userId);
+export const deleteTask = async (id: number, userId: number) => {
+  const task = await TaskModel.delete(id, userId);
   if (!task) {
     throw new NotFoundError(`Task with id ${id} Not Found`);
   }

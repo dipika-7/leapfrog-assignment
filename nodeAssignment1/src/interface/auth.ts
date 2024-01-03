@@ -1,5 +1,5 @@
 export interface ISignup {
-  userId: string;
+  id: number;
   username: string;
   email: string;
   password: string;
@@ -11,10 +11,9 @@ export interface ILogin {
 }
 
 export interface IUser {
-  userId: string;
+  id: number;
   username: string;
-  email: string;
   password: string;
-  accessToken: string;
-  refreshToken: string;
+  email: string;
+  refresh_token: string;
 }

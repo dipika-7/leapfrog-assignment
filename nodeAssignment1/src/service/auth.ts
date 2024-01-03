@@ -2,7 +2,7 @@ import config from "../config";
 import { ISignup, ILogin } from "../interface/auth";
 import { comparePassword, hashPassword } from "../helper/password";
 import { generateToken, verifyToken } from "../helper/jwt";
-import * as User from "../model/users";
+import UserModel from "../model/users";
 
 /**
  * Signs up a new user by checking if the email is unique, hashing the password, and adding the user to the file.
@@ -10,12 +10,12 @@ import * as User from "../model/users";
  * @returns A promise that resolves to true if signup is successful, false otherwise.
  */
 export const signup = async (body: ISignup) => {
-  const userDetail = await User.getUserByEmail(body.email);
+  const userDetail = await UserModel.getByEmail(body.email);
   if (userDetail) {
     return false;
   }
   body.password = await hashPassword(body.password);
-  const addNewUser = await User.createUser(body);
+  const addNewUser = await UserModel.create(body);
   if (addNewUser) {
     return true;
   } else {
@@ -29,7 +29,7 @@ export const signup = async (body: ISignup) => {
  * @returns A promise that resolves to an object with login status, message, and user data if successful.
  */
 export const login = async (data: ILogin) => {
-  const userDetail = await User.getUserByEmail(data.email);
+  const userDetail = await UserModel.getByEmail(data.email);
   if (!userDetail) {
     return {
       status: false,
@@ -41,6 +41,7 @@ export const login = async (data: ILogin) => {
     data.password,
     userDetail.password
   );
+
   if (!passwordMatch) {
     return {
       status: false,
@@ -49,7 +50,7 @@ export const login = async (data: ILogin) => {
   }
 
   const user = {
-    id: userDetail.userId,
+    id: userDetail.id,
     email: data.email,
     tokenType: "accessToken",
   };
@@ -64,12 +65,11 @@ export const login = async (data: ILogin) => {
     config.jwt.refreshTokenExpiresIn
   );
 
-  userDetail.accessToken = accessToken;
-  userDetail.refreshToken = refreshToken;
+  userDetail.refresh_token = refreshToken;
 
-  const updateUserDetail = await User.updateUser(userDetail.userId, userDetail);
+  const updateUserDetail = await UserModel.update(userDetail.id, userDetail);
   delete userDetail.password;
-
+  userDetail.access_token = accessToken;
   return {
     status: true,
     message: "Login Successfully",
@@ -84,8 +84,7 @@ export const login = async (data: ILogin) => {
  */
 export const generateRefreshToken = async (token: string) => {
   const payload: any = await verifyToken(token);
-  const userDetail = await User.getUserById(payload.id);
-
+  const userDetail = await UserModel.getById(payload.id);
   if (!payload || payload.tokenType !== "refreshToken") {
     return {
       status: false,
@@ -104,22 +103,23 @@ export const generateRefreshToken = async (token: string) => {
   delete payload.exp;
   delete payload.tokenType;
 
-  payload.tokenType = "accessToken";
+  payload.tokenType = "access_token";
   const accessToken = await generateToken(
     payload,
     config.jwt.accessTokenExpiresIn
   );
 
-  payload.tokenType = "refreshToken";
+  payload.tokenType = "refresh_token";
   const refreshToken = await generateToken(
     payload,
     config.jwt.refreshTokenExpiresIn
   );
 
-  userDetail.accessToken = accessToken;
-  userDetail.refreshToken = refreshToken;
+  delete userDetail.refreshToken;
+  userDetail.refresh_token = refreshToken;
 
-  const updateUserDetail = await User.updateUser(payload.id, userDetail);
+  const updateUserDetail = await UserModel.update(payload.id, userDetail);
+  userDetail.access_token = accessToken;
 
   return {
     status: true,
@@ -135,13 +135,13 @@ export const generateRefreshToken = async (token: string) => {
  * @returns A promise that resolves to the updated user or false if the user is not found.
  */
 export const logout = async (refreshToken: string) => {
-  const user = await User.getUserByRefreshToken(refreshToken);
+  const user = await UserModel.getByRefreshToken(refreshToken);
   if (!user) {
     return user;
   } else {
     user.accessToken = "";
     user.refreshToken = "";
-    const updateUser = await User.updateUser(user.id, user);
+    const updateUser = await UserModel.update(user.id, user);
     return updateUser;
   }
 };
