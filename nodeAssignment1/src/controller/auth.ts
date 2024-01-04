@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import * as fs from "fs";
 
 import * as authService from "../service/auth";
-
 import { GLOBALVARS } from "../constant/statusCode";
 
 /**

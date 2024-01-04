@@ -1,16 +1,27 @@
 import * as fs from "fs/promises";
-
+import { GetAllUsersQuery } from "../interface/user";
 import UserModel from "../model/users";
-
-const filePath = "../constant/user.json";
+import { buildMeta, getPaginationOptions } from "../util/pagination";
 
 /**
  * Retrieves all users from the user JSON file.
  * @returns A promise that resolves to an array of users.
  */
-export const getUsers = async () => {
-  const users = await UserModel.getAll();
-  return users;
+export const getUsers = async (query: GetAllUsersQuery) => {
+  const { page, size } = query;
+  const pageDetails = getPaginationOptions({ page, size });
+
+  const usersPromise = await UserModel.getAll({ ...pageDetails, ...query });
+  const countPromise = UserModel.countAll();
+  const [users, count] = await Promise.all([usersPromise, countPromise]);
+
+  const total = count.count;
+  const meta = buildMeta(total, size, page);
+
+  return {
+    data: users,
+    meta,
+  };
 };
 
 /**

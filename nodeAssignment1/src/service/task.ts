@@ -1,7 +1,7 @@
-import { ITask, ITaskQuery } from "../interface/task";
-
+import { ITask, ITaskQuery, GetAllTasksQuery } from "../interface/task";
 import TaskModel from "../model/task";
 import NotFoundError from "../error/notFoundError";
+import { buildMeta, getPaginationOptions } from "../util/pagination";
 
 /**
  * Creates a new task by adding it.
@@ -38,12 +38,30 @@ export const getTaskById = async (id: number, userId: number) => {
  * @param id - The unique identifier of the user.
  * @returns A promise that resolves to an array of tasks belonging to the user.
  */
-export const getTaskListByUserId = async (id: number) => {
-  const task = await TaskModel.getByUserId(id);
-  if (!task || task.length <= 0) {
-    throw new NotFoundError(`Task with id ${id} Not Found`);
-  }
-  return task;
+export const getTaskListByUserId = async (
+  query: GetAllTasksQuery,
+  userId: number
+) => {
+  const { page, size } = query;
+
+  const pageDetails = getPaginationOptions({ page, size });
+
+  const tasksPromise = TaskModel.getAllByUser({
+    ...pageDetails,
+    ...query,
+    userId,
+  });
+  const countPromise = TaskModel.countAll();
+
+  const [tasks, count] = await Promise.all([tasksPromise, countPromise]);
+
+  const total = count.count;
+  const meta = buildMeta(total, size, page);
+
+  return {
+    data: tasks,
+    meta,
+  };
 };
 
 /**
@@ -52,13 +70,32 @@ export const getTaskListByUserId = async (id: number) => {
  * @param user - The unique identifier of the user.
  * @returns A promise that resolves to an array of tasks with the specified completion status and user association.
  */
-export const getTaskListByStatus = async (status: boolean, user: string) => {
-  const task = await TaskModel.getByStatus(status, user);
-  console.log(task);
-  if (!task || task.length <= 0) {
+export const getTaskListByStatus = async (
+  status: boolean,
+  user: string,
+  query: GetAllTasksQuery
+) => {
+  const { page, size } = query;
+  const pageDetails = getPaginationOptions({ page, size });
+
+  const tasksPromise = TaskModel.getByStatus(status, user, {
+    ...pageDetails,
+    ...query,
+  });
+  const countPromise = TaskModel.countAll();
+
+  const [tasks, count] = await Promise.all([tasksPromise, countPromise]);
+
+  if (!tasks || tasks.length <= 0) {
     throw new NotFoundError(`Task Not Found`);
   }
-  return task;
+  const total = count.count;
+  const meta = buildMeta(total, size, page);
+
+  return {
+    data: tasks,
+    meta,
+  };
 };
 
 /**
@@ -69,7 +106,7 @@ export const getTaskListByStatus = async (status: boolean, user: string) => {
  */
 export const updateTaskStatus = async (
   id: number,
-  data: { completed: boolean; userId: string }
+  data: { completed: boolean; created_by: string }
 ) => {
   return await TaskModel.update(id, data);
 };

@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "../constant/pagination";
 
 const taskSchema = Joi.object({
   value: Joi.string().required().messages({
@@ -17,12 +18,15 @@ const updateTaskStatusSchema = Joi.object({
 });
 
 const getTaskQuerySchema = Joi.object({
-  search: Joi.string().messages({
+  search: Joi.string().default("").messages({
     "string.base": "Search field should be string",
   }),
   completed: Joi.boolean().messages({
     "boolean.base": "Completed field should be boolean",
   }),
+  page: Joi.number().integer().min(1).default(DEFAULT_PAGE),
+
+  size: Joi.number().integer().min(1).max(40).default(DEFAULT_PAGE_SIZE),
 });
 
 const idSchema = Joi.object({

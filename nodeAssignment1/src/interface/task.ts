@@ -1,12 +1,17 @@
+import { PaginationQuery } from "./pagination";
 export interface ITask {
   id: number;
-  userId: number;
   value: string;
   completed: boolean;
-  created_by: number;
+  createdBy: number;
 }
 
 export interface ITaskQuery {
   search?: string;
   completed?: string;
+}
+
+export interface GetAllTasksQuery extends PaginationQuery {
+  search?: string;
+  completed?: boolean;
 }

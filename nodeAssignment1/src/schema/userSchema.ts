@@ -1,4 +1,5 @@
 import Joi from "joi";
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "../constant/pagination";
 
 const signUpSchema = Joi.object({
   username: Joi.string().required().messages({
@@ -45,4 +46,12 @@ const refreshTokenSchema = Joi.object({
   }),
 });
 
-export { signUpSchema, loginSchema, refreshTokenSchema };
+const getUserSchema = Joi.object({
+  page: Joi.number().integer().min(1).default(DEFAULT_PAGE),
+
+  size: Joi.number().integer().min(1).max(40).default(DEFAULT_PAGE_SIZE),
+
+  search: Joi.string().default(""),
+});
+
+export { signUpSchema, loginSchema, refreshTokenSchema, getUserSchema };

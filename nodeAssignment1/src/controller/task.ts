@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import * as taskService from "../service/task";
 
 import { GLOBALVARS } from "../constant/statusCode";
+import { GetAllTasksQuery } from "../interface/task";
 import "../util/custom";
 
 /**
@@ -13,8 +14,7 @@ import "../util/custom";
  */
 export const addTask = async (req: any, res: Response, next: NextFunction) => {
   const body = req.body;
-  body.userId = req.user.id;
-  body.created_by = req.user.id;
+  body.createdBy = req.user.id;
   await taskService
     .createTask(body)
     .then((result) => {
@@ -45,9 +45,10 @@ export const listOfTaskByUserId = async (
   res: Response,
   next: NextFunction
 ) => {
+  const query = req.query;
   const userid = req.user.id;
   await taskService
-    .getTaskListByUserId(userid)
+    .getTaskListByUserId(query as unknown as GetAllTasksQuery, userid)
     .then((result) => {
       if (!result) {
         res.json({
@@ -108,6 +109,7 @@ export const listOfTaskByStatus = async (
   res: Response,
   next: NextFunction
 ) => {
+  const query = req.query;
   const statusMappings: Record<string, boolean> = {
     true: true,
     false: false,
@@ -115,7 +117,7 @@ export const listOfTaskByStatus = async (
   const data = statusMappings[req.params.status];
   const user = req.user.id;
   await taskService
-    .getTaskListByStatus(data, user)
+    .getTaskListByStatus(data, user, query)
     .then((result) => {
       if (!result) {
         res.json({
@@ -146,7 +148,7 @@ export const updateTask = async (
 ) => {
   const id = req.params.id;
   const data = req.body;
-  data.userId = req.user.id;
+  data.created_by = req.user.id;
   await taskService
     .updateTask(id, data)
     .then((result) => {
@@ -179,7 +181,7 @@ export const updateTaskStatus = async (
 ) => {
   const id = req.params.id;
   const data = req.body;
-  data.userId = req.user.id;
+  data.created_by = req.user.id;
   await taskService
     .updateTaskStatus(id, data)
     .then((result) => {

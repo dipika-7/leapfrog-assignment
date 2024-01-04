@@ -2,14 +2,24 @@ import BaseModel from "./baseModel";
 import { ILogin, ISignup, IUser } from "../interface/auth";
 
 export default class UserModel extends BaseModel {
-  static async getAll() {
+  static async getAll(params: any) {
     return this.queryBuilder()
       .select({
         id: "id",
         username: "username",
         email: "email",
       })
-      .from("users");
+      .from("users")
+      .whereRaw("LOWER(email) like ?", [`%${params.search?.toLowerCase()}%`]);
+  }
+
+  static countAll() {
+    const query = this.queryBuilder()
+      .table("users")
+      .count({ count: "id" })
+      .first();
+
+    return query;
   }
 
   static async getById(id: number) {
