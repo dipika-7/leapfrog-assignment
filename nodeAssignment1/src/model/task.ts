@@ -22,10 +22,14 @@ export default class tasksModel extends BaseModel {
       })
       .from("tasks")
       .where({ createdBy: params.userId })
-      .where(params.completed ? { completed: params.completed } : true)
       .whereRaw("LOWER(value) like ?", [`%${params.search?.toLowerCase()}%`]);
 
     query.offset(params.offset).limit(params.limit);
+
+    if (params.completed !== undefined) {
+      query.where({ completed: params.completed });
+    }
+
     return query;
   }
 
